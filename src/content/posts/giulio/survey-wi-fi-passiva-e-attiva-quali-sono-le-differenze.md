@@ -3,7 +3,7 @@ title: "Survey Wi-Fi passiva e attiva: quali sono le differenze?"
 description: Una panoramica pratica sulle differenze tra site survey Wi-Fi
   passiva e attiva, su cosa misurano e in quali casi è utile utilizzare l’una,
   l’altra o entrambe.
-pubDatetime: 2026-08-14T17:05:00Z
+pubDatetime: 2026-08-14T15:05:00Z
 draft: false
 tags:
   - wifi
@@ -152,19 +152,12 @@ La survey attiva permette di verificare come quella stessa infrastruttura viene 
 Possiamo quindi semplificare il concetto in questo modo:
 
 | Survey passiva | Survey attiva |
-
 | --- | --- |
-
 | Il client ascolta la rete | Il client si associa alla rete |
-
 | Analizza principalmente l'ambiente RF | Analizza il comportamento della connessione |
-
 | Può osservare più AP contemporaneamente | Il test riguarda la connessione utilizzata dal client |
-
 | Utile per copertura e progettazione RF | Utile per validazione e troubleshooting |
-
 | Non genera il normale traffico di un client associato | Può generare traffico reale |
-
 | Non misura direttamente il throughput end-to-end | Può essere utilizzata per misurare le prestazioni |
 
 ---
