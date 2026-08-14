@@ -8,7 +8,7 @@ export default defineAstroPaperConfig({
     author: "Giulio Lattanzio",
     profile: "https://giuliolattanzio.pages.dev/",
     ogImage: "default-og.jpg",
-    lang: "it",
+    lang: "en",
     timezone: "Europe/Rome",
     dir: "ltr",
   },
