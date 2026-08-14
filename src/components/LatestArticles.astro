@@ -1,0 +1,145 @@
+---
+import { getCollection } from "astro:content";
+import { getSortedPosts } from "@/utils/getSortedPosts";
+import { getPostUrl } from "@/utils/getPostPaths";
+import config from "@/config";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+const latestPosts = getSortedPosts(posts).slice(0, 3);
+const locale = Astro.currentLocale ?? config.site.lang;
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("it-IT", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(date);
+---
+
+{latestPosts.length > 0 && (
+  <section class="latest-section gl-section-white">
+    <div class="gl-wrap">
+      <div class="latest-head">
+        <div>
+          <p class="gl-eyebrow">Ultimi contenuti</p>
+          <h2>Dal Knowledge Hub.</h2>
+        </div>
+        <a href="/posts/">Vedi tutti gli articoli →</a>
+      </div>
+
+      <div class="latest-grid">
+        {latestPosts.map(post => (
+          <a class="latest-card" href={getPostUrl(post.id, post.filePath, locale)}>
+            <div class="latest-meta">
+              <span>{formatDate(post.data.pubDatetime)}</span>
+              {post.data.tags?.[0] && <span>{post.data.tags[0]}</span>}
+            </div>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <span class="read-more">Leggi l’articolo →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .latest-section {
+    padding: 100px 0;
+    border-top: 1px solid #e4e7ec;
+  }
+
+  .latest-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 38px;
+  }
+
+  .latest-head h2 {
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(2.3rem, 4vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -.055em;
+  }
+
+  .latest-head > a {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 750;
+    white-space: nowrap;
+  }
+
+  .latest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .latest-card {
+    display: flex;
+    min-height: 285px;
+    flex-direction: column;
+    padding: 28px;
+    background: #f7f9fc;
+    border: 1px solid #e4e7ec;
+    border-radius: 16px;
+    color: inherit;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+
+  .latest-card:hover {
+    transform: translateY(-3px);
+    border-color: #bfdbfe;
+    box-shadow: 0 18px 45px rgba(16,24,40,.07);
+  }
+
+  .latest-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    color: #667085;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .latest-card h3 {
+    margin: 36px 0 12px;
+    color: #0b1220;
+    font-size: 23px;
+    line-height: 1.25;
+    letter-spacing: -.035em;
+  }
+
+  .latest-card p {
+    margin: 0;
+    color: #667085;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .read-more {
+    margin-top: auto;
+    padding-top: 24px;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 750;
+  }
+
+  @media (max-width: 900px) {
+    .latest-grid { grid-template-columns: 1fr; }
+    .latest-card { min-height: auto; }
+  }
+
+  @media (max-width: 650px) {
+    .latest-section { padding: 76px 0; }
+    .latest-head { align-items: flex-start; flex-direction: column; }
+  }
+</style>
