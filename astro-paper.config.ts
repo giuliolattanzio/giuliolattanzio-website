@@ -4,17 +4,17 @@ export default defineAstroPaperConfig({
   site: {
     url: "https://giuliolattanzio.pages.dev/",
     title: "Giulio Lattanzio",
-    description: "Sito Vetrina e Interactive CV di Giulio Lattanzio | Network & Security Specialist (Wi-Fi, VoIP, Fortinet, AudioCodes).",
+    description: "Portfolio personale, curriculum digitale e knowledge hub tecnico di Giulio Lattanzio | Network & Security Specialist.",
     author: "Giulio Lattanzio",
     profile: "https://giuliolattanzio.pages.dev/",
     ogImage: "default-og.jpg",
-    lang: "en",
+    lang: "it",
     timezone: "Europe/Rome",
     dir: "ltr",
   },
   posts: {
-    perPage: 4,
-    perIndex: 4,
+    perPage: 6,
+    perIndex: 6,
     scheduledPostMargin: 15 * 60 * 1000,
   },
   features: {
@@ -28,13 +28,11 @@ export default defineAstroPaperConfig({
     search: "pagefind",
   },
   socials: [
-    { name: "github",   url: "https://github.com/giuliolattanzio" },
-    { name: "linkedin", url: "https://www.linkedin.com/in/tuo-profilo-linkedin/" },
-    { name: "mail",     url: "mailto:giulio.lattanzio@gmail.com" },
+    { name: "github", url: "https://github.com/giuliolattanzio" },
   ],
   shareLinks: [
     { name: "whatsapp", url: "https://wa.me/?text=" },
     { name: "linkedin", url: "https://www.linkedin.com/shareArticle?mini=true&url=" },
-    { name: "mail",     url: "mailto:?subject=Guarda%20questo%20articolo&body=" },
+    { name: "mail", url: "mailto:?subject=Guarda%20questo%20articolo&body=" },
   ],
 });
