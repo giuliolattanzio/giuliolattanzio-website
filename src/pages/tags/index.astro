@@ -1,32 +1,57 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import Main from "@/components/Main.astro";
-import Footer from "@/components/Footer.astro";
-import Tag from "@/components/Tag.astro";
+import PersonalHeader from "@/components/PersonalHeader.astro";
+import PersonalFooter from "@/components/PersonalFooter.astro";
 import { getUniqueTags } from "@/utils/getUniqueTags";
-import { useTranslations } from "@/i18n";
 import config from "@/config";
 
 const posts = await getCollection("posts", ({ data }) => !data.draft);
 const tags = getUniqueTags(posts);
-
-const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
 ---
 
-<Layout title={`${t.pages.tagsTitle} | ${config.site.title}`}>
-  <Header />
+<Layout
+  title={`Argomenti | ${config.site.title}`}
+  description="Argomenti degli articoli tecnici pubblicati da Giulio Lattanzio."
+>
+  <div class="gl-shell">
+    <PersonalHeader active="articoli" />
 
-  <Breadcrumb />
+    <main>
+      <section class="gl-section">
+        <div class="gl-wrap">
+          <p class="gl-eyebrow">Argomenti</p>
+          <h1 class="gl-title">Esplora i contenuti <span>per tema.</span></h1>
+          <p class="gl-lead">Wi-Fi, networking, sicurezza, VoIP e le tecnologie che fanno parte del mio lavoro quotidiano.</p>
+        </div>
+      </section>
 
-  <Main pageTitle={t.pages.tagsTitle} pageDesc={t.pages.tagsDesc}>
-    <ul class="flex flex-wrap gap-6">
-      {tags.map(({ tag, tagName }) => <Tag {tag} {tagName} />)}
-    </ul>
-  </Main>
+      <section class="gl-section gl-section-white">
+        <div class="gl-wrap">
+          <div class="tag-grid">
+            {tags.map(({ tag, tagName }) => (
+              <a class="tag-card" href={`/tags/${tag}/`}>
+                <span>#</span>
+                <strong>{tagName}</strong>
+                <small>Vedi gli articoli →</small>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <Footer />
+    <PersonalFooter />
+  </div>
 </Layout>
+
+<style>
+  .tag-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tag-card { display: grid; gap: 12px; padding: 28px; border: 1px solid #e4e7ec; border-radius: 16px; background: #f7f9fc; color: #0b1220; text-decoration: none; }
+  .tag-card > span { color: #2563eb; font-family: monospace; }
+  .tag-card strong { font-size: 22px; }
+  .tag-card small { color: #667085; }
+  .tag-card:hover { border-color: #93c5fd; transform: translateY(-2px); }
+  @media (max-width: 850px) { .tag-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .tag-grid { grid-template-columns: 1fr; } }
+</style>
