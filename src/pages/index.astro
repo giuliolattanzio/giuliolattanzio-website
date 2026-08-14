@@ -1,8 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
@@ -14,7 +12,6 @@ import { useTranslations } from "@/i18n";
 import config from "@/config";
 
 const { socials, posts: postsConfig } = config;
-
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
 
@@ -27,102 +24,85 @@ const homePath = getRelativeLocaleUrl(locale, "");
 
 <Layout>
   <Header />
-  <main
-    id="main-content"
-    data-layout="index"
-    data-home-path={homePath}
-    class="app-layout my-1"
-  >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Benvenuto
-      </h1>
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+  <main id="main-content" class="app-layout my-4">
+    
+    <!-- HERO SECTION MODERNA -->
+    <section id="hero" class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 p-8 sm:p-12 shadow-2xl border border-slate-700/50 my-6">
+      <div class="relative z-10 max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold tracking-wide uppercase mb-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Available for Consultancy & Projects
+        </div>
+        
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight mb-4">
+          Giulio Lattanzio
+        </h1>
+        
+        <p class="text-xl sm:text-2xl font-medium text-indigo-200 mb-6">
+          Network & Security Specialist
+        </p>
+        
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
+          Progetto e gestisco infrastrutture di rete complesse, soluzioni Wi-Fi enterprise, sistemi VoIP ed ecosistemi di sicurezza avanzati.
+        </p>
 
-      <p>
-        Sono Giulio Lattanzio, Network & Security Specialist. Mi occupo di progettazione, implementazione e gestione di infrastrutture di rete, Wi-Fi, sistemi VoIP, Fortinet e AudioCodes.
-      </p>
-      <p class="mt-2">
-        In questo sito trovi i miei articoli tecnici, guide e il mio percorso professionale.
-      </p>
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
-            </div>
-            <Socials />
-          </div>
-        )
-      }
+        <!-- BADGES SKILLS -->
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">Fortinet</span>
+          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">AudioCodes</span>
+          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">Enterprise Wi-Fi</span>
+          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">VoIP & Telephony</span>
+          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">Network Security</span>
+        </div>
+
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="mailto:giulio.lattanzio@gmail.com" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-lg shadow-indigo-600/30 transition-all duration-200">
+            Contattami
+          </a>
+          <a href="/about" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold border border-slate-700 transition-all duration-200">
+            Vedi Curriculum
+          </a>
+        </div>
+      </div>
     </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+    <!-- SPECIALIZZAZIONI / SERVICES -->
+    <section class="py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/50 transition-all">
+        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">01</div>
+        <h3 class="text-lg font-bold text-white mb-2">Network Security</h3>
+        <p class="text-slate-400 text-sm">Implementazione di Next-Gen Firewall (Fortinet), VPN, segmentazione di rete e policy di sicurezza avanzate.</p>
+      </div>
 
+      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/50 transition-all">
+        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">02</div>
+        <h3 class="text-lg font-bold text-white mb-2">Wi-Fi & Infrastruttura</h3>
+        <p class="text-slate-400 text-sm">Progettazione e site-survey per coperture Wi-Fi enterprise ad alta densità e infrastrutture switching/routing.</p>
+      </div>
+
+      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/50 transition-all">
+        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">03</div>
+        <h3 class="text-lg font-bold text-white mb-2">VoIP & AudioCodes</h3>
+        <p class="text-slate-400 text-sm">Integrazione di sistemi VoIP complex, Session Border Controller (SBC AudioCodes) e Unified Communications.</p>
+      </div>
+    </section>
+
+    <!-- ARTICOLI / POST RECENTI -->
     {
       recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
+        <section id="recent-posts" class="pt-8 pb-6">
+          <h2 class="text-2xl font-bold text-white tracking-wide mb-6">
+            Ultimi Articoli Tecnici
           </h2>
-          <ul>
+          <div class="grid gap-4">
             {recentPosts.slice(0, postsConfig.perIndex).map(data => (
               <Card variant="h3" {...data} />
             ))}
-          </ul>
+          </div>
         </section>
       )
     }
 
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-        {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
   </main>
   <Footer />
 </Layout>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset;
-    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-    if (indexLayout?.layout) {
-      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
-    }
-  });
-</script>
