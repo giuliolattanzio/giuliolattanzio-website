@@ -1,43 +1,41 @@
-export const SITE = {
-  website: "https://giuliolattanzio.pages.dev/",
-  author: "Giulio Lattanzio",
-  profile: "https://giuliolattanzio.pages.dev/",
-  desc: "Sito Vetrina e Interactive CV di Giulio Lattanzio | Network & Security Specialist.",
-  title: "Giulio Lattanzio | Network & Security Specialist",
-  ogImage: "astropaper-og.jpg",
-  lightAndDarkMode: true,
-  postPerIndex: 4,
-  postPerPage: 4,
-  scheduledPostMargin: 15 * 60 * 1000,
-  showArchives: true,
-  editPost: {
-    enabled: false,
-  },
-};
+import { defineAstroPaperConfig } from "./src/types/config";
 
-export const LOCALE = {
-  lang: "it",
-  langTag: ["it-IT"],
-} as const;
-
-export const LOGO_IMAGE = {
-  enable: false,
-  svg: true,
-  width: 216,
-  height: 46,
-};
-
-export const SOCIALS = [
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/",
-    linkTitle: "Giulio Lattanzio su LinkedIn",
-    active: true,
+export default defineAstroPaperConfig({
+  site: {
+    url: "https://giuliolattanzio.pages.dev/",
+    title: "Giulio Lattanzio",
+    description: "Sito Vetrina e Interactive CV di Giulio Lattanzio | Network & Security Specialist (Wi-Fi, VoIP, Fortinet, AudioCodes).",
+    author: "Giulio Lattanzio",
+    profile: "https://giuliolattanzio.pages.dev/",
+    ogImage: "default-og.jpg",
+    lang: "it",
+    timezone: "Europe/Rome",
+    dir: "ltr",
   },
-  {
-    name: "Mail",
-    href: "mailto:giulio.lattanzio@gmail.com",
-    linkTitle: "Invia una mail a Giulio",
-    active: true,
+  posts: {
+    perPage: 4,
+    perIndex: 4,
+    scheduledPostMargin: 15 * 60 * 1000,
   },
-];
+  features: {
+    lightAndDarkMode: true,
+    dynamicOgImage: true,
+    showArchives: true,
+    showBackButton: true,
+    editPost: {
+      enabled: false,
+      url: "https://github.com/giuliolattanzio/giuliolattanzio-website/edit/main/",
+    },
+    search: "pagefind",
+  },
+  socials: [
+    { name: "github",   url: "https://github.com/giuliolattanzio" },
+    { name: "linkedin", url: "https://www.linkedin.com/in/tuo-profilo-linkedin/" },
+    { name: "mail",     url: "mailto:giulio.lattanzio@gmail.com" },
+  ],
+  shareLinks: [
+    { name: "whatsapp", url: "https://wa.me/?text=" },
+    { name: "linkedin", url: "https://www.linkedin.com/shareArticle?mini=true&url=" },
+    { name: "mail",     url: "mailto:?subject=Guarda%20questo%20articolo&body=" },
+  ],
+});
