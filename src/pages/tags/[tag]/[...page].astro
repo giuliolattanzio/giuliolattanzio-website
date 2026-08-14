@@ -2,16 +2,12 @@
 import { getCollection } from "astro:content";
 import type { GetStaticPathsOptions } from "astro";
 import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Main from "@/components/Main.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import Card from "@/components/Card.astro";
-import Footer from "@/components/Footer.astro";
-import Pagination from "@/components/Pagination.astro";
+import PersonalHeader from "@/components/PersonalHeader.astro";
+import PersonalFooter from "@/components/PersonalFooter.astro";
 import { getUniqueTags } from "@/utils/getUniqueTags";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { slugifyAll } from "@/utils/slugify";
-import { useTranslations } from "@/i18n";
+import { getPostUrl } from "@/utils/getPostPaths";
 import config from "@/config";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
@@ -32,26 +28,58 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 }
 
 const { page, tagName } = Astro.props;
-
 const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("it-IT", { day: "2-digit", month: "long", year: "numeric" }).format(date);
 ---
 
-<Layout title={`${t.pages.tagTitle}: ${tagName} | ${config.site.title}`}>
-  <Header />
+<Layout
+  title={`${tagName} | ${config.site.title}`}
+  description={`Articoli e approfondimenti tecnici dedicati a ${tagName}.`}
+>
+  <div class="gl-shell">
+    <PersonalHeader active="articoli" />
 
-  <Breadcrumb />
+    <main>
+      <section class="gl-section">
+        <div class="gl-wrap">
+          <a class="gl-back" href="/tags/">← Tutti gli argomenti</a>
+          <p class="gl-eyebrow">Argomento</p>
+          <h1 class="gl-title">{tagName}</h1>
+          <p class="gl-lead">Articoli, note e approfondimenti associati a questo tema.</p>
+        </div>
+      </section>
 
-  <Main
-    pageTitle={`${t.pages.tagTitle}: ${tagName}`}
-    pageDesc={`${t.pages.tagDesc} "${tagName}".`}
-  >
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
-    </ul>
-  </Main>
+      <section class="gl-section gl-section-white">
+        <div class="gl-wrap">
+          <div class="gl-article-list">
+            {page.data.map(post => (
+              <a class="gl-article-card" href={getPostUrl(post.id, post.filePath, locale)}>
+                <div>
+                  <div class="gl-meta">{formatDate(post.data.pubDatetime)}</div>
+                  <h2>{post.data.title}</h2>
+                  <p>{post.data.description}</p>
+                  <div class="gl-tag-list card-tags">
+                    {post.data.tags.slice(0, 5).map(tag => <span class="gl-tag">{tag}</span>)}
+                  </div>
+                </div>
+                <span class="gl-arrow">→</span>
+              </a>
+            ))}
+          </div>
 
-  <Pagination {page} />
+          {(page.url.prev || page.url.next) && (
+            <nav class="gl-pagination" aria-label="Paginazione">
+              <span>{page.url.prev && <a href={page.url.prev}>← Più recenti</a>}</span>
+              <span>{page.url.next && <a href={page.url.next}>Più vecchi →</a>}</span>
+            </nav>
+          )}
+        </div>
+      </section>
+    </main>
 
-  <Footer noMarginTop={page.lastPage > 1} />
+    <PersonalFooter />
+  </div>
 </Layout>
+
+<style>.card-tags{margin-top:18px}</style>
