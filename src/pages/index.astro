@@ -4,1552 +4,271 @@ import Layout from "@/layouts/Layout.astro";
 
 <Layout
   title="Giulio Lattanzio | Network & Security Specialist"
-  description="Network & Security Specialist specializzato in infrastrutture enterprise, cybersecurity, Fortinet, AudioCodes, Wi-Fi e sistemi VoIP."
+  description="Portfolio personale e raccolta di contenuti tecnici su networking, Wi-Fi, VoIP, Fortinet e AudioCodes."
 >
-
-  <div class="website">
-
-    <!-- NAVBAR -->
-    <header class="navbar">
-      <div class="container nav-inner">
-
-        <a href="#home" class="brand" aria-label="Giulio Lattanzio - Home">
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="wrap nav-wrap">
+        <a class="brand" href="/">
           <span class="brand-mark">GL</span>
-
-          <span class="brand-text">
+          <span>
             <strong>Giulio Lattanzio</strong>
-            <small>Network & Security</small>
+            <small>Network & Security Specialist</small>
           </span>
         </a>
 
-        <nav class="nav-links" aria-label="Navigazione principale">
-          <a href="#about">Chi sono</a>
-          <a href="#services">Competenze</a>
-          <a href="#method">Come lavoro</a>
-          <a href="#technologies">Tecnologie</a>
-
-          <a href="#contact" class="nav-contact">
-            Contatti
-          </a>
+        <nav aria-label="Navigazione principale">
+          <a href="/profilo/">Profilo</a>
+          <a href="/posts/">Articoli</a>
+          <a href="#stack">Tecnologie</a>
         </nav>
-
       </div>
     </header>
 
-
-    <main id="main-content">
-
-      <!-- HERO -->
-      <section id="home" class="hero">
-
-        <div class="container hero-grid">
-
-          <div class="hero-content">
-
-            <div class="eyebrow">
-              <span class="status-dot"></span>
-              Network & Security Specialist
-            </div>
-
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <p class="eyebrow">Personal tech portfolio</p>
             <h1>
-              Infrastrutture di rete
-              <span>sicure, affidabili</span>
-              e progettate per durare.
+              Networking, sicurezza e comunicazioni
+              <span>raccontati attraverso esperienza e contenuti tecnici.</span>
             </h1>
-
-            <p class="hero-description">
-              Progetto, proteggo e ottimizzo infrastrutture di rete enterprise,
-              soluzioni Wi-Fi ad alte prestazioni e sistemi di comunicazione VoIP.
-              Dalla sicurezza perimetrale alla Unified Communication.
+            <p class="lead">
+              Sono Giulio Lattanzio, Network & Security Specialist. Questo sito è la mia vetrina professionale:
+              racconta chi sono, di cosa mi occupo, le tecnologie con cui lavoro e gli articoli che pubblico su Wi-Fi,
+              networking, Fortinet, VoIP e AudioCodes.
             </p>
 
             <div class="hero-actions">
-
-              <a
-                href="mailto:giulio.lattanzio@gmail.com"
-                class="button button-primary"
-              >
-                Parliamo del tuo progetto
-
-                <span aria-hidden="true">→</span>
-              </a>
-
-              <a
-                href="#services"
-                class="button button-secondary"
-              >
-                Scopri cosa faccio
-              </a>
-
+              <a class="primary" href="/profilo/">Chi sono e cosa faccio</a>
+              <a class="secondary" href="/posts/">Leggi gli articoli</a>
             </div>
-
-
-            <div class="hero-skills">
-
-              <span>Fortinet</span>
-              <span>AudioCodes</span>
-              <span>Enterprise Wi-Fi</span>
-              <span>Network Security</span>
-
-            </div>
-
           </div>
 
-
-          <!-- VISUAL / FOTO -->
-          <div class="hero-visual">
-
-            <div class="visual-decoration decoration-one"></div>
-            <div class="visual-decoration decoration-two"></div>
-
-            <div class="portrait-card">
-
-              <!--
-                Inserisci una tua foto chiamata profile.jpg
-                nella cartella /public
-
-                Se la foto non esiste, viene mostrato
-                comunque lo sfondo grafico.
-              -->
-
-              <img
-                src="/profile.jpg"
-                alt="Giulio Lattanzio"
-                class="portrait-image"
-                onerror="this.remove()"
-              />
-
-              <div class="portrait-grid"></div>
-
-              <div class="portrait-info">
-
-                <span class="terminal-label">
-                  C:\&gt; whoami
-                </span>
-
-                <div>
-                  <strong>Giulio Lattanzio</strong>
-                  <p>
-                    Networking · Security · VoIP
-                  </p>
-                </div>
-
+          <aside class="identity-card" aria-label="Profilo sintetico">
+            <div class="identity-top">
+              <span class="prompt">C:\&gt; whoami</span>
+              <span class="status">online</span>
+            </div>
+            <div class="identity-main">
+              <span class="avatar">GL</span>
+              <div>
+                <h2>Giulio Lattanzio</h2>
+                <p>Network & Security Specialist</p>
               </div>
-
             </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PROFESSIONAL AREAS -->
-      <section class="specializations">
-
-        <div class="container specialization-grid">
-
-          <div>
-            <span class="specialization-number">01</span>
-            <strong>Network</strong>
-            <p>
-              Routing, switching e infrastrutture enterprise.
-            </p>
-          </div>
-
-          <div>
-            <span class="specialization-number">02</span>
-            <strong>Security</strong>
-            <p>
-              Firewall, VPN, segmentazione e protezione perimetrale.
-            </p>
-          </div>
-
-          <div>
-            <span class="specialization-number">03</span>
-            <strong>Wireless</strong>
-            <p>
-              Wi-Fi professionale, site survey e ottimizzazione RF.
-            </p>
-          </div>
-
-          <div>
-            <span class="specialization-number">04</span>
-            <strong>VoIP</strong>
-            <p>
-              SBC, SIP e integrazione delle comunicazioni aziendali.
-            </p>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ABOUT -->
-      <section id="about" class="section">
-
-        <div class="container about-grid">
-
-          <div class="section-heading">
-
-            <span class="section-label">
-              C:\&gt; whoami
-            </span>
-
-            <h2>
-              Tecnologia complessa,
-              <span>soluzioni semplici.</span>
-            </h2>
-
-          </div>
-
-
-          <div class="about-content">
-
-            <p class="about-lead">
-              Mi occupo di networking e sicurezza informatica con un focus
-              particolare sulle infrastrutture aziendali.
-            </p>
-
-            <p>
-              Lavoro sulla progettazione, configurazione e ottimizzazione di
-              ambienti di rete affidabili e sicuri, seguendo il progetto dalla
-              fase di analisi fino alla messa in produzione.
-            </p>
-
-            <p>
-              Il mio approccio combina competenze su
-              <strong>Fortinet</strong>,
-              <strong>AudioCodes</strong>,
-              switching, routing, wireless enterprise e tecnologie VoIP,
-              con un obiettivo preciso: creare infrastrutture che siano
-              semplici da gestire, resilienti e scalabili.
-            </p>
-
-            <div class="about-links">
-
-              <a
-                href="https://github.com/giuliolattanzio"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-                <span>↗</span>
-              </a>
-
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-                <span>↗</span>
-              </a>
-
+            <div class="identity-tags">
+              <span>Networking</span><span>Wi-Fi</span><span>Fortinet</span><span>VoIP</span><span>AudioCodes</span>
             </div>
-
-          </div>
-
+          </aside>
         </div>
-
       </section>
 
+      <section id="profilo" class="section white-section">
+        <div class="wrap split">
+          <div>
+            <p class="section-label">Profilo</p>
+            <h2>Una presentazione di chi sono e di cosa mi occupo.</h2>
+          </div>
+          <div class="copy">
+            <p class="big-copy">
+              Mi occupo di infrastrutture di rete, sicurezza, wireless enterprise e sistemi di comunicazione VoIP.
+            </p>
+            <p>
+              Questo spazio non nasce per offrire servizi o consulenza: è una vetrina personale e professionale.
+              Qui presento le aree tecniche su cui lavoro e raccolgo appunti, approfondimenti e contenuti sugli argomenti
+              che utilizzo e studio nel tempo.
+            </p>
+            <div class="inline-actions">
+              <a href="/profilo/">Scopri il mio profilo →</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <!-- SERVICES -->
-      <section id="services" class="section section-light">
-
-        <div class="container">
-
-          <div class="section-intro">
-
+      <section id="competenze" class="section soft-section">
+        <div class="wrap">
+          <div class="section-head">
             <div>
-              <span class="section-label">
-                Competenze
-              </span>
-
-              <h2>
-                Dove posso fare
-                <span>la differenza.</span>
-              </h2>
+              <p class="section-label">Aree tecniche</p>
+              <h2>I temi su cui lavoro e pubblico.</h2>
             </div>
-
             <p>
-              Dalla progettazione dell'architettura alla risoluzione dei
-              problemi sul campo: un approccio completo alle infrastrutture
-              di rete e comunicazione.
+              Ogni area diventerà anche un percorso editoriale, con articoli, note tecniche e approfondimenti.
             </p>
-
           </div>
 
-
-          <div class="services-grid">
-
-            <!-- SERVICE 01 -->
-            <article class="service-card">
-
-              <div class="service-top">
-                <span class="service-number">01</span>
-
-                <div class="service-icon">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M12 3l8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7l8-4z"
-                    />
-                    <path d="M9 12l2 2 4-4" />
-                  </svg>
-                </div>
-              </div>
-
-              <h3>
-                Network Security
-                <br />
-                & Fortinet
-              </h3>
-
-              <p>
-                Progettazione e gestione di infrastrutture di sicurezza
-                basate su FortiGate e tecnologie Fortinet.
-              </p>
-
-              <ul>
-                <li>Next Generation Firewall</li>
-                <li>VPN IPsec / SSL</li>
-                <li>VLAN & segmentazione</li>
-                <li>Security policies</li>
-                <li>Hardening della rete</li>
-              </ul>
-
-            </article>
-
-
-            <!-- SERVICE 02 -->
-            <article class="service-card">
-
-              <div class="service-top">
-                <span class="service-number">02</span>
-
-                <div class="service-icon">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="3" />
-                    <circle cx="12" cy="12" r="8" />
-                    <path d="M12 4v5M12 15v5M4 12h5M15 12h5" />
-                  </svg>
-                </div>
-              </div>
-
-              <h3>
-                Enterprise Wi-Fi
-                <br />
-                & Switching
-              </h3>
-
-              <p>
-                Progettazione di reti cablate e wireless affidabili,
-                performanti e pronte a crescere.
-              </p>
-
-              <ul>
-                <li>Wireless design</li>
-                <li>Site survey</li>
-                <li>Analisi spettro RF</li>
-                <li>VLAN & switching</li>
-                <li>Ottimizzazione prestazioni</li>
-              </ul>
-
-            </article>
-
-
-            <!-- SERVICE 03 -->
-            <article class="service-card">
-
-              <div class="service-top">
-                <span class="service-number">03</span>
-
-                <div class="service-icon">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M7 4h3l2 5-2 1.5a14 14 0 006 6L17.5 14l5 2v3c0 1.1-.9 2-2 2C11 21 3 13 3 3.5 3 2.7 3.7 2 4.5 2H7"
-                    />
-                  </svg>
-                </div>
-              </div>
-
-              <h3>
-                VoIP
-                <br />
-                & AudioCodes
-              </h3>
-
-              <p>
-                Implementazione e troubleshooting di infrastrutture VoIP
-                e Session Border Controller.
-              </p>
-
-              <ul>
-                <li>AudioCodes SBC</li>
-                <li>SIP routing</li>
-                <li>Microsoft Teams</li>
-                <li>PBX integration</li>
-                <li>VoIP troubleshooting</li>
-              </ul>
-
-            </article>
-
-
-            <!-- SERVICE 04 -->
-            <article class="service-card">
-
-              <div class="service-top">
-                <span class="service-number">04</span>
-
-                <div class="service-icon">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M4 19V9M10 19V5M16 19v-8M22 19V3" />
-                  </svg>
-                </div>
-              </div>
-
-              <h3>
-                Analisi
-                <br />
-                & Troubleshooting
-              </h3>
-
-              <p>
-                Analisi approfondita di problemi di rete, performance e
-                configurazioni esistenti.
-              </p>
-
-              <ul>
-                <li>Wireshark</li>
-                <li>Packet analysis</li>
-                <li>Performance analysis</li>
-                <li>Network audit</li>
-                <li>Ottimizzazione</li>
-              </ul>
-
-            </article>
-
+          <div class="topic-grid">
+            <a class="topic-card" href="/tags/wifi/">
+              <span>01</span><h3>Wi-Fi</h3><p>Wireless enterprise, RF, roaming, site survey e troubleshooting.</p>
+            </a>
+            <a class="topic-card" href="/tags/networking/">
+              <span>02</span><h3>Networking</h3><p>Routing, switching, VLAN, protocolli e analisi del traffico.</p>
+            </a>
+            <a class="topic-card" href="/tags/fortinet/">
+              <span>03</span><h3>Fortinet</h3><p>FortiGate, VPN, policy, sicurezza e troubleshooting.</p>
+            </a>
+            <a class="topic-card" href="/tags/voip/">
+              <span>04</span><h3>VoIP</h3><p>SIP, call flow, integrazioni e qualità delle comunicazioni.</p>
+            </a>
+            <a class="topic-card" href="/tags/audiocodes/">
+              <span>05</span><h3>AudioCodes</h3><p>SBC, routing SIP, manipolazioni e interoperabilità.</p>
+            </a>
           </div>
-
         </div>
-
       </section>
 
-
-      <!-- METHOD -->
-      <section id="method" class="section method">
-
-        <div class="container">
-
-          <div class="section-intro">
-
-            <div>
-              <span class="section-label">
-                Come lavoro
-              </span>
-
-              <h2>
-                Dal problema
-                <span>alla soluzione.</span>
-              </h2>
-            </div>
-
-            <p>
-              Ogni infrastruttura è diversa. Prima di configurare,
-              serve capire come viene utilizzata e quali problemi
-              deve realmente risolvere.
-            </p>
-
-          </div>
-
-
-          <div class="method-grid">
-
-            <div class="method-item">
-
-              <span>01</span>
-
-              <h3>Analisi</h3>
-
-              <p>
-                Raccolgo requisiti, architettura esistente,
-                criticità e obiettivi.
-              </p>
-
-            </div>
-
-            <div class="method-item">
-
-              <span>02</span>
-
-              <h3>Progettazione</h3>
-
-              <p>
-                Definisco la soluzione tecnica, valutando
-                sicurezza, performance e scalabilità.
-              </p>
-
-            </div>
-
-            <div class="method-item">
-
-              <span>03</span>
-
-              <h3>Implementazione</h3>
-
-              <p>
-                Configuro e integro i sistemi riducendo al minimo
-                l'impatto sull'operatività.
-              </p>
-
-            </div>
-
-            <div class="method-item">
-
-              <span>04</span>
-
-              <h3>Verifica</h3>
-
-              <p>
-                Test, troubleshooting e ottimizzazione completano
-                il deployment.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- TECHNOLOGIES -->
-      <section id="technologies" class="section technologies">
-
-        <div class="container technologies-grid">
-
+      <section class="section dark-section">
+        <div class="wrap article-cta">
           <div>
-
-            <span class="section-label">
-              Technology stack
-            </span>
-
-            <h2>
-              Tecnologie con cui
-              <span>lavoro ogni giorno.</span>
-            </h2>
-
-          </div>
-
-
-          <div class="technology-list">
-
-            <span>FortiGate</span>
-            <span>Fortinet</span>
-            <span>AudioCodes SBC</span>
-            <span>Cisco</span>
-            <span>HPE Aruba</span>
-            <span>SIP</span>
-            <span>VoIP</span>
-            <span>BGP</span>
-            <span>OSPF</span>
-            <span>VLAN</span>
-            <span>IPsec</span>
-            <span>Wireshark</span>
-            <span>Microsoft Teams</span>
-            <span>Enterprise Wi-Fi</span>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- CONTACT -->
-      <section id="contact" class="contact-section">
-
-        <div class="container">
-
-          <div class="contact-box">
-
-            <span class="contact-label">
-              Hai un progetto?
-            </span>
-
-            <h2>
-              Costruiamo un'infrastruttura
-              <span>più sicura e affidabile.</span>
-            </h2>
-
+            <p class="section-label light-label">Knowledge hub</p>
+            <h2>Articoli, appunti e approfondimenti tecnici.</h2>
             <p>
-              Se stai progettando una nuova infrastruttura,
-              vuoi migliorare quella esistente o devi risolvere
-              un problema complesso di networking, parliamone.
+              La parte editoriale del sito crescerà nel tempo e diventerà il punto centrale dove raccogliere ciò che studio,
+              sperimento e considero utile documentare.
             </p>
-
-            <div class="contact-actions">
-
-              <a
-                href="mailto:giulio.lattanzio@gmail.com"
-                class="button button-white"
-              >
-                giulio.lattanzio@gmail.com
-                <span>→</span>
-              </a>
-
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="contact-link"
-              >
-                LinkedIn ↗
-              </a>
-
-            </div>
-
           </div>
-
+          <a class="light-button" href="/posts/">Vai agli articoli →</a>
         </div>
-
       </section>
 
+      <section id="stack" class="section white-section">
+        <div class="wrap split">
+          <div>
+            <p class="section-label">Technology stack</p>
+            <h2>Tecnologie e strumenti.</h2>
+          </div>
+          <div class="stack-list">
+            <span>FortiGate</span><span>Fortinet</span><span>AudioCodes SBC</span><span>Ekahau</span>
+            <span>SIP</span><span>VoIP</span><span>VLAN</span><span>IPsec</span>
+            <span>Wireshark</span><span>Microsoft Teams</span><span>Enterprise Wi-Fi</span><span>Wi-Fi</span>
+            <span>Survey Wi-Fi</span><span>Analisi Wi-Fi</span><span>Site Survey</span>
+          </div>
+        </div>
+      </section>
     </main>
 
-
-    <!-- FOOTER -->
-    <footer class="footer">
-
-      <div class="container footer-inner">
-
+    <footer>
+      <div class="wrap footer-wrap">
         <div>
           <strong>Giulio Lattanzio</strong>
           <p>Network & Security Specialist</p>
         </div>
-
-        <p>
-          © {new Date().getFullYear()} Giulio Lattanzio
-        </p>
-
+        <p>Portfolio personale e knowledge hub tecnico.</p>
       </div>
-
     </footer>
-
   </div>
-
 </Layout>
 
-
 <style>
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) { margin: 0; }
 
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  :global(body) {
-    margin: 0;
-  }
-
-  .website {
-    --bg: #f7f9fc;
-    --white: #ffffff;
+  .site-shell {
+    --navy: #0b1220;
+    --blue: #2563eb;
     --text: #101828;
     --muted: #667085;
     --border: #e4e7ec;
-    --blue: #2563eb;
-    --blue-dark: #1d4ed8;
-    --navy: #0b1220;
-
-    width: 100%;
-    background: var(--bg);
+    --soft: #f7f9fc;
+    --white: #ffffff;
+    background: var(--soft);
     color: var(--text);
-    font-family:
-      Inter,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      sans-serif;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(247, 249, 252, .9);
+    border-bottom: 1px solid rgba(228, 231, 236, .9);
+    backdrop-filter: blur(14px);
+  }
+  .nav-wrap { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+  .brand { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; }
+  .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: var(--navy); color: white; font-weight: 800; }
+  .brand strong, .brand small { display: block; }
+  .brand strong { font-size: 14px; }
+  .brand small { color: var(--muted); font-size: 11px; margin-top: 2px; }
+  nav { display: flex; gap: 26px; }
+  nav a { text-decoration: none; color: #475467; font-size: 14px; font-weight: 650; }
+  nav a:hover { color: var(--blue); }
+
+  .hero { padding: 110px 0 95px; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; }
+  .eyebrow, .section-label { color: var(--blue); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  h1 { max-width: 760px; margin: 16px 0 0; font-size: clamp(3rem, 5vw, 5rem); line-height: 1; letter-spacing: -.06em; color: var(--navy); }
+  h1 span { display: block; color: var(--blue); }
+  .lead { max-width: 760px; margin: 28px 0 0; color: var(--muted); font-size: 18px; line-height: 1.75; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+  .primary, .secondary, .light-button { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border-radius: 10px; padding: 13px 18px; font-weight: 750; font-size: 14px; }
+  .primary { background: var(--blue); color: white; }
+  .secondary { background: white; color: var(--text); border: 1px solid var(--border); }
+  .inline-actions { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 28px; }
+  .inline-actions a { color: var(--blue); text-decoration: none; font-weight: 750; font-size: 14px; }
+
+  .identity-card { padding: 28px; border-radius: 24px; background: var(--navy); color: white; box-shadow: 0 30px 70px rgba(16,24,40,.16); }
+  .identity-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 28px; border-bottom: 1px solid #243047; }
+  .prompt { color: #60a5fa; font-family: monospace; font-size: 12px; }
+  .status { color: #86efac; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
+  .identity-main { display: flex; align-items: center; gap: 18px; padding: 32px 0; }
+  .avatar { width: 64px; height: 64px; display: grid; place-items: center; background: #1d4ed8; border-radius: 16px; font-size: 20px; font-weight: 800; }
+  .identity-main h2 { margin: 0; font-size: 22px; }
+  .identity-main p { margin: 6px 0 0; color: #94a3b8; }
+  .identity-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .identity-tags span { padding: 8px 10px; border: 1px solid #2b3850; border-radius: 8px; color: #cbd5e1; font-size: 12px; }
+
+  .section { padding: 105px 0; }
+  .white-section { background: white; }
+  .soft-section { background: var(--soft); }
+  .split { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; align-items: start; }
+  .section h2 { margin: 14px 0 0; color: var(--navy); font-size: clamp(2.3rem, 4vw, 3.8rem); letter-spacing: -.055em; line-height: 1.05; }
+  .copy p { color: var(--muted); line-height: 1.8; }
+  .copy .big-copy { margin-top: 0; color: var(--text); font-size: 22px; line-height: 1.5; }
+
+  .section-head { display: grid; grid-template-columns: 1fr .75fr; gap: 80px; align-items: end; margin-bottom: 48px; }
+  .section-head > p { margin: 0; color: var(--muted); line-height: 1.75; }
+  .topic-grid { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+  .topic-card { min-height: 260px; padding: 28px; text-decoration: none; color: inherit; background: white; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: transform .2s ease, box-shadow .2s ease; }
+  .topic-card:hover { transform: translateY(-4px); box-shadow: 0 20px 45px rgba(16,24,40,.08); z-index: 1; }
+  .topic-card > span { color: var(--blue); font-family: monospace; font-size: 12px; }
+  .topic-card h3 { margin: 42px 0 12px; color: var(--navy); font-size: 22px; }
+  .topic-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+  .dark-section { background: var(--navy); color: white; }
+  .article-cta { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: end; }
+  .dark-section h2 { color: white; max-width: 760px; }
+  .dark-section p:not(.section-label) { max-width: 720px; color: #94a3b8; line-height: 1.75; }
+  .light-label { color: #60a5fa; }
+  .light-button { background: white; color: var(--navy); white-space: nowrap; }
+
+  .stack-list { display: flex; flex-wrap: wrap; gap: 10px; }
+  .stack-list span { padding: 10px 13px; border: 1px solid var(--border); background: var(--soft); border-radius: 8px; color: #344054; font-family: monospace; font-size: 12px; }
+
+  footer { background: white; border-top: 1px solid var(--border); }
+  .footer-wrap { min-height: 120px; display: flex; align-items: center; justify-content: space-between; gap: 30px; color: var(--muted); font-size: 12px; }
+  .footer-wrap strong { color: var(--text); font-size: 14px; }
+  .footer-wrap p { margin: 4px 0 0; }
+
+  @media (max-width: 950px) {
+    .hero-grid, .split, .section-head, .article-cta { grid-template-columns: 1fr; gap: 45px; }
+    .topic-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 700px) {
+    .wrap { width: min(100% - 28px, 1160px); }
+    nav a:last-child { display: none; }
+    .brand small { display: none; }
+    .hero { padding: 70px 0; }
+    h1 { font-size: clamp(2.7rem, 13vw, 4rem); }
+    .lead { font-size: 16px; }
+    .hero-actions { flex-direction: column; }
+    .section { padding: 78px 0; }
+    .topic-grid { grid-template-columns: 1fr; }
+    .topic-card { min-height: auto; }
+    .topic-card h3 { margin-top: 28px; }
+    .footer-wrap { padding: 28px 0; flex-direction: column; align-items: flex-start; }
   }
-
-  .container {
-    width: min(1180px, calc(100% - 48px));
-    margin: 0 auto;
-  }
-
-
-  /* NAVBAR */
-
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(247, 249, 252, 0.9);
-    border-bottom: 1px solid rgba(228, 231, 236, 0.8);
-    backdrop-filter: blur(18px);
-  }
-
-  .nav-inner {
-    min-height: 82px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    text-decoration: none;
-    color: var(--text);
-  }
-
-  .brand-mark {
-    width: 43px;
-    height: 43px;
-    display: grid;
-    place-items: center;
-    background: var(--navy);
-    color: white;
-    border-radius: 12px;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-  }
-
-  .brand-text {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .brand-text strong {
-    font-size: 14px;
-    line-height: 1.25;
-  }
-
-  .brand-text small {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 2px;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-  }
-
-  .nav-links a {
-    color: #475467;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.2s ease;
-  }
-
-  .nav-links a:hover {
-    color: var(--blue);
-  }
-
-  .nav-links .nav-contact {
-    color: white;
-    background: var(--navy);
-    padding: 11px 18px;
-    border-radius: 9px;
-  }
-
-  .nav-links .nav-contact:hover {
-    background: var(--blue);
-    color: white;
-  }
-
-
-  /* HERO */
-
-  .hero {
-    padding: 105px 0 90px;
-    overflow: hidden;
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.12fr 0.88fr;
-    gap: 90px;
-    align-items: center;
-  }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--blue);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-  }
-
-  .status-dot {
-    width: 8px;
-    height: 8px;
-    background: #22c55e;
-    border-radius: 50%;
-    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
-  }
-
-  .hero h1 {
-    margin: 0;
-    max-width: 800px;
-    color: var(--navy);
-    font-size: clamp(3.1rem, 5.3vw, 5.1rem);
-    line-height: 1;
-    letter-spacing: -0.065em;
-    font-weight: 750;
-  }
-
-  .hero h1 span,
-  .section h2 span {
-    color: var(--blue);
-  }
-
-  .hero-description {
-    max-width: 700px;
-    color: var(--muted);
-    font-size: 18px;
-    line-height: 1.75;
-    margin: 30px 0 0;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 13px;
-    margin-top: 35px;
-  }
-
-  .button {
-    display: inline-flex;
-    align-items: center;
-    gap: 17px;
-    padding: 14px 21px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-    transition:
-      transform 0.2s ease,
-      background 0.2s ease;
-  }
-
-  .button:hover {
-    transform: translateY(-2px);
-  }
-
-  .button-primary {
-    color: white;
-    background: var(--blue);
-  }
-
-  .button-primary:hover {
-    background: var(--blue-dark);
-  }
-
-  .button-secondary {
-    color: var(--text);
-    background: white;
-    border: 1px solid var(--border);
-  }
-
-  .hero-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 23px;
-    margin-top: 43px;
-    color: #98a2b3;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.055em;
-  }
-
-
-  /* HERO VISUAL */
-
-  .hero-visual {
-    position: relative;
-  }
-
-  .portrait-card {
-    position: relative;
-    min-height: 540px;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 70% 25%, #243b70 0, transparent 35%),
-      linear-gradient(145deg, #111827, #050811);
-    border-radius: 26px;
-    box-shadow: 0 35px 80px rgba(16, 24, 40, 0.18);
-  }
-
-  .portrait-image {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-  }
-
-  .portrait-grid {
-    position: absolute;
-    inset: 0;
-    opacity: 0.25;
-    background-image:
-      linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
-    background-size: 42px 42px;
-  }
-
-  .portrait-info {
-    position: absolute;
-    z-index: 4;
-    left: 25px;
-    right: 25px;
-    bottom: 25px;
-    padding: 18px 20px;
-    color: white;
-    background: rgba(8, 13, 25, 0.72);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255,255,255,.16);
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .portrait-info strong {
-    font-size: 15px;
-  }
-
-  .portrait-info p {
-    margin: 4px 0 0;
-    color: #cbd5e1;
-    font-size: 12px;
-  }
-
-  .terminal-label {
-    color: #60a5fa;
-    font-family: monospace;
-    font-size: 12px;
-  }
-
-  .visual-decoration {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(1px);
-  }
-
-  .decoration-one {
-    width: 170px;
-    height: 170px;
-    right: -70px;
-    top: -50px;
-    background: rgba(37, 99, 235, 0.12);
-  }
-
-  .decoration-two {
-    width: 90px;
-    height: 90px;
-    left: -35px;
-    bottom: 35px;
-    border: 1px solid rgba(37, 99, 235, 0.3);
-  }
-
-
-  /* SPECIALIZATIONS */
-
-  .specializations {
-    background: white;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .specialization-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .specialization-grid > div {
-    padding: 32px 26px;
-    border-right: 1px solid var(--border);
-  }
-
-  .specialization-grid > div:first-child {
-    padding-left: 0;
-  }
-
-  .specialization-grid > div:last-child {
-    border-right: 0;
-  }
-
-  .specialization-number {
-    display: block;
-    color: var(--blue);
-    font-family: monospace;
-    font-size: 11px;
-    margin-bottom: 12px;
-  }
-
-  .specialization-grid strong {
-    font-size: 17px;
-  }
-
-  .specialization-grid p {
-    margin: 7px 0 0;
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
-
-  /* GENERAL SECTIONS */
-
-  .section {
-    padding: 120px 0;
-  }
-
-  .section-light {
-    background: white;
-  }
-
-  .section-label {
-    display: block;
-    color: var(--blue);
-    font-family: monospace;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-
-  .section h2,
-  .contact-section h2 {
-    color: var(--navy);
-    font-size: clamp(2.3rem, 4vw, 3.8rem);
-    line-height: 1.05;
-    letter-spacing: -0.055em;
-    margin: 0;
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 110px;
-  }
-
-  .about-content {
-    max-width: 650px;
-  }
-
-  .about-content p {
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.8;
-  }
-
-  .about-content .about-lead {
-    margin-top: 0;
-    color: var(--text);
-    font-size: 23px;
-    line-height: 1.55;
-  }
-
-  .about-content strong {
-    color: var(--text);
-  }
-
-  .about-links {
-    display: flex;
-    gap: 30px;
-    margin-top: 30px;
-  }
-
-  .about-links a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--blue);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-  }
-
-
-  /* SERVICES */
-
-  .section-intro {
-    display: grid;
-    grid-template-columns: 1fr 0.72fr;
-    gap: 90px;
-    align-items: end;
-    margin-bottom: 65px;
-  }
-
-  .section-intro > p {
-    color: var(--muted);
-    line-height: 1.75;
-    margin: 0;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-top: 1px solid var(--border);
-    border-left: 1px solid var(--border);
-  }
-
-  .service-card {
-    padding: 38px;
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    transition:
-      transform .25s ease,
-      box-shadow .25s ease;
-  }
-
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 25px 50px rgba(16, 24, 40, 0.07);
-  }
-
-  .service-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .service-number {
-    color: #98a2b3;
-    font-family: monospace;
-    font-size: 12px;
-  }
-
-  .service-icon {
-    width: 45px;
-    height: 45px;
-    display: grid;
-    place-items: center;
-    color: var(--blue);
-    background: #eff6ff;
-    border-radius: 12px;
-  }
-
-  .service-icon svg {
-    width: 22px;
-    stroke-width: 1.6;
-  }
-
-  .service-card h3 {
-    color: var(--navy);
-    font-size: 25px;
-    line-height: 1.25;
-    letter-spacing: -0.035em;
-    margin: 30px 0 15px;
-  }
-
-  .service-card > p {
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 470px;
-  }
-
-  .service-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 25px 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .service-card li {
-    padding: 7px 10px;
-    color: #475467;
-    background: #f8fafc;
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    font-size: 12px;
-  }
-
-
-  /* METHOD */
-
-  .method {
-    background: var(--navy);
-  }
-
-  .method .section-label {
-    color: #60a5fa;
-  }
-
-  .method .section-intro h2 {
-    color: white;
-  }
-
-  .method .section-intro h2 span {
-    color: #60a5fa;
-  }
-
-  .method .section-intro > p {
-    color: #98a2b3;
-  }
-
-  .method-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin-top: 65px;
-    border-top: 1px solid #293347;
-  }
-
-  .method-item {
-    padding: 35px 30px 0 0;
-    border-right: 1px solid #293347;
-    min-height: 220px;
-  }
-
-  .method-item + .method-item {
-    padding-left: 30px;
-  }
-
-  .method-item:last-child {
-    border-right: 0;
-  }
-
-  .method-item > span {
-    color: #60a5fa;
-    font-family: monospace;
-    font-size: 12px;
-  }
-
-  .method-item h3 {
-    color: white;
-    font-size: 20px;
-    margin: 32px 0 12px;
-  }
-
-  .method-item p {
-    color: #98a2b3;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-
-  /* TECHNOLOGIES */
-
-  .technologies-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 100px;
-    align-items: center;
-  }
-
-  .technology-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .technology-list span {
-    padding: 11px 14px;
-    background: white;
-    color: #344054;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 12px;
-    transition: .2s ease;
-  }
-
-  .technology-list span:hover {
-    color: var(--blue);
-    border-color: #93c5fd;
-    transform: translateY(-2px);
-  }
-
-
-  /* CONTACT */
-
-  .contact-section {
-    padding: 60px 0 110px;
-  }
-
-  .contact-box {
-    position: relative;
-    overflow: hidden;
-    padding: 80px;
-    color: white;
-    background:
-      radial-gradient(circle at 85% 0%, #2248a0 0, transparent 30%),
-      var(--blue);
-    border-radius: 28px;
-  }
-
-  .contact-label {
-    display: block;
-    margin-bottom: 20px;
-    color: #dbeafe;
-    font-family: monospace;
-    font-size: 12px;
-    text-transform: uppercase;
-  }
-
-  .contact-box h2 {
-    max-width: 850px;
-    color: white;
-  }
-
-  .contact-box h2 span {
-    color: #bfdbfe;
-  }
-
-  .contact-box > p {
-    max-width: 650px;
-    color: #dbeafe;
-    line-height: 1.75;
-    margin: 25px 0 0;
-  }
-
-  .contact-actions {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-top: 35px;
-  }
-
-  .button-white {
-    color: var(--navy);
-    background: white;
-  }
-
-  .contact-link {
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-  }
-
-
-  /* FOOTER */
-
-  .footer {
-    background: white;
-    border-top: 1px solid var(--border);
-  }
-
-  .footer-inner {
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--muted);
-    font-size: 12px;
-  }
-
-  .footer strong {
-    color: var(--text);
-    font-size: 14px;
-  }
-
-  .footer p {
-    margin: 4px 0 0;
-  }
-
-
-  /* RESPONSIVE */
-
-  @media (max-width: 900px) {
-
-    .hero {
-      padding-top: 70px;
-    }
-
-    .hero-grid,
-    .about-grid,
-    .section-intro,
-    .technologies-grid {
-      grid-template-columns: 1fr;
-      gap: 50px;
-    }
-
-    .hero-visual {
-      max-width: 520px;
-    }
-
-    .portrait-card {
-      min-height: 560px;
-    }
-
-    .specialization-grid,
-    .method-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .specialization-grid > div:nth-child(2) {
-      border-right: 0;
-    }
-
-    .services-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .method-item:nth-child(2) {
-      border-right: 0;
-    }
-
-    .contact-box {
-      padding: 55px;
-    }
-
-  }
-
-
-  @media (max-width: 680px) {
-
-    .container {
-      width: min(100% - 30px, 1180px);
-    }
-
-    .nav-inner {
-      min-height: 70px;
-    }
-
-    .nav-links a:not(.nav-contact) {
-      display: none;
-    }
-
-    .nav-links .nav-contact {
-      padding: 9px 13px;
-    }
-
-    .brand-text {
-      display: none;
-    }
-
-    .hero {
-      padding: 65px 0;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 13vw, 4rem);
-    }
-
-    .hero-description {
-      font-size: 16px;
-    }
-
-    .hero-actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .button {
-      justify-content: center;
-    }
-
-    .portrait-card {
-      min-height: 470px;
-    }
-
-    .portrait-info {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .specialization-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .specialization-grid > div {
-      padding-left: 0;
-      border-right: 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .specialization-grid > div:last-child {
-      border-bottom: 0;
-    }
-
-    .section {
-      padding: 85px 0;
-    }
-
-    .service-card {
-      padding: 28px;
-    }
-
-    .method-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .method-item,
-    .method-item + .method-item {
-      padding: 28px 0;
-      min-height: auto;
-      border-right: 0;
-      border-bottom: 1px solid #293347;
-    }
-
-    .method-item:last-child {
-      border-bottom: 0;
-    }
-
-    .contact-section {
-      padding: 30px 0 70px;
-    }
-
-    .contact-box {
-      padding: 40px 25px;
-      border-radius: 20px;
-    }
-
-    .contact-actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .footer-inner {
-      padding: 30px 0;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-    }
-
-  }
-
 </style>
