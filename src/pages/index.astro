@@ -1,108 +1,128 @@
 ---
-import { getCollection } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import Card from "@/components/Card.astro";
-import LinkButton from "@/components/LinkButton.astro";
-import { getSortedPosts } from "@/utils/getSortedPosts";
-import { useTranslations } from "@/i18n";
-import config from "@/config";
-
-const { socials, posts: postsConfig } = config;
-const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
-
-const posts = await getCollection("posts");
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-const homePath = getRelativeLocaleUrl(locale, "");
 ---
 
-<Layout>
+<Layout title="Giulio Lattanzio | Network & Security Specialist">
   <Header />
-  <main id="main-content" class="app-layout my-4">
+  
+  <main id="main-content" class="app-layout max-w-4xl mx-auto px-4 py-8 space-y-16">
     
-    <!-- HERO SECTION MODERNA -->
-    <section id="hero" class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 p-8 sm:p-12 shadow-2xl border border-slate-700/50 my-6">
-      <div class="relative z-10 max-w-3xl">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold tracking-wide uppercase mb-6">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Available for Consultancy & Projects
-        </div>
-        
-        <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight mb-4">
+    <!-- HERO SECTION -->
+    <section class="py-12 border-b border-slate-800">
+      <div class="space-y-4">
+        <span class="text-xs font-semibold tracking-widest text-indigo-400 uppercase">
+          Network & Security Specialist
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
           Giulio Lattanzio
         </h1>
-        
-        <p class="text-xl sm:text-2xl font-medium text-indigo-200 mb-6">
-          Network & Security Specialist
+        <p class="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed pt-2">
+          Specializzato nella progettazione, messa in sicurezza e gestione di infrastrutture di rete enterprise, soluzioni Wi-Fi ad alte prestazioni e sistemi VoIP complex.
         </p>
         
-        <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
-          Progetto e gestisco infrastrutture di rete complesse, soluzioni Wi-Fi enterprise, sistemi VoIP ed ecosistemi di sicurezza avanzati.
-        </p>
-
-        <!-- BADGES SKILLS -->
-        <div class="flex flex-wrap gap-2 mb-8">
-          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">Fortinet</span>
-          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">AudioCodes</span>
-          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">Enterprise Wi-Fi</span>
-          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">VoIP & Telephony</span>
-          <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">Network Security</span>
-        </div>
-
-        <div class="flex flex-wrap gap-4 items-center">
-          <a href="mailto:giulio.lattanzio@gmail.com" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-lg shadow-indigo-600/30 transition-all duration-200">
+        <div class="pt-4 flex flex-wrap gap-4">
+          <a 
+            href="mailto:giulio.lattanzio@gmail.com" 
+            class="px-5 py-2.5 rounded-lg bg-white text-slate-900 font-medium hover:bg-slate-200 transition-colors"
+          >
             Contattami
           </a>
-          <a href="/about" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold border border-slate-700 transition-all duration-200">
-            Vedi Curriculum
+          <a 
+            href="https://www.linkedin.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="px-5 py-2.5 rounded-lg bg-slate-800 text-slate-200 font-medium hover:bg-slate-700 border border-slate-700 transition-colors"
+          >
+            LinkedIn
           </a>
         </div>
       </div>
     </section>
 
-    <!-- SPECIALIZZAZIONI / SERVICES -->
-    <section class="py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/50 transition-all">
-        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">01</div>
-        <h3 class="text-lg font-bold text-white mb-2">Network Security</h3>
-        <p class="text-slate-400 text-sm">Implementazione di Next-Gen Firewall (Fortinet), VPN, segmentazione di rete e policy di sicurezza avanzate.</p>
-      </div>
-
-      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/50 transition-all">
-        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">02</div>
-        <h3 class="text-lg font-bold text-white mb-2">Wi-Fi & Infrastruttura</h3>
-        <p class="text-slate-400 text-sm">Progettazione e site-survey per coperture Wi-Fi enterprise ad alta densità e infrastrutture switching/routing.</p>
-      </div>
-
-      <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/50 transition-all">
-        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold mb-4">03</div>
-        <h3 class="text-lg font-bold text-white mb-2">VoIP & AudioCodes</h3>
-        <p class="text-slate-400 text-sm">Integrazione di sistemi VoIP complex, Session Border Controller (SBC AudioCodes) e Unified Communications.</p>
+    <!-- CHI SONO / ABOUT ME -->
+    <section class="space-y-6 border-b border-slate-800 pb-12">
+      <h2 class="text-xs font-semibold tracking-widest text-slate-400 uppercase">
+        Profilo Professionale
+      </h2>
+      <div class="grid md:grid-cols-2 gap-8 text-slate-300 leading-relaxed">
+        <p>
+          Mi occupo di architetture di rete e sicurezza informatica con un focus verticale su tecnologie <strong>Fortinet</strong> e <strong>AudioCodes</strong>. Aiuto aziende e organizzazioni a realizzare infrastrutture affidabili, scalabili e protette.
+        </p>
+        <p>
+          Dalla pianificazione di coperture Wi-Fi alla configurazione di Session Border Controller (SBC) per la telefonia IP, gestisco l'intero ciclo di vita dei progetti di rete.
+        </p>
       </div>
     </section>
 
-    <!-- ARTICOLI / POST RECENTI -->
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-8 pb-6">
-          <h2 class="text-2xl font-bold text-white tracking-wide mb-6">
-            Ultimi Articoli Tecnici
-          </h2>
-          <div class="grid gap-4">
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </div>
-        </section>
-      )
-    }
+    <!-- AREE DI COMPETENZA / COSA FACCIO -->
+    <section class="space-y-6 border-b border-slate-800 pb-12">
+      <h2 class="text-xs font-semibold tracking-widest text-slate-400 uppercase">
+        Competenze & Servizi
+      </h2>
+      
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-2">
+          <h3 class="text-lg font-bold text-white">Network Security & Fortinet</h3>
+          <p class="text-sm text-slate-400">
+            Progettazione e gestione di Next-Gen Firewall, VPN IPsec/SSL, segmentazione VLAN e policy di protezione perimetrale.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-2">
+          <h3 class="text-lg font-bold text-white">Sistemi VoIP & AudioCodes</h3>
+          <p class="text-sm text-slate-400">
+            Integrazione SBC AudioCodes, routing delle chiamate, migrazione verso la telefonia IP e integrazione Microsoft Teams / PBX.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-2">
+          <h3 class="text-lg font-bold text-white">Enterprise Wi-Fi & Switching</h3>
+          <p class="text-sm text-slate-400">
+            Site survey, analisi dello spettro radio, deployment di reti wireless ad alta densità e configurazione apparati di rete.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-2">
+          <h3 class="text-lg font-bold text-white">Consulenza & Auditing</h3>
+          <p class="text-sm text-slate-400">
+            Analisi delle prestazioni, vulnerability assessment delle reti esistenti e ottimizzazione delle infrastrutture IT.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECNOLOGIE / HARDWARE SKILLS -->
+    <section class="space-y-6 border-b border-slate-800 pb-12">
+      <h2 class="text-xs font-semibold tracking-widest text-slate-400 uppercase">
+        Stack Tecnologico
+      </h2>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1.5 rounded-md bg-slate-900 text-slate-300 text-sm font-mono border border-slate-800">Fortigate</span>
+        <span class="px-3 py-1.5 rounded-md bg-slate-900 text-slate-300 text-sm font-mono border border-slate-800">AudioCodes SBC</span>
+        <span class="px-3 py-1.5 rounded-md bg-slate-900 text-slate-300 text-sm font-mono border border-slate-800">Cisco / HPE Aruba</span>
+        <span class="px-3 py-1.5 rounded-md bg-slate-900 text-slate-300 text-sm font-mono border border-slate-800">SIP / VoIP</span>
+        <span class="px-3 py-1.5 rounded-md bg-slate-900 text-slate-300 text-sm font-mono border border-slate-800">BGP / OSPF</span>
+        <span class="px-3 py-1.5 rounded-md bg-slate-900 text-slate-300 text-sm font-mono border border-slate-800">Wireshark</span>
+      </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section class="space-y-4 py-6 text-center sm:text-left">
+      <h2 class="text-2xl font-bold text-white">Vuoi collaborare o richiedere una consulenza?</h2>
+      <p class="text-slate-400">Scrivimi direttamente via e-mail per discutere del tuo progetto.</p>
+      <div class="pt-2">
+        <a 
+          href="mailto:giulio.lattanzio@gmail.com" 
+          class="inline-block px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-colors"
+        >
+          Invia un messaggio
+        </a>
+      </div>
+    </section>
 
   </main>
+  
   <Footer />
 </Layout>
