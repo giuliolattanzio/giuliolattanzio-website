@@ -1,36 +1,33 @@
 ---
-import { getEntry, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import Main from "@/components/Main.astro";
-import Footer from "@/components/Footer.astro";
+import PersonalHeader from "@/components/PersonalHeader.astro";
+import PersonalFooter from "@/components/PersonalFooter.astro";
 import config from "@/config";
-
-const about = await getEntry("pages", "about");
-
-if (!about) {
-  throw new Error(
-    "Missing content entry: `about.md` or `about.mdx` in `src/content/pages/`"
-  );
-}
-
-const { Content } = await render(about);
 ---
 
 <Layout
-  title={`${about.data.title} | ${config.site.title}`}
-  description={about.data.description}
-  ogImage={about.data.ogImage}
-  canonicalURL={about.data.canonicalURL}
+  title={`Profilo | ${config.site.title}`}
+  description="Presentazione personale e professionale di Giulio Lattanzio."
 >
-  <Header />
-
-  <Breadcrumb />
-
-  <Main pageTitle={about.data.title} class="app-prose">
-    <Content />
-  </Main>
-
-  <Footer />
+  <div class="gl-shell">
+    <PersonalHeader active="profilo" />
+    <main>
+      <section class="gl-section">
+        <div class="gl-wrap legacy-page">
+          <p class="gl-eyebrow">Profilo</p>
+          <h1 class="gl-title">Chi sono e <span>cosa faccio.</span></h1>
+          <p class="gl-lead">
+            La mia presentazione personale è stata spostata nella nuova pagina Profilo, integrata con il resto del sito.
+          </p>
+          <a class="gl-button gl-button-primary" href="/profilo/">Vai al Profilo →</a>
+        </div>
+      </section>
+    </main>
+    <PersonalFooter />
+  </div>
 </Layout>
+
+<style>
+  .legacy-page { max-width: 900px; }
+  .legacy-page .gl-button { margin-top: 30px; }
+</style>
