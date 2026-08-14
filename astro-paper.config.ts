@@ -1,45 +1,34 @@
-import { defineAstroPaperConfig } from "./src/types/config";
+import { defineConfig } from "./src/types/config";
 
-export default defineAstroPaperConfig({
+export default defineConfig({
   site: {
-    url: "https://astro-paper.pages.dev/",
-    title: "AstroPaper",
-    description: "A minimal, responsive and SEO-friendly Astro blog theme.",
-    author: "Sat Naing",
-    profile: "https://satna.ing",
-    ogImage: "default-og.jpg",
-    lang: "en",
-    timezone: "Asia/Bangkok",
-    dir: "ltr",
-  },
-  posts: {
-    perPage: 4,
-    perIndex: 4,
-    scheduledPostMargin: 15 * 60 * 1000,
-  },
-  features: {
+    website: "https://giuliolattanzio.pages.dev/",
+    author: "Giulio Lattanzio",
+    profile: "https://giuliolattanzio.pages.dev/",
+    desc: "Sito Vetrina e Interactive CV di Giulio Lattanzio | Network & Security Specialist (Wi-Fi, VoIP, Fortinet, AudioCodes).",
+    title: "Giulio Lattanzio | Network & Security Specialist",
+    ogImage: "astropaper-og.jpg",
     lightAndDarkMode: true,
-    dynamicOgImage: true,
+    postPerIndex: 4,
+    postPerPage: 4,
+    scheduledPostMargin: 15 * 60 * 1000,
     showArchives: true,
-    showBackButton: true,
     editPost: {
-      enabled: true,
-      url: "https://github.com/satnaing/astro-paper/edit/main/",
+      enabled: false,
     },
-    search: "pagefind",
   },
   socials: [
-    { name: "github",   url: "https://github.com/satnaing/astro-paper" },
-    { name: "x",        url: "https://x.com/username" },
-    { name: "linkedin", url: "https://www.linkedin.com/in/username/" },
-    { name: "mail",     url: "mailto:yourmail@gmail.com" },
-  ],
-  shareLinks: [
-    { name: "whatsapp", url: "https://wa.me/?text=" },
-    { name: "facebook", url: "https://www.facebook.com/sharer.php?u=" },
-    { name: "x",        url: "https://x.com/intent/post?url=" },
-    { name: "telegram", url: "https://t.me/share/url?url=" },
-    { name: "pinterest", url: "https://pinterest.com/pin/create/button/?url=" },
-    { name: "mail",     url: "mailto:?subject=See%20this%20post&body=" },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/tuo-profilo-linkedin", // Inserisci qui il tuo link LinkedIn reale
+      linkTitle: "Giulio Lattanzio su LinkedIn",
+      active: true,
+    },
+    {
+      name: "Mail",
+      href: "mailto:giulio.lattanzio@gmail.com",
+      linkTitle: "Invia una mail a Giulio",
+      active: true,
+    },
   ],
 });
