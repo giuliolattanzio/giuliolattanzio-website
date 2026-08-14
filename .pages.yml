@@ -1,0 +1,86 @@
+media:
+  - name: article_images
+    label: Immagini articoli
+    input: public/images/articles
+    output: /images/articles
+    categories: [image]
+    rename: safe
+
+content:
+  - name: articles
+    label: Articoli
+    type: collection
+    path: src/content/posts/giulio
+    format: yaml-frontmatter
+    subfolders: false
+    filename:
+      template: "{primary}.md"
+      field: create
+    exclude:
+      - _README.md
+    view:
+      fields: [title, pubDatetime, draft, tags]
+      primary: title
+      sort: [pubDatetime, title]
+      search: [title, description, tags]
+      default:
+        sort: pubDatetime
+        order: desc
+    fields:
+      - name: title
+        label: Titolo
+        type: string
+        required: true
+        description: Titolo dell'articolo.
+        options:
+          maxlength: 120
+
+      - name: description
+        label: Descrizione breve
+        type: text
+        required: true
+        description: Breve sintesi mostrata nelle anteprime e usata per la SEO.
+
+      - name: pubDatetime
+        label: Data di pubblicazione
+        type: date
+        required: true
+        options:
+          time: true
+          format: yyyy-MM-dd'T'HH:mm:ssXXX
+
+      - name: draft
+        label: Bozza
+        type: boolean
+        description: Attiva questa opzione per non pubblicare ancora l'articolo.
+
+      - name: featured
+        label: In evidenza
+        type: boolean
+        description: Contrassegna gli articoli più importanti.
+
+      - name: tags
+        label: Argomenti / Tag
+        type: string
+        list: true
+        required: true
+        description: Esempi: wifi, fortinet, voip, audiocodes, networking, ekahau.
+
+      - name: ogImage
+        label: Immagine articolo
+        type: image
+        options:
+          media: article_images
+          path: .
+          rename: safe
+
+      - name: body
+        label: Contenuto
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          media: article_images
+          path: .
+          rename: safe
+          switcher: true
