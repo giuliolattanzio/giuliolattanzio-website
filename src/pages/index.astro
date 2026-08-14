@@ -18,8 +18,8 @@ import Layout from "@/layouts/Layout.astro";
         </a>
 
         <nav aria-label="Navigazione principale">
-          <a href="#profilo">Profilo</a>
-          <a href="#competenze">Competenze</a>
+          <a href="/profilo/">Profilo</a>
+          <a href="/curriculum/">Curriculum</a>
           <a href="/posts/">Articoli</a>
           <a href="#stack">Tecnologie</a>
         </nav>
@@ -42,7 +42,7 @@ import Layout from "@/layouts/Layout.astro";
             </p>
 
             <div class="hero-actions">
-              <a class="primary" href="#profilo">Scopri il mio profilo</a>
+              <a class="primary" href="/profilo/">Scopri il mio profilo</a>
               <a class="secondary" href="/posts/">Leggi gli articoli</a>
             </div>
           </div>
@@ -81,6 +81,10 @@ import Layout from "@/layouts/Layout.astro";
               Qui raccolgo competenze, tecnologie, appunti, approfondimenti e contenuti che riflettono il mio lavoro
               quotidiano e gli argomenti che studio nel tempo.
             </p>
+            <div class="inline-actions">
+              <a href="/profilo/">Profilo completo →</a>
+              <a href="/curriculum/">Curriculum →</a>
+            </div>
           </div>
         </div>
       </section>
@@ -204,6 +208,8 @@ import Layout from "@/layouts/Layout.astro";
   .primary, .secondary, .light-button { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border-radius: 10px; padding: 13px 18px; font-weight: 750; font-size: 14px; }
   .primary { background: var(--blue); color: white; }
   .secondary { background: white; color: var(--text); border: 1px solid var(--border); }
+  .inline-actions { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 28px; }
+  .inline-actions a { color: var(--blue); text-decoration: none; font-weight: 750; font-size: 14px; }
 
   .identity-card { padding: 28px; border-radius: 24px; background: var(--navy); color: white; box-shadow: 0 30px 70px rgba(16,24,40,.16); }
   .identity-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 28px; border-bottom: 1px solid #243047; }
@@ -255,7 +261,7 @@ import Layout from "@/layouts/Layout.astro";
 
   @media (max-width: 700px) {
     .wrap { width: min(100% - 28px, 1160px); }
-    nav a:not(:last-child) { display: none; }
+    nav a:nth-child(2), nav a:nth-child(4) { display: none; }
     .brand small { display: none; }
     .hero { padding: 70px 0; }
     h1 { font-size: clamp(2.7rem, 13vw, 4rem); }
