@@ -4,7 +4,7 @@ export default defineAstroPaperConfig({
   site: {
     url: "https://giuliolattanzio.pages.dev/",
     title: "Giulio Lattanzio",
-    description: "Portfolio personale, curriculum digitale e knowledge hub tecnico di Giulio Lattanzio | Network & Security Specialist.",
+    description: "Portfolio personale e knowledge hub tecnico di Giulio Lattanzio | Network & Security Specialist.",
     author: "Giulio Lattanzio",
     profile: "https://giuliolattanzio.pages.dev/",
     ogImage: "default-og.jpg",
@@ -18,10 +18,10 @@ export default defineAstroPaperConfig({
     scheduledPostMargin: 15 * 60 * 1000,
   },
   features: {
-    lightAndDarkMode: true,
+    lightAndDarkMode: false,
     dynamicOgImage: true,
-    showArchives: true,
-    showBackButton: true,
+    showArchives: false,
+    showBackButton: false,
     editPost: {
       enabled: false,
     },
