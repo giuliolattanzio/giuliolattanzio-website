@@ -2,6 +2,8 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
+import PersonalHeader from "@/components/PersonalHeader.astro";
+import PersonalFooter from "@/components/PersonalFooter.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { getPostUrl } from "@/utils/getPostPaths";
 import config from "@/config";
@@ -13,6 +15,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const { page } = Astro.props;
 const locale = Astro.currentLocale ?? config.site.lang;
+
 const topics = [
   { label: "Wi-Fi", slug: "wifi", text: "Wireless enterprise, RF, survey e troubleshooting." },
   { label: "Networking", slug: "networking", text: "Reti, VLAN, analisi del traffico e troubleshooting." },
@@ -33,48 +36,31 @@ const formatDate = (date: Date) =>
   title={`Articoli | ${config.site.title}`}
   description="Articoli, appunti e approfondimenti tecnici di Giulio Lattanzio su Wi-Fi, networking, Fortinet, VoIP e AudioCodes."
 >
-  <div class="articles-shell">
-    <header class="topbar">
-      <div class="wrap nav-wrap">
-        <a class="brand" href="/">
-          <span class="brand-mark">GL</span>
-          <span>
-            <strong>Giulio Lattanzio</strong>
-            <small>Network & Security Specialist</small>
-          </span>
-        </a>
-
-        <nav aria-label="Navigazione principale">
-          <a href="/profilo/">Profilo</a>
-          <a class="active" href="/posts/">Articoli</a>
-          <a href="/search/">Cerca</a>
-          <a href="/#stack">Tecnologie</a>
-        </nav>
-      </div>
-    </header>
+  <div class="gl-shell">
+    <PersonalHeader active="articoli" />
 
     <main>
-      <section class="hero">
-        <div class="wrap hero-grid">
+      <section class="gl-section">
+        <div class="gl-wrap articles-hero">
           <div>
-            <p class="eyebrow">Knowledge hub</p>
-            <h1>Articoli, appunti e <span>approfondimenti tecnici.</span></h1>
-            <p class="lead">
+            <p class="gl-eyebrow">Knowledge Hub</p>
+            <h1 class="gl-title">Articoli, appunti e <span>approfondimenti tecnici.</span></h1>
+            <p class="gl-lead">
               Uno spazio personale dove raccolgo ciò che studio, sperimento e considero utile documentare
               nel mondo delle reti, del Wi-Fi, della sicurezza e delle comunicazioni IP.
             </p>
           </div>
           <div class="hero-actions">
-            <a class="search-button" href="/search/">Cerca negli articoli →</a>
-            <a class="rss-link" href="/rss.xml">RSS</a>
+            <a class="gl-button gl-button-primary" href="/search/">Cerca negli articoli →</a>
+            <a class="gl-button gl-button-secondary" href="/rss.xml">RSS</a>
           </div>
         </div>
       </section>
 
-      <section class="topics-section">
-        <div class="wrap topics-grid">
+      <section class="topics-band">
+        <div class="gl-wrap topics-grid">
           {topics.map((topic, index) => (
-            <a class="topic" href={`/tags/${topic.slug}/`}>
+            <a class="topic-card" href={`/tags/${topic.slug}/`}>
               <span>0{index + 1}</span>
               <h2>{topic.label}</h2>
               <p>{topic.text}</p>
@@ -83,181 +69,84 @@ const formatDate = (date: Date) =>
         </div>
       </section>
 
-      <section class="articles-section">
-        <div class="wrap">
-          <div class="section-head">
+      <section class="gl-section gl-section-white">
+        <div class="gl-wrap">
+          <div class="section-heading">
             <div>
-              <p class="section-label">Archivio</p>
-              <h2>Ultimi contenuti pubblicati.</h2>
+              <p class="gl-eyebrow">Archivio</p>
+              <h2>Ultimi contenuti</h2>
             </div>
-            <p>{page.total} {page.total === 1 ? "contenuto pubblicato" : "contenuti pubblicati"}</p>
+            <a href="/tags/">Tutti gli argomenti →</a>
           </div>
 
-          <div class="article-list">
-            {page.data.map(post => (
-              <article class="article-card">
-                <div class="article-meta">
-                  <time datetime={post.data.pubDatetime.toISOString()}>{formatDate(post.data.pubDatetime)}</time>
-                  <div class="tag-row">
-                    {post.data.tags.slice(0, 4).map(tag => (
-                      <a href={`/tags/${tag}/`}>#{tag}</a>
-                    ))}
+          {page.data.length > 0 ? (
+            <div class="gl-article-list">
+              {page.data.map(post => (
+                <a class="gl-article-card" href={getPostUrl(post.id, post.filePath, locale)}>
+                  <div>
+                    <div class="gl-meta">{formatDate(post.data.pubDatetime)}</div>
+                    <h3>{post.data.title}</h3>
+                    <p>{post.data.description}</p>
+                    <div class="gl-tag-list card-tags">
+                      {post.data.tags.slice(0, 5).map(tag => <span class="gl-tag">{tag}</span>)}
+                    </div>
                   </div>
-                </div>
-
-                <div class="article-copy">
-                  <h3>
-                    <a href={getPostUrl(post.id, post.filePath, locale)}>{post.data.title}</a>
-                  </h3>
-                  <p>{post.data.description}</p>
-                </div>
-
-                <a class="read-more" href={getPostUrl(post.id, post.filePath, locale)} aria-label={`Leggi ${post.data.title}`}>
-                  Leggi →
+                  <span class="gl-arrow" aria-hidden="true">→</span>
                 </a>
-              </article>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div class="empty-state">
+              <h3>Nessun articolo pubblicato.</h3>
+              <p>I nuovi contenuti compariranno qui automaticamente.</p>
+            </div>
+          )}
 
-          {page.lastPage > 1 && (
-            <nav class="pagination" aria-label="Paginazione articoli">
-              <div>
-                {page.url.prev ? <a href={page.url.prev}>← Precedenti</a> : <span></span>}
-              </div>
-              <span>Pagina {page.currentPage} di {page.lastPage}</span>
-              <div>
-                {page.url.next ? <a href={page.url.next}>Successivi →</a> : <span></span>}
-              </div>
+          {(page.url.prev || page.url.next) && (
+            <nav class="gl-pagination" aria-label="Paginazione articoli">
+              <span>{page.url.prev && <a href={page.url.prev}>← Più recenti</a>}</span>
+              <span>{page.url.next && <a href={page.url.next}>Più vecchi →</a>}</span>
             </nav>
           )}
         </div>
       </section>
     </main>
 
-    <footer>
-      <div class="wrap footer-wrap">
-        <div>
-          <strong>Giulio Lattanzio</strong>
-          <p>Network & Security Specialist</p>
-        </div>
-        <div class="footer-links">
-          <a href="/">Home</a>
-          <a href="/profilo/">Profilo</a>
-          <a href="/rss.xml">RSS</a>
-        </div>
-      </div>
-    </footer>
+    <PersonalFooter />
   </div>
 </Layout>
 
 <style>
-  :global(html) { scroll-behavior: smooth; }
-  :global(body) { margin: 0; }
-
-  .articles-shell {
-    --navy: #0b1220;
-    --blue: #2563eb;
-    --text: #101828;
-    --muted: #667085;
-    --border: #e4e7ec;
-    --soft: #f7f9fc;
-    --white: #ffffff;
-    background: var(--soft);
-    color: var(--text);
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    min-height: 100vh;
+  .articles-hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 60px;
   }
-
-  .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
-
-  .topbar {
-    position: sticky; top: 0; z-index: 20;
-    background: rgba(247, 249, 252, .92);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(14px);
-  }
-  .nav-wrap { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
-  .brand { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; }
-  .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: var(--navy); color: white; font-weight: 800; }
-  .brand strong, .brand small { display: block; }
-  .brand strong { font-size: 14px; }
-  .brand small { color: var(--muted); font-size: 11px; margin-top: 2px; }
-  nav { display: flex; gap: 26px; align-items: center; }
-  nav a { text-decoration: none; color: #475467; font-size: 14px; font-weight: 650; }
-  nav a:hover, nav .active { color: var(--blue); }
-
-  .hero { padding: 105px 0 82px; background: var(--soft); }
-  .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 70px; align-items: end; }
-  .eyebrow, .section-label { margin: 0; color: var(--blue); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-  h1 { max-width: 830px; margin: 16px 0 0; color: var(--navy); font-size: clamp(3rem, 5vw, 5rem); line-height: 1; letter-spacing: -.06em; }
-  h1 span { color: var(--blue); }
-  .lead { max-width: 750px; margin: 27px 0 0; color: var(--muted); font-size: 18px; line-height: 1.75; }
   .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-  .search-button, .rss-link { display: inline-flex; align-items: center; justify-content: center; padding: 13px 18px; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: 750; }
-  .search-button { background: var(--blue); color: white; }
-  .rss-link { background: white; color: var(--text); border: 1px solid var(--border); }
-
-  .topics-section { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .topics-band { background: #fff; border-top: 1px solid #e4e7ec; border-bottom: 1px solid #e4e7ec; }
   .topics-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
-  .topic { min-height: 205px; padding: 28px 24px; color: inherit; text-decoration: none; border-right: 1px solid var(--border); transition: background .2s ease; }
-  .topic:first-child { padding-left: 0; }
-  .topic:last-child { border-right: 0; }
-  .topic:hover { background: #fafcff; }
-  .topic > span { color: var(--blue); font: 12px monospace; }
-  .topic h2 { margin: 32px 0 9px; color: var(--navy); font-size: 20px; letter-spacing: -.025em; }
-  .topic p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
-
-  .articles-section { padding: 100px 0 115px; }
-  .section-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 38px; }
-  .section-head h2 { margin: 12px 0 0; color: var(--navy); font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -.05em; }
-  .section-head > p { margin: 0 0 7px; color: var(--muted); font-size: 13px; }
-
-  .article-list { border-top: 1px solid var(--border); }
-  .article-card { display: grid; grid-template-columns: 220px 1fr auto; gap: 38px; align-items: start; padding: 38px 0; border-bottom: 1px solid var(--border); }
-  .article-meta time { display: block; color: var(--muted); font-size: 12px; text-transform: capitalize; }
-  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 13px; }
-  .tag-row a { color: var(--blue); text-decoration: none; font: 11px monospace; }
-  .article-copy h3 { margin: 0; font-size: clamp(1.45rem, 2.2vw, 2rem); line-height: 1.2; letter-spacing: -.035em; }
-  .article-copy h3 a { color: var(--navy); text-decoration: none; }
-  .article-copy h3 a:hover { color: var(--blue); }
-  .article-copy p { max-width: 700px; margin: 12px 0 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
-  .read-more { color: var(--blue); text-decoration: none; font-size: 13px; font-weight: 750; white-space: nowrap; padding-top: 5px; }
-
-  .pagination { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; margin-top: 40px; color: var(--muted); font-size: 13px; }
-  .pagination div:last-child { text-align: right; }
-  .pagination a { color: var(--blue); text-decoration: none; font-weight: 700; }
-
-  footer { background: white; border-top: 1px solid var(--border); }
-  .footer-wrap { min-height: 115px; display: flex; align-items: center; justify-content: space-between; gap: 30px; color: var(--muted); font-size: 12px; }
-  .footer-wrap strong { color: var(--text); font-size: 14px; }
-  .footer-wrap p { margin: 4px 0 0; }
-  .footer-links { display: flex; gap: 22px; }
-  .footer-links a { color: var(--muted); text-decoration: none; }
-  .footer-links a:hover { color: var(--blue); }
-
-  @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+  .topic-card { padding: 28px 24px; color: inherit; text-decoration: none; border-right: 1px solid #e4e7ec; }
+  .topic-card:first-child { border-left: 1px solid #e4e7ec; }
+  .topic-card > span { color: #2563eb; font-family: monospace; font-size: 12px; }
+  .topic-card h2 { margin: 28px 0 8px; color: #0b1220; font-size: 20px; }
+  .topic-card p { margin: 0; color: #667085; font-size: 13px; line-height: 1.6; }
+  .topic-card:hover h2 { color: #2563eb; }
+  .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 34px; }
+  .section-heading h2 { margin: 0; color: #0b1220; font-size: 36px; letter-spacing: -0.04em; }
+  .section-heading a { color: #2563eb; text-decoration: none; font-weight: 700; font-size: 14px; }
+  .card-tags { margin-top: 18px; }
+  .empty-state { padding: 40px; border: 1px solid #e4e7ec; border-radius: 16px; background: #f7f9fc; }
+  .empty-state h3 { margin: 0 0 6px; color: #0b1220; }
+  .empty-state p { margin: 0; color: #667085; }
+  @media (max-width: 950px) {
+    .articles-hero { grid-template-columns: 1fr; gap: 30px; }
     .topics-grid { grid-template-columns: repeat(2, 1fr); }
-    .topic, .topic:first-child { padding-left: 24px; border-bottom: 1px solid var(--border); }
-    .article-card { grid-template-columns: 160px 1fr; }
-    .read-more { grid-column: 2; }
+    .topic-card { border-bottom: 1px solid #e4e7ec; }
   }
-
-  @media (max-width: 700px) {
-    .wrap { width: min(100% - 28px, 1160px); }
-    nav a:nth-child(3), nav a:nth-child(4) { display: none; }
-    .brand small { display: none; }
-    .hero { padding: 70px 0 60px; }
-    h1 { font-size: clamp(2.7rem, 13vw, 4rem); }
-    .lead { font-size: 16px; }
-    .hero-actions { flex-direction: column; align-items: stretch; }
+  @media (max-width: 650px) {
     .topics-grid { grid-template-columns: 1fr; }
-    .topic { min-height: auto; border-right: 0; }
-    .article-card { grid-template-columns: 1fr; gap: 18px; padding: 30px 0; }
-    .read-more { grid-column: 1; }
-    .section-head { align-items: flex-start; flex-direction: column; }
-    .pagination { grid-template-columns: 1fr 1fr; }
-    .pagination > span { display: none; }
-    .footer-wrap { padding: 27px 0; flex-direction: column; align-items: flex-start; }
+    .topic-card { border-left: 1px solid #e4e7ec; }
+    .section-heading { align-items: flex-start; flex-direction: column; }
   }
 </style>
