@@ -16,14 +16,8 @@ export async function getStaticPaths() {
     params: { slug: getPostSlug(post.id, post.filePath) },
     props: {
       post,
-      prevPost:
-        index < sortedPosts.length - 1
-          ? sortedPosts[index + 1]
-          : null,
-      nextPost:
-        index > 0
-          ? sortedPosts[index - 1]
-          : null,
+      prevPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+      nextPost: index > 0 ? sortedPosts[index - 1] : null,
     },
   }));
 }
@@ -46,18 +40,23 @@ const {
   pubDatetime,
   modDatetime,
   tags,
+  author,
 } = post.data;
 
-let ogImageUrl: string | undefined;
-if (typeof initOgImage === "string") ogImageUrl = initOgImage;
-else if (initOgImage?.src) ogImageUrl = initOgImage.src;
+let explicitImageUrl: string | undefined;
+if (typeof initOgImage === "string") explicitImageUrl = initOgImage;
+else if (initOgImage?.src) explicitImageUrl = initOgImage.src;
 
+let ogImageUrl = explicitImageUrl;
 if (!ogImageUrl && config.features.dynamicOgImage) {
   const postUrl = getPostUrl(post.id, post.filePath, locale).replace(/\/+$/, "");
   ogImageUrl = `${postUrl}/index.png`;
 }
 
 const ogImage = ogImageUrl ? new URL(ogImageUrl, Astro.url.origin).href : undefined;
+const coverImage = explicitImageUrl
+  ? new URL(explicitImageUrl, Astro.url.origin).href
+  : undefined;
 
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("it-IT", {
@@ -79,16 +78,28 @@ const formatDate = (date: Date) =>
     <PersonalHeader active="articoli" />
 
     <main data-pagefind-body>
-      <header class="gl-article-header">
-        <div class="gl-article-wrap">
-          <a class="gl-back" href="/posts/">← Torna agli articoli</a>
-          <p class="gl-eyebrow">Knowledge Hub</p>
-          <h1 class="gl-title">{title}</h1>
-          <p class="gl-article-description">{description}</p>
+      <header class="article-hero">
+        <div class="article-heading-wrap">
+          <a class="gl-back" href="/posts/">← Knowledge Hub</a>
+          <p class="gl-eyebrow">Approfondimento tecnico</p>
+          <h1 class="article-title">{title}</h1>
+          <p class="article-description">{description}</p>
 
-          <div class="article-meta">
-            <span>Pubblicato il {formatDate(pubDatetime)}</span>
-            {modDatetime && <span>Aggiornato il {formatDate(modDatetime)}</span>}
+          <div class="article-info" aria-label="Informazioni articolo">
+            <div class="article-info-item">
+              <span class="info-label">Autore</span>
+              <strong>{author}</strong>
+            </div>
+            <div class="article-info-item">
+              <span class="info-label">Pubblicato</span>
+              <strong>{formatDate(pubDatetime)}</strong>
+            </div>
+            {modDatetime && (
+              <div class="article-info-item">
+                <span class="info-label">Aggiornato</span>
+                <strong>{formatDate(modDatetime)}</strong>
+              </div>
+            )}
           </div>
 
           <div class="gl-tag-list article-tags">
@@ -99,34 +110,54 @@ const formatDate = (date: Date) =>
         </div>
       </header>
 
-      <div class="article-body gl-section-white">
+      {coverImage && (
+        <div class="cover-area">
+          <div class="article-heading-wrap">
+            <img class="cover-image" src={coverImage} alt={`Immagine di copertina: ${title}`} />
+          </div>
+        </div>
+      )}
+
+      <section class="article-content-section">
         <article id="article" class="gl-article-wrap gl-prose">
           <Content />
         </article>
-      </div>
+      </section>
 
-      {(prevPost || nextPost) && (
-        <section class="related-nav">
-          <div class="gl-article-wrap related-grid">
+      <section class="article-end">
+        <div class="gl-article-wrap">
+          <div class="article-end-head">
             <div>
-              {prevPost && (
-                <a href={getPostUrl(prevPost.id, prevPost.filePath, locale)}>
-                  <span>Articolo precedente</span>
-                  <strong>{prevPost.data.title}</strong>
-                </a>
-              )}
+              <p class="gl-eyebrow">Continua a esplorare</p>
+              <h2>Altri contenuti del Knowledge Hub.</h2>
             </div>
-            <div class="next-link">
-              {nextPost && (
-                <a href={getPostUrl(nextPost.id, nextPost.filePath, locale)}>
-                  <span>Articolo successivo</span>
-                  <strong>{nextPost.data.title}</strong>
-                </a>
-              )}
-            </div>
+            <a class="all-posts-link" href="/posts/">Tutti gli articoli →</a>
           </div>
-        </section>
-      )}
+
+          {(prevPost || nextPost) && (
+            <div class="related-grid">
+              <div>
+                {prevPost && (
+                  <a class="related-card" href={getPostUrl(prevPost.id, prevPost.filePath, locale)}>
+                    <span>Articolo precedente</span>
+                    <strong>{prevPost.data.title}</strong>
+                    <small>{prevPost.data.description}</small>
+                  </a>
+                )}
+              </div>
+              <div>
+                {nextPost && (
+                  <a class="related-card" href={getPostUrl(nextPost.id, nextPost.filePath, locale)}>
+                    <span>Articolo successivo</span>
+                    <strong>{nextPost.data.title}</strong>
+                    <small>{nextPost.data.description}</small>
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
     </main>
 
     <PersonalFooter />
@@ -134,38 +165,194 @@ const formatDate = (date: Date) =>
 </PostLayout>
 
 <style>
-  .article-meta {
+  .article-hero {
+    padding: 88px 0 62px;
+    background: #f7f9fc;
+  }
+
+  .article-heading-wrap {
+    width: min(960px, calc(100% - 40px));
+    margin-inline: auto;
+  }
+
+  .article-title {
+    max-width: 920px;
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(3rem, 6vw, 5.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.065em;
+  }
+
+  .article-description {
+    max-width: 780px;
+    margin: 26px 0 0;
+    color: #667085;
+    font-size: 19px;
+    line-height: 1.75;
+  }
+
+  .article-info {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 24px;
-    color: #98a2b3;
-    font-size: 13px;
+    gap: 12px 36px;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid #e4e7ec;
   }
-  .article-tags { margin-top: 18px; }
-  .article-body { border-top: 1px solid #e4e7ec; }
-  .gl-prose { padding-top: 58px; }
-  .related-nav { padding: 44px 0; background: #f7f9fc; border-top: 1px solid #e4e7ec; }
-  .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-  .related-grid a { display: block; padding: 22px; background: #fff; border: 1px solid #e4e7ec; border-radius: 14px; color: #0b1220; text-decoration: none; }
-  .related-grid a:hover { border-color: #93c5fd; }
-  .related-grid span { display: block; margin-bottom: 6px; color: #667085; font-size: 12px; }
-  .related-grid strong { font-size: 16px; }
-  .next-link { text-align: right; }
+
+  .article-info-item {
+    min-width: 130px;
+  }
+
+  .info-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #98a2b3;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .article-info strong {
+    color: #344054;
+    font-size: 13px;
+    font-weight: 650;
+  }
+
+  .article-tags {
+    margin-top: 22px;
+  }
+
+  .cover-area {
+    padding: 0 0 62px;
+    background: #f7f9fc;
+  }
+
+  .cover-image {
+    display: block;
+    width: 100%;
+    max-height: 540px;
+    object-fit: cover;
+    border: 1px solid #e4e7ec;
+    border-radius: 22px;
+    box-shadow: 0 24px 60px rgba(16, 24, 40, .08);
+  }
+
+  .article-content-section {
+    padding-top: 8px;
+    background: #fff;
+    border-top: 1px solid #e4e7ec;
+  }
+
+  .gl-prose {
+    padding-top: 64px;
+  }
+
+  .article-end {
+    padding: 70px 0;
+    background: #f7f9fc;
+    border-top: 1px solid #e4e7ec;
+  }
+
+  .article-end-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 28px;
+  }
+
+  .article-end-head h2 {
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    line-height: 1.08;
+    letter-spacing: -.045em;
+  }
+
+  .all-posts-link {
+    flex: 0 0 auto;
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 750;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .related-card {
+    display: flex;
+    min-height: 175px;
+    height: 100%;
+    flex-direction: column;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #e4e7ec;
+    border-radius: 16px;
+    color: #0b1220;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+
+  .related-card:hover {
+    transform: translateY(-2px);
+    border-color: #93c5fd;
+    box-shadow: 0 16px 40px rgba(16,24,40,.06);
+  }
+
+  .related-card span {
+    margin-bottom: 12px;
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .related-card strong {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .related-card small {
+    margin-top: 10px;
+    color: #667085;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
   @media (max-width: 700px) {
+    .article-hero { padding: 68px 0 48px; }
+    .article-heading-wrap { width: min(100% - 28px, 960px); }
+    .article-title { font-size: clamp(2.6rem, 13vw, 4rem); }
+    .article-description { font-size: 16px; }
+    .cover-area { padding-bottom: 42px; }
+    .cover-image { border-radius: 14px; }
+    .gl-prose { padding-top: 46px; }
+    .article-end { padding: 52px 0; }
+    .article-end-head { align-items: flex-start; flex-direction: column; }
     .related-grid { grid-template-columns: 1fr; }
-    .next-link { text-align: left; }
   }
 </style>
 
 <script is:inline>
-  function addCopyButtons() {
-    document.querySelectorAll("#article pre").forEach(pre => {
+  function enhanceArticle() {
+    const article = document.getElementById("article");
+    if (!article) return;
+
+    article.querySelectorAll("pre").forEach(pre => {
       if (pre.querySelector(".copy-code")) return;
       const button = document.createElement("button");
       button.type = "button";
       button.className = "copy-code";
       button.textContent = "Copia";
+      button.setAttribute("aria-label", "Copia il codice");
       button.addEventListener("click", async () => {
         const code = pre.querySelector("code");
         await navigator.clipboard.writeText(code?.textContent ?? "");
@@ -174,13 +361,25 @@ const formatDate = (date: Date) =>
       });
       pre.appendChild(button);
     });
+
+    article.querySelectorAll("h2[id], h3[id]").forEach(heading => {
+      if (heading.querySelector(".heading-anchor")) return;
+      const anchor = document.createElement("a");
+      anchor.className = "heading-anchor";
+      anchor.href = `#${heading.id}`;
+      anchor.setAttribute("aria-label", "Link diretto a questa sezione");
+      anchor.textContent = "#";
+      heading.appendChild(anchor);
+    });
   }
-  addCopyButtons();
-  document.addEventListener("astro:after-swap", addCopyButtons);
+
+  enhanceArticle();
+  document.addEventListener("astro:after-swap", enhanceArticle);
 </script>
 
 <style is:global>
   #article pre { position: relative; }
+
   #article .copy-code {
     position: absolute;
     top: 10px;
@@ -192,5 +391,43 @@ const formatDate = (date: Date) =>
     color: #cbd5e1;
     font-size: 11px;
     cursor: pointer;
+  }
+
+  #article .heading-anchor {
+    margin-left: 9px;
+    color: #93a4bd;
+    text-decoration: none;
+    font-size: .7em;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity .2s ease, color .2s ease;
+  }
+
+  #article h2:hover .heading-anchor,
+  #article h3:hover .heading-anchor,
+  #article .heading-anchor:focus {
+    opacity: 1;
+    color: #2563eb;
+  }
+
+  #article hr {
+    margin: 2.5rem 0;
+    border: 0;
+    border-top: 1px solid #e4e7ec;
+  }
+
+  #article figure {
+    margin: 2rem 0;
+  }
+
+  #article figcaption {
+    margin-top: .65rem;
+    color: #667085;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  @media (max-width: 700px) {
+    #article .heading-anchor { opacity: .55; }
   }
 </style>
