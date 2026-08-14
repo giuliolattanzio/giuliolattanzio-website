@@ -15,11 +15,11 @@ content:
     subfolders: false
     filename:
       template: "{primary}.md"
-      field: create
+      field: false
     exclude:
       - _README.md
     view:
-      fields: [title, pubDatetime, draft, tags]
+      fields: [title, pubDatetime, tags]
       primary: title
       sort: [pubDatetime, title]
       search: [title, description, tags]
@@ -31,53 +31,85 @@ content:
         label: Titolo
         type: string
         required: true
-        description: Titolo dell'articolo.
+        description: Scrivi il titolo dell'articolo. Il nome del file verrà creato automaticamente.
         options:
           maxlength: 120
 
       - name: description
-        label: Descrizione breve
+        label: Riassunto
         type: text
         required: true
-        description: Breve sintesi mostrata nelle anteprime e usata per la SEO.
+        description: Una breve descrizione dell'articolo. Verrà mostrata nelle anteprime del sito e nei risultati di ricerca.
 
       - name: pubDatetime
         label: Data di pubblicazione
         type: date
         required: true
+        description: Per un nuovo articolo puoi lasciare la data e l'ora proposte automaticamente.
         options:
           time: true
           format: yyyy-MM-dd'T'HH:mm:ssXXX
 
       - name: draft
-        label: Bozza
+        label: Bozza — non pubblicare ancora
         type: boolean
-        description: Attiva questa opzione per non pubblicare ancora l'articolo.
-
-      - name: featured
-        label: In evidenza
-        type: boolean
-        description: Contrassegna gli articoli più importanti.
+        default: false
+        description: Attivalo solo se vuoi salvare l'articolo senza mostrarlo sul sito pubblico.
 
       - name: tags
-        label: Argomenti / Tag
-        type: string
-        list: true
+        label: Argomenti
+        type: select
         required: true
-        description: Esempi: wifi, fortinet, voip, audiocodes, networking, ekahau.
+        description: Seleziona uno o più argomenti che descrivono l'articolo.
+        options:
+          multiple: true
+          min: 1
+          values:
+            - name: wifi
+              label: Wi-Fi
+            - name: networking
+              label: Networking
+            - name: fortinet
+              label: Fortinet
+            - name: fortigate
+              label: FortiGate
+            - name: voip
+              label: VoIP
+            - name: sip
+              label: SIP
+            - name: audiocodes
+              label: AudioCodes
+            - name: ekahau
+              label: Ekahau
+            - name: site-survey
+              label: Site Survey
+            - name: survey-wifi
+              label: Survey Wi-Fi
+            - name: analisi-wifi
+              label: Analisi Wi-Fi
+            - name: troubleshooting
+              label: Troubleshooting
+            - name: wireshark
+              label: Wireshark
+            - name: security
+              label: Security
+            - name: microsoft-teams
+              label: Microsoft Teams
 
       - name: ogImage
-        label: Immagine articolo
+        label: Immagine di copertina (opzionale)
         type: image
+        description: Puoi lasciare questo campo vuoto se l'articolo non ha bisogno di un'immagine di copertina.
         options:
           media: article_images
           path: .
           rename: safe
 
       - name: body
-        label: Contenuto
+        label: Articolo
         type: rich-text
         required: true
+        description: Scrivi qui il contenuto. Puoi usare titoli, elenchi, link, immagini, tabelle e blocchi di codice.
         options:
           format: markdown
           media: article_images
