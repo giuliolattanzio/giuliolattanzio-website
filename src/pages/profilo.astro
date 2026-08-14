@@ -1,33 +1,23 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import PersonalHeader from "@/components/PersonalHeader.astro";
+import PersonalFooter from "@/components/PersonalFooter.astro";
 ---
 
 <Layout
   title="Profilo | Giulio Lattanzio"
   description="Chi sono e di cosa mi occupo: networking, Wi-Fi, Fortinet, VoIP e AudioCodes."
 >
-  <div class="page-shell">
-    <header class="topbar">
-      <div class="wrap nav-wrap">
-        <a class="brand" href="/">
-          <span class="brand-mark">GL</span>
-          <span><strong>Giulio Lattanzio</strong><small>Network & Security Specialist</small></span>
-        </a>
-        <nav aria-label="Navigazione principale">
-          <a class="active" href="/profilo/">Profilo</a>
-          <a href="/posts/">Articoli</a>
-          <a href="/#stack">Tecnologie</a>
-        </nav>
-      </div>
-    </header>
+  <div class="gl-shell">
+    <PersonalHeader active="profilo" />
 
     <main>
-      <section class="hero">
-        <div class="wrap hero-grid">
+      <section class="gl-section profile-hero">
+        <div class="gl-wrap hero-grid">
           <div>
-            <p class="eyebrow">Profilo</p>
-            <h1>Chi sono e cosa faccio.</h1>
-            <p class="lead">
+            <p class="gl-eyebrow">Profilo</p>
+            <h1 class="gl-title">Chi sono e <span>cosa faccio.</span></h1>
+            <p class="gl-lead">
               Sono Giulio Lattanzio, Network & Security Specialist. Mi occupo di infrastrutture di rete,
               wireless enterprise, sicurezza Fortinet e sistemi di comunicazione VoIP, con particolare
               attenzione all'analisi, al troubleshooting e alla qualità delle infrastrutture.
@@ -44,32 +34,24 @@ import Layout from "@/layouts/Layout.astro";
         </div>
       </section>
 
-      <section class="section white">
-        <div class="wrap split">
+      <section class="gl-section gl-section-white">
+        <div class="gl-wrap split">
           <div>
-            <p class="section-label">Chi sono</p>
+            <p class="gl-eyebrow">Chi sono</p>
             <h2>Un profilo tecnico costruito sull'esperienza quotidiana.</h2>
           </div>
           <div class="copy">
-            <p class="large">
-              Il mio lavoro ruota intorno al networking, alla sicurezza, al Wi-Fi enterprise e alle comunicazioni IP.
-            </p>
-            <p>
-              Mi interessa capire come funzionano realmente le infrastrutture, analizzarne il comportamento,
-              individuare i problemi e documentare soluzioni e concetti in modo chiaro e riutilizzabile.
-            </p>
-            <p>
-              Questo sito è la mia vetrina personale: uno spazio dove presento ciò di cui mi occupo e raccolgo
-              articoli, appunti e approfondimenti sugli argomenti che utilizzo e studio nel tempo.
-            </p>
+            <p class="large">Il mio lavoro ruota intorno al networking, alla sicurezza, al Wi-Fi enterprise e alle comunicazioni IP.</p>
+            <p>Mi interessa capire come funzionano realmente le infrastrutture, analizzarne il comportamento, individuare i problemi e documentare soluzioni e concetti in modo chiaro e riutilizzabile.</p>
+            <p>Questo sito è la mia vetrina personale: uno spazio dove presento ciò di cui mi occupo e raccolgo articoli, appunti e approfondimenti sugli argomenti che utilizzo e studio nel tempo.</p>
           </div>
         </div>
       </section>
 
-      <section class="section soft">
-        <div class="wrap">
+      <section class="gl-section">
+        <div class="gl-wrap">
           <div class="section-head">
-            <p class="section-label">Cosa faccio</p>
+            <p class="gl-eyebrow">Cosa faccio</p>
             <h2>Le aree tecniche su cui mi concentro.</h2>
           </div>
           <div class="grid">
@@ -83,25 +65,46 @@ import Layout from "@/layouts/Layout.astro";
         </div>
       </section>
 
-      <section class="section dark">
-        <div class="wrap next-grid">
+      <section class="knowledge-section">
+        <div class="gl-wrap next-grid">
           <div>
-            <p class="section-label light-label">Knowledge hub</p>
+            <p class="gl-eyebrow">Knowledge hub</p>
             <h2>Gli approfondimenti continuano negli articoli.</h2>
-            <p>
-              Nella sezione Articoli raccolgo note tecniche, analisi e contenuti dedicati a Wi-Fi,
-              networking, Fortinet, VoIP e AudioCodes.
-            </p>
+            <p>Nella sezione Articoli raccolgo note tecniche, analisi e contenuti dedicati a Wi-Fi, networking, Fortinet, VoIP e AudioCodes.</p>
           </div>
-          <a class="button light-button" href="/posts/">Leggi gli articoli →</a>
+          <a class="gl-button white-button" href="/posts/">Leggi gli articoli →</a>
         </div>
       </section>
     </main>
 
-    <footer><div class="wrap footer-wrap"><strong>Giulio Lattanzio</strong><span>Personal tech portfolio & knowledge hub</span></div></footer>
+    <PersonalFooter />
   </div>
 </Layout>
 
 <style>
-  :global(html){scroll-behavior:smooth}:global(body){margin:0}.page-shell{--navy:#0b1220;--blue:#2563eb;--text:#101828;--muted:#667085;--border:#e4e7ec;--soft:#f7f9fc;--white:#fff;background:var(--soft);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{width:min(1160px,calc(100% - 40px));margin:0 auto}.topbar{position:sticky;top:0;z-index:20;background:rgba(247,249,252,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(14px)}.nav-wrap{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none}.brand-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:var(--navy);color:#fff;font-weight:800}.brand strong,.brand small{display:block}.brand strong{font-size:14px}.brand small{color:var(--muted);font-size:11px;margin-top:2px}nav{display:flex;gap:24px}nav a{text-decoration:none;color:#475467;font-size:14px;font-weight:650}.active,nav a:hover{color:var(--blue)}.hero{padding:105px 0 90px}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:center}.eyebrow,.section-label{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}h1{margin:16px 0 0;max-width:760px;color:var(--navy);font-size:clamp(3rem,5vw,5rem);line-height:1;letter-spacing:-.06em}.lead{max-width:760px;margin:28px 0 0;color:var(--muted);font-size:18px;line-height:1.75}.summary-card{padding:30px;border-radius:24px;background:var(--navy);color:#fff;box-shadow:0 30px 70px rgba(16,24,40,.16)}.prompt{color:#60a5fa;font-family:monospace;font-size:12px}.summary-card h2{margin:42px 0 6px;font-size:28px}.summary-card>p{margin:0;color:#94a3b8}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}.tags span{padding:8px 10px;border:1px solid #2b3850;border-radius:8px;color:#cbd5e1;font-size:12px}.section{padding:105px 0}.white{background:#fff}.soft{background:var(--soft)}.split{display:grid;grid-template-columns:.8fr 1.2fr;gap:100px}.section h2{margin:14px 0 0;color:var(--navy);font-size:clamp(2.3rem,4vw,3.8rem);line-height:1.05;letter-spacing:-.055em}.copy p{color:var(--muted);line-height:1.8}.copy .large{margin-top:0;color:var(--text);font-size:22px;line-height:1.5}.section-head{margin-bottom:46px}.grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-left:1px solid var(--border)}.grid article{min-height:230px;padding:28px;background:#fff;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}.grid article>span{color:var(--blue);font-family:monospace;font-size:12px}.grid h3{margin:38px 0 10px;font-size:21px;color:var(--navy)}.grid p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}.dark{background:var(--navy);color:#fff}.dark h2{color:#fff}.dark p:not(.section-label){color:#94a3b8;line-height:1.75;max-width:700px}.light-label{color:#60a5fa}.next-grid{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:end}.button{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:10px;text-decoration:none;font-size:14px;font-weight:750}.light-button{background:#fff;color:var(--navy)}footer{background:#fff;border-top:1px solid var(--border)}.footer-wrap{min-height:110px;display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--muted);font-size:12px}.footer-wrap strong{color:var(--text)}@media(max-width:900px){.hero-grid,.split,.next-grid{grid-template-columns:1fr;gap:45px}.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.wrap{width:min(100% - 28px,1160px)}nav a:last-child{display:none}.brand small{display:none}.hero{padding:70px 0}h1{font-size:clamp(2.7rem,13vw,4rem)}.lead{font-size:16px}.section{padding:78px 0}.grid{grid-template-columns:1fr}.grid article{min-height:auto}.footer-wrap{padding:26px 0;flex-direction:column;align-items:flex-start}}
+  .profile-hero { padding-top: 105px; padding-bottom: 90px; }
+  .hero-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:80px; align-items:center; }
+  .summary-card { padding:30px; border-radius:24px; background:#0b1220; color:#fff; box-shadow:0 30px 70px rgba(16,24,40,.16); }
+  .prompt { color:#60a5fa; font-family:monospace; font-size:12px; }
+  .summary-card h2 { margin:42px 0 6px; font-size:28px; }
+  .summary-card>p { margin:0; color:#94a3b8; }
+  .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+  .tags span { padding:8px 10px; border:1px solid #2b3850; border-radius:8px; color:#cbd5e1; font-size:12px; }
+  .split { display:grid; grid-template-columns:.8fr 1.2fr; gap:100px; }
+  .split h2,.section-head h2,.knowledge-section h2 { margin:0; color:#0b1220; font-size:clamp(2.3rem,4vw,3.8rem); line-height:1.05; letter-spacing:-.055em; }
+  .copy p { color:#667085; line-height:1.8; }
+  .copy .large { margin-top:0; color:#101828; font-size:22px; line-height:1.5; }
+  .section-head { margin-bottom:46px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid #e4e7ec; border-left:1px solid #e4e7ec; }
+  .grid article { min-height:230px; padding:28px; background:#fff; border-right:1px solid #e4e7ec; border-bottom:1px solid #e4e7ec; }
+  .grid article>span { color:#2563eb; font-family:monospace; font-size:12px; }
+  .grid h3 { margin:38px 0 10px; font-size:21px; color:#0b1220; }
+  .grid p { margin:0; color:#667085; font-size:14px; line-height:1.65; }
+  .knowledge-section { padding:105px 0; background:#0b1220; color:#fff; }
+  .knowledge-section h2 { color:#fff; }
+  .knowledge-section p:not(.gl-eyebrow) { color:#94a3b8; line-height:1.75; max-width:700px; }
+  .next-grid { display:grid; grid-template-columns:1fr auto; gap:60px; align-items:end; }
+  .white-button { background:#fff; color:#0b1220; }
+  @media(max-width:900px){.hero-grid,.split,.next-grid{grid-template-columns:1fr;gap:45px}.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:650px){.profile-hero{padding-top:70px}.grid{grid-template-columns:1fr}.grid article{min-height:auto}}
 </style>
