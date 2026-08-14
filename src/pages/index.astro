@@ -19,7 +19,6 @@ import Layout from "@/layouts/Layout.astro";
 
         <nav aria-label="Navigazione principale">
           <a href="/profilo/">Profilo</a>
-          <a href="/curriculum/">Curriculum</a>
           <a href="/posts/">Articoli</a>
           <a href="#stack">Tecnologie</a>
         </nav>
@@ -37,12 +36,12 @@ import Layout from "@/layouts/Layout.astro";
             </h1>
             <p class="lead">
               Sono Giulio Lattanzio, Network & Security Specialist. Questo sito è la mia vetrina professionale:
-              raccoglie il mio percorso, le tecnologie con cui lavoro e gli articoli che pubblico su Wi-Fi,
+              racconta chi sono, di cosa mi occupo, le tecnologie con cui lavoro e gli articoli che pubblico su Wi-Fi,
               networking, Fortinet, VoIP e AudioCodes.
             </p>
 
             <div class="hero-actions">
-              <a class="primary" href="/profilo/">Scopri il mio profilo</a>
+              <a class="primary" href="/profilo/">Chi sono e cosa faccio</a>
               <a class="secondary" href="/posts/">Leggi gli articoli</a>
             </div>
           </div>
@@ -70,20 +69,19 @@ import Layout from "@/layouts/Layout.astro";
         <div class="wrap split">
           <div>
             <p class="section-label">Profilo</p>
-            <h2>Un curriculum che evolve insieme al mio percorso.</h2>
+            <h2>Una presentazione di chi sono e di cosa mi occupo.</h2>
           </div>
           <div class="copy">
             <p class="big-copy">
               Mi occupo di infrastrutture di rete, sicurezza, wireless enterprise e sistemi di comunicazione VoIP.
             </p>
             <p>
-              Questo spazio non nasce per offrire servizi o consulenza: è un archivio personale e professionale.
-              Qui raccolgo competenze, tecnologie, appunti, approfondimenti e contenuti che riflettono il mio lavoro
-              quotidiano e gli argomenti che studio nel tempo.
+              Questo spazio non nasce per offrire servizi o consulenza: è una vetrina personale e professionale.
+              Qui presento le aree tecniche su cui lavoro e raccolgo appunti, approfondimenti e contenuti sugli argomenti
+              che utilizzo e studio nel tempo.
             </p>
             <div class="inline-actions">
-              <a href="/profilo/">Profilo completo →</a>
-              <a href="/curriculum/">Curriculum →</a>
+              <a href="/profilo/">Scopri il mio profilo →</a>
             </div>
           </div>
         </div>
@@ -261,7 +259,7 @@ import Layout from "@/layouts/Layout.astro";
 
   @media (max-width: 700px) {
     .wrap { width: min(100% - 28px, 1160px); }
-    nav a:nth-child(2), nav a:nth-child(4) { display: none; }
+    nav a:last-child { display: none; }
     .brand small { display: none; }
     .hero { padding: 70px 0; }
     h1 { font-size: clamp(2.7rem, 13vw, 4rem); }
