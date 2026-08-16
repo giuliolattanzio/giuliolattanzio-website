@@ -23,10 +23,6 @@ import LatestArticles from "@/components/LatestArticles.astro";
               racconta chi sono, di cosa mi occupo, le tecnologie con cui lavoro e gli articoli che pubblico su Wi-Fi,
               networking, Fortinet, VoIP e AudioCodes.
             </p>
-            <div class="hero-actions">
-              <a class="gl-button gl-button-primary" href="/profilo/">Chi sono e cosa faccio</a>
-              <a class="gl-button gl-button-secondary" href="/posts/">Leggi gli articoli</a>
-            </div>
           </div>
 
           <figure class="hero-portrait">
@@ -54,18 +50,72 @@ import LatestArticles from "@/components/LatestArticles.astro";
         </div>
       </section>
 
-      <section class="gl-section">
+      <section class="areas-section">
         <div class="gl-wrap">
-          <div class="section-head">
-            <div><p class="gl-eyebrow">Aree tecniche</p><h2>I temi su cui lavoro e pubblico.</h2></div>
-            <p>Ogni area è anche un percorso editoriale con articoli, note tecniche e approfondimenti.</p>
+          <div class="section-head areas-head">
+            <div>
+              <p class="gl-eyebrow">Aree tecniche</p>
+              <h2>I temi su cui lavoro e pubblico.</h2>
+            </div>
+            <p>
+              Il Wi-Fi rappresenta il focus principale del mio percorso, affiancato da networking,
+              sicurezza e comunicazioni IP.
+            </p>
           </div>
-          <div class="topic-grid">
-            <a href="/tags/wifi/"><span>01</span><h3>Wi-Fi</h3><p>Wireless enterprise, RF, roaming, site survey e troubleshooting.</p></a>
-            <a href="/tags/networking/"><span>02</span><h3>Networking</h3><p>VLAN, infrastrutture, analisi del traffico e troubleshooting.</p></a>
-            <a href="/tags/fortinet/"><span>03</span><h3>Fortinet</h3><p>FortiGate, VPN, policy, sicurezza e troubleshooting.</p></a>
-            <a href="/tags/voip/"><span>04</span><h3>VoIP</h3><p>SIP, call flow, integrazioni e comunicazioni IP.</p></a>
-            <a href="/tags/audiocodes/"><span>05</span><h3>AudioCodes</h3><p>SBC, routing SIP, manipolazioni e interoperabilità.</p></a>
+
+          <div class="areas-grid">
+            <a class="area-card area-card-featured" href="/tags/wifi/">
+              <div class="area-card-top">
+                <span class="area-label">Focus principale</span>
+                <span class="area-arrow" aria-hidden="true">↗</span>
+              </div>
+              <div class="area-card-copy">
+                <p class="area-domain">Wireless Engineering</p>
+                <h3>Wi-Fi & RF</h3>
+                <p>Wireless enterprise, progettazione RF, roaming, Ekahau, site survey, validazione e troubleshooting.</p>
+              </div>
+              <div class="area-tags" aria-label="Temi Wi-Fi">
+                <span>Ekahau</span>
+                <span>Site Survey</span>
+                <span>Analisi Wi-Fi</span>
+              </div>
+            </a>
+
+            <a class="area-card" href="/tags/networking/">
+              <div class="area-card-top">
+                <span class="area-domain">Infrastructure</span>
+                <span class="area-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>Networking</h3>
+              <p>Reti IP, VLAN, architetture, analisi del traffico e troubleshooting dell'infrastruttura.</p>
+            </a>
+
+            <a class="area-card" href="/tags/fortinet/">
+              <div class="area-card-top">
+                <span class="area-domain">Security</span>
+                <span class="area-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>Fortinet</h3>
+              <p>FortiGate, VPN, policy, segmentazione e sicurezza delle reti aziendali.</p>
+            </a>
+
+            <a class="area-card" href="/tags/voip/">
+              <div class="area-card-top">
+                <span class="area-domain">Voice over IP</span>
+                <span class="area-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>VoIP & SIP</h3>
+              <p>Call flow, routing SIP, interoperabilità e analisi delle comunicazioni IP.</p>
+            </a>
+
+            <a class="area-card" href="/tags/audiocodes/">
+              <div class="area-card-top">
+                <span class="area-domain">Unified Communications</span>
+                <span class="area-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>AudioCodes</h3>
+              <p>SBC, routing SIP, manipolazioni e integrazione con piattaforme di comunicazione.</p>
+            </a>
           </div>
         </div>
       </section>
@@ -99,7 +149,6 @@ import LatestArticles from "@/components/LatestArticles.astro";
           <div class="tech-grid">
             <article class="tech-card tech-card-accent">
               <div class="tech-card-head">
-                <span class="tech-index">01</span>
                 <span class="tech-domain">Wireless Engineering</span>
               </div>
               <h3>Wi-Fi & RF</h3>
@@ -115,7 +164,6 @@ import LatestArticles from "@/components/LatestArticles.astro";
 
             <article class="tech-card">
               <div class="tech-card-head">
-                <span class="tech-index">02</span>
                 <span class="tech-domain">Security & Networking</span>
               </div>
               <h3>Infrastruttura e sicurezza</h3>
@@ -130,7 +178,6 @@ import LatestArticles from "@/components/LatestArticles.astro";
 
             <article class="tech-card">
               <div class="tech-card-head">
-                <span class="tech-index">03</span>
                 <span class="tech-domain">Voice & Unified Communications</span>
               </div>
               <h3>VoIP & comunicazioni IP</h3>
@@ -145,7 +192,6 @@ import LatestArticles from "@/components/LatestArticles.astro";
 
             <article class="tech-card tech-card-accent">
               <div class="tech-card-head">
-                <span class="tech-index">04</span>
                 <span class="tech-domain">Analysis & Troubleshooting</span>
               </div>
               <h3>Diagnostica e analisi</h3>
@@ -166,9 +212,17 @@ import LatestArticles from "@/components/LatestArticles.astro";
 </Layout>
 
 <style>
-  .home-hero { padding-top: 110px; padding-bottom: 95px; }
-  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+  .home-hero {
+    padding-top: 110px;
+    padding-bottom: 105px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 80px;
+    align-items: center;
+  }
 
   .hero-portrait {
     width: min(100%, 420px);
@@ -176,10 +230,10 @@ import LatestArticles from "@/components/LatestArticles.astro";
     margin: 0;
     justify-self: end;
     overflow: hidden;
-    border: 1px solid #e4e7ec;
+    border: 1px solid rgba(11,18,32,.12);
     border-radius: 28px;
-    background: #e9edf3;
-    box-shadow: 0 30px 70px rgba(16, 24, 40, .14);
+    background: #fff;
+    box-shadow: 0 30px 70px rgba(11,18,32,.12);
   }
 
   .hero-portrait img {
@@ -190,31 +244,222 @@ import LatestArticles from "@/components/LatestArticles.astro";
     object-position: center center;
   }
 
-  .split { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; }
-  .split h2, .section-head h2, .knowledge-section h2 { margin: 0; color: #0b1220; font-size: clamp(2.3rem,4vw,3.8rem); line-height: 1.05; letter-spacing: -.055em; }
-  .copy p { color: #667085; line-height: 1.8; }
-  .copy .large { margin-top: 0; color: #101828; font-size: 22px; line-height: 1.5; }
-  .text-link { display: inline-block; margin-top: 18px; color: #2563eb; text-decoration: none; font-weight: 750; }
-  .section-head { display: grid; grid-template-columns: 1fr .75fr; gap: 80px; align-items: end; margin-bottom: 48px; }
-  .section-head > p { margin: 0; color: #667085; line-height: 1.75; }
-  .topic-grid { display: grid; grid-template-columns: repeat(5,1fr); border-top: 1px solid #e4e7ec; border-left: 1px solid #e4e7ec; }
-  .topic-grid a { min-height: 260px; padding: 28px; background: #fff; border-right: 1px solid #e4e7ec; border-bottom: 1px solid #e4e7ec; color: inherit; text-decoration: none; }
-  .topic-grid a > span { color: #2563eb; font-family: monospace; font-size: 12px; }
-  .topic-grid h3 { margin: 42px 0 12px; color: #0b1220; font-size: 22px; }
-  .topic-grid p { margin: 0; color: #667085; font-size: 14px; line-height: 1.65; }
-  .topic-grid a:hover h3 { color: #2563eb; }
-  .knowledge-section { padding: 105px 0; background: #0b1220; color: #fff; }
-  .knowledge-grid { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: end; }
-  .knowledge-section h2 { color: #fff; }
-  .knowledge-section p:not(.gl-eyebrow) { max-width: 720px; color: #94a3b8; line-height: 1.75; }
-  .white-button { background: #fff; color: #0b1220; }
+  .split {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 100px;
+  }
+
+  .split h2,
+  .section-head h2,
+  .knowledge-section h2 {
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(2.3rem,4vw,3.8rem);
+    line-height: 1.05;
+    letter-spacing: -.055em;
+  }
+
+  .copy p {
+    color: rgba(11,18,32,.66);
+    line-height: 1.8;
+  }
+
+  .copy .large {
+    margin-top: 0;
+    color: #0b1220;
+    font-size: 22px;
+    line-height: 1.5;
+  }
+
+  .text-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 750;
+  }
+
+  .areas-section {
+    padding: 110px 0 120px;
+    background: #fff;
+    border-top: 1px solid rgba(11,18,32,.1);
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr .75fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 50px;
+  }
+
+  .section-head > p {
+    margin: 0;
+    color: rgba(11,18,32,.64);
+    line-height: 1.75;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: 1.08fr .92fr .92fr;
+    grid-template-rows: repeat(2, minmax(230px, auto));
+    gap: 16px;
+  }
+
+  .area-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 28px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(11,18,32,.12);
+    border-radius: 22px;
+    color: #0b1220;
+    text-decoration: none;
+    box-shadow: 0 14px 34px rgba(11,18,32,.035);
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+
+  .area-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(37,99,235,.45);
+    box-shadow: 0 22px 50px rgba(11,18,32,.08);
+  }
+
+  .area-card-featured {
+    grid-row: 1 / 3;
+    padding: 34px;
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+    box-shadow: 0 24px 56px rgba(37,99,235,.18);
+  }
+
+  .area-card-featured:hover {
+    border-color: #2563eb;
+    box-shadow: 0 28px 64px rgba(37,99,235,.24);
+  }
+
+  .area-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .area-domain,
+  .area-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .area-domain {
+    color: rgba(11,18,32,.56);
+  }
+
+  .area-label {
+    padding: 7px 10px;
+    border: 1px solid rgba(255,255,255,.32);
+    border-radius: 999px;
+    color: #fff;
+  }
+
+  .area-arrow {
+    color: #2563eb;
+    font-size: 21px;
+    line-height: 1;
+  }
+
+  .area-card-featured .area-arrow,
+  .area-card-featured .area-domain {
+    color: #fff;
+  }
+
+  .area-card-copy {
+    margin-top: auto;
+  }
+
+  .area-card h3 {
+    margin: 42px 0 12px;
+    color: #0b1220;
+    font-size: 25px;
+    line-height: 1.15;
+    letter-spacing: -.04em;
+  }
+
+  .area-card-featured h3 {
+    margin-top: 18px;
+    color: #fff;
+    font-size: clamp(2.7rem,4vw,4.1rem);
+    letter-spacing: -.055em;
+  }
+
+  .area-card p {
+    margin: 0;
+    color: rgba(11,18,32,.64);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .area-card-featured p {
+    max-width: 510px;
+    color: rgba(255,255,255,.86);
+    font-size: 15px;
+  }
+
+  .area-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 30px;
+  }
+
+  .area-tags span {
+    padding: 8px 10px;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 8px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 11px;
+  }
+
+  .knowledge-section {
+    padding: 105px 0;
+    background: #0b1220;
+    color: #fff;
+  }
+
+  .knowledge-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: end;
+  }
+
+  .knowledge-section h2 {
+    color: #fff;
+  }
+
+  .knowledge-section p:not(.gl-eyebrow) {
+    max-width: 720px;
+    color: rgba(255,255,255,.64);
+    line-height: 1.75;
+  }
+
+  .white-button {
+    background: #fff;
+    color: #0b1220;
+  }
 
   .tech-section {
     padding: 110px 0 120px;
-    background:
-      radial-gradient(circle at 88% 12%, rgba(37, 99, 235, .08), transparent 28%),
-      #f7f9fc;
-    border-top: 1px solid #e4e7ec;
+    background: #fff;
+    border-top: 1px solid rgba(11,18,32,.1);
   }
 
   .tech-intro {
@@ -237,7 +482,7 @@ import LatestArticles from "@/components/LatestArticles.astro";
   .tech-intro > p {
     max-width: 560px;
     margin: 0;
-    color: #667085;
+    color: rgba(11,18,32,.64);
     font-size: 16px;
     line-height: 1.8;
   }
@@ -253,10 +498,10 @@ import LatestArticles from "@/components/LatestArticles.astro";
     min-height: 300px;
     padding: 30px;
     overflow: hidden;
-    background: rgba(255,255,255,.92);
-    border: 1px solid #e4e7ec;
+    background: #fff;
+    border: 1px solid rgba(11,18,32,.12);
     border-radius: 22px;
-    box-shadow: 0 14px 34px rgba(16, 24, 40, .045);
+    box-shadow: 0 14px 34px rgba(11,18,32,.04);
     transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
   }
 
@@ -266,48 +511,33 @@ import LatestArticles from "@/components/LatestArticles.astro";
     inset: 0 auto auto 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(90deg, #2563eb, #93c5fd 55%, transparent);
-    opacity: .8;
+    background: #2563eb;
   }
 
   .tech-card:hover {
     transform: translateY(-4px);
-    border-color: #bfdbfe;
-    box-shadow: 0 22px 50px rgba(16, 24, 40, .08);
+    border-color: rgba(37,99,235,.42);
+    box-shadow: 0 22px 50px rgba(11,18,32,.08);
   }
 
   .tech-card-accent {
-    background: linear-gradient(135deg, #123b80 0%, #174ea6 58%, #2563eb 100%);
-    border-color: #174ea6;
-    box-shadow: 0 20px 50px rgba(29, 78, 216, .20);
+    background: #2563eb;
+    border-color: #2563eb;
+    box-shadow: 0 20px 50px rgba(37,99,235,.18);
   }
 
   .tech-card-accent::before {
-    background: linear-gradient(90deg, #bfdbfe, #60a5fa 55%, transparent);
+    background: #2563eb;
   }
 
   .tech-card-head {
     display: flex;
     align-items: center;
-    gap: 12px;
     margin-bottom: 44px;
   }
 
-  .tech-index {
-    display: inline-grid;
-    width: 34px;
-    height: 34px;
-    place-items: center;
-    border-radius: 9px;
-    background: #eff6ff;
-    color: #2563eb;
-    font-family: monospace;
-    font-size: 11px;
-    font-weight: 700;
-  }
-
   .tech-domain {
-    color: #667085;
+    color: rgba(11,18,32,.56);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: .09em;
@@ -325,7 +555,7 @@ import LatestArticles from "@/components/LatestArticles.astro";
   .tech-card > p {
     max-width: 560px;
     margin: 0 0 28px;
-    color: #667085;
+    color: rgba(11,18,32,.64);
     font-size: 14px;
     line-height: 1.7;
   }
@@ -338,50 +568,100 @@ import LatestArticles from "@/components/LatestArticles.astro";
 
   .tech-tags span {
     padding: 8px 10px;
-    border: 1px solid #e4e7ec;
+    border: 1px solid rgba(11,18,32,.12);
     border-radius: 8px;
-    background: #f8fafc;
-    color: #344054;
+    background: #fff;
+    color: #0b1220;
     font-family: monospace;
     font-size: 11px;
   }
 
-  .tech-card-accent .tech-index {
-    background: rgba(255,255,255,.14);
-    color: #dbeafe;
-  }
-
   .tech-card-accent .tech-domain,
-  .tech-card-accent > p {
-    color: #dbeafe;
-  }
-
+  .tech-card-accent > p,
   .tech-card-accent h3 {
     color: #fff;
   }
 
+  .tech-card-accent > p {
+    color: rgba(255,255,255,.84);
+  }
+
   .tech-card-accent .tech-tags span {
-    border-color: rgba(255,255,255,.22);
-    background: rgba(8, 27, 65, .28);
-    color: #eff6ff;
+    border-color: rgba(255,255,255,.28);
+    background: transparent;
+    color: #fff;
   }
 
-  @media(max-width:950px){
-    .hero-grid,.split,.section-head,.knowledge-grid,.tech-intro{grid-template-columns:1fr;gap:45px}
-    .hero-portrait{justify-self:center;width:min(100%,390px)}
-    .topic-grid{grid-template-columns:repeat(2,1fr)}
-    .tech-grid{grid-template-columns:1fr}
-    .tech-card{min-height:auto}
+  @media(max-width:1050px) {
+    .areas-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+
+    .area-card-featured {
+      grid-column: 1 / 3;
+      grid-row: auto;
+      min-height: 390px;
+    }
   }
 
-  @media(max-width:650px){
-    .home-hero{padding-top:70px}
-    .hero-actions{flex-direction:column}
-    .hero-portrait{width:min(88vw,360px);border-radius:22px}
-    .topic-grid{grid-template-columns:1fr}
-    .topic-grid a{min-height:auto}
-    .tech-section{padding:80px 0}
-    .tech-card{padding:24px;border-radius:18px}
-    .tech-card-head{margin-bottom:32px}
+  @media(max-width:950px) {
+    .hero-grid,
+    .split,
+    .section-head,
+    .knowledge-grid,
+    .tech-intro {
+      grid-template-columns: 1fr;
+      gap: 45px;
+    }
+
+    .hero-portrait {
+      justify-self: center;
+      width: min(100%,390px);
+    }
+
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tech-card {
+      min-height: auto;
+    }
+  }
+
+  @media(max-width:650px) {
+    .home-hero {
+      padding-top: 70px;
+      padding-bottom: 78px;
+    }
+
+    .hero-portrait {
+      width: min(88vw,360px);
+      border-radius: 22px;
+    }
+
+    .areas-section,
+    .tech-section {
+      padding: 80px 0;
+    }
+
+    .areas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .area-card-featured {
+      grid-column: auto;
+      min-height: 380px;
+    }
+
+    .area-card,
+    .tech-card {
+      padding: 24px;
+      border-radius: 18px;
+    }
+
+    .tech-card-head {
+      margin-bottom: 32px;
+    }
   }
 </style>
