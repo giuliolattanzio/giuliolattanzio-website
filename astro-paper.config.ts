@@ -4,7 +4,7 @@ export default defineAstroPaperConfig({
   site: {
     url: "https://giuliolattanzio.pages.dev/",
     title: "Giulio Lattanzio",
-    description: "Portfolio personale e knowledge hub tecnico di Giulio Lattanzio | Network & Security Specialist.",
+    description: "Portfolio personale e knowledge hub tecnico di Giulio Lattanzio, Network, Wi-Fi & VoIP Specialist.",
     author: "Giulio Lattanzio",
     profile: "https://giuliolattanzio.pages.dev/",
     ogImage: "default-og.jpg",
