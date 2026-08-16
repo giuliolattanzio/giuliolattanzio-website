@@ -6,7 +6,7 @@ export default defineAstroPaperConfig({
     title: "Giulio Lattanzio",
     description: "Portfolio personale e knowledge hub tecnico di Giulio Lattanzio, Network, Wi-Fi & VoIP Specialist.",
     author: "Giulio Lattanzio",
-    profile: "https://giuliolattanzio.pages.dev/",
+    profile: "https://giuliolattanzio.pages.dev/profilo/",
     ogImage: "default-og.jpg",
     lang: "it",
     timezone: "Europe/Rome",
