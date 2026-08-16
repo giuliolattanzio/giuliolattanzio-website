@@ -24,8 +24,16 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: page =>
-        config.features?.showArchives !== false || !page.endsWith("/archives/"),
+      filter: page => {
+        const pathname = new URL(page).pathname;
+        if (["/404/", "/search/", "/about/", "/archives/"].includes(pathname)) {
+          return false;
+        }
+        if (pathname.startsWith("/tags/") && pathname !== "/tags/") {
+          return false;
+        }
+        return true;
+      },
     }),
   ],
   i18n: {
