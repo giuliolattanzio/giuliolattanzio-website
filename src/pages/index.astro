@@ -91,30 +91,15 @@ import LatestArticles from "@/components/LatestArticles.astro";
               <h2>Tecnologie e strumenti che utilizzo nel mio lavoro.</h2>
             </div>
             <p>
-              Un insieme di piattaforme, protocolli e strumenti che utilizzo nelle attività di progettazione,
-              analisi e troubleshooting di infrastrutture di rete, sistemi wireless e comunicazioni IP.
+              Il Wi-Fi è il focus principale del mio percorso tecnico, affiancato da networking, sicurezza,
+              comunicazioni IP e strumenti di analisi utilizzati nelle attività quotidiane.
             </p>
           </div>
 
           <div class="tech-grid">
-            <article class="tech-card">
-              <div class="tech-card-head">
-                <span class="tech-index">01</span>
-                <span class="tech-domain">Security & Networking</span>
-              </div>
-              <h3>Infrastruttura e sicurezza</h3>
-              <p>Gestione e analisi di reti IP, segmentazione, connettività sicura e protezione perimetrale.</p>
-              <div class="tech-tags" aria-label="Tecnologie infrastruttura e sicurezza">
-                <span>FortiGate</span>
-                <span>Fortinet</span>
-                <span>VLAN</span>
-                <span>IPsec</span>
-              </div>
-            </article>
-
             <article class="tech-card tech-card-accent">
               <div class="tech-card-head">
-                <span class="tech-index">02</span>
+                <span class="tech-index">01</span>
                 <span class="tech-domain">Wireless Engineering</span>
               </div>
               <h3>Wi-Fi & RF</h3>
@@ -125,6 +110,21 @@ import LatestArticles from "@/components/LatestArticles.astro";
                 <span>Site Survey</span>
                 <span>Survey Wi-Fi</span>
                 <span>Analisi Wi-Fi</span>
+              </div>
+            </article>
+
+            <article class="tech-card">
+              <div class="tech-card-head">
+                <span class="tech-index">02</span>
+                <span class="tech-domain">Security & Networking</span>
+              </div>
+              <h3>Infrastruttura e sicurezza</h3>
+              <p>Gestione e analisi di reti IP, segmentazione, connettività sicura e protezione perimetrale.</p>
+              <div class="tech-tags" aria-label="Tecnologie infrastruttura e sicurezza">
+                <span>FortiGate</span>
+                <span>Fortinet</span>
+                <span>VLAN</span>
+                <span>IPsec</span>
               </div>
             </article>
 
@@ -143,7 +143,7 @@ import LatestArticles from "@/components/LatestArticles.astro";
               </div>
             </article>
 
-            <article class="tech-card">
+            <article class="tech-card tech-card-accent">
               <div class="tech-card-head">
                 <span class="tech-index">04</span>
                 <span class="tech-domain">Analysis & Troubleshooting</span>
@@ -277,13 +277,13 @@ import LatestArticles from "@/components/LatestArticles.astro";
   }
 
   .tech-card-accent {
-    background: #0b1220;
-    border-color: #0b1220;
-    box-shadow: 0 20px 50px rgba(11, 18, 32, .14);
+    background: linear-gradient(135deg, #123b80 0%, #174ea6 58%, #2563eb 100%);
+    border-color: #174ea6;
+    box-shadow: 0 20px 50px rgba(29, 78, 216, .20);
   }
 
   .tech-card-accent::before {
-    background: linear-gradient(90deg, #60a5fa, #2563eb 60%, transparent);
+    background: linear-gradient(90deg, #bfdbfe, #60a5fa 55%, transparent);
   }
 
   .tech-card-head {
@@ -347,13 +347,13 @@ import LatestArticles from "@/components/LatestArticles.astro";
   }
 
   .tech-card-accent .tech-index {
-    background: rgba(96,165,250,.14);
-    color: #93c5fd;
+    background: rgba(255,255,255,.14);
+    color: #dbeafe;
   }
 
   .tech-card-accent .tech-domain,
   .tech-card-accent > p {
-    color: #94a3b8;
+    color: #dbeafe;
   }
 
   .tech-card-accent h3 {
@@ -361,9 +361,9 @@ import LatestArticles from "@/components/LatestArticles.astro";
   }
 
   .tech-card-accent .tech-tags span {
-    border-color: #2b3850;
-    background: #111c30;
-    color: #dbeafe;
+    border-color: rgba(255,255,255,.22);
+    background: rgba(8, 27, 65, .28);
+    color: #eff6ff;
   }
 
   @media(max-width:950px){
