@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import PersonalHeader from "@/components/PersonalHeader.astro";
 import PersonalFooter from "@/components/PersonalFooter.astro";
 import LatestArticles from "@/components/LatestArticles.astro";
+import WifiAuthority from "@/components/WifiAuthority.astro";
 import { TECHNICAL_AREAS, type Area } from "@/data/technicalAreas";
 
 export function getStaticPaths() {
@@ -17,8 +18,11 @@ const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
 const isWifi = area.slug === "wifi";
 const isNetworking = area.slug === "networking-security";
 const isVoip = area.slug === "voip";
+const pageTitle = isWifi
+  ? "Tecnico Wi-Fi, Survey Wi-Fi & Wireless Engineering | Giulio Lattanzio"
+  : `${area.title} | Giulio Lattanzio`;
 const pageDescription = isWifi
-  ? "Wi-Fi enterprise, RF design, site survey, Ekahau, roaming e troubleshooting wireless: articoli e approfondimenti tecnici di Giulio Lattanzio."
+  ? "Giulio Lattanzio è Network, Wi-Fi & VoIP Specialist con focus su Wi-Fi enterprise, survey Wi-Fi, site survey, Ekahau, RF design e troubleshooting wireless."
   : isNetworking
     ? "Networking e sicurezza: reti IP, switching, VLAN, routing, Fortinet/FortiGate, Alcatel, VPN, IPsec, Wireshark e troubleshooting di infrastruttura."
     : isVoip
@@ -158,10 +162,7 @@ const areaDetail = area.slug === "networking-security"
     : null;
 ---
 
-<Layout
-  title={`${area.title} | Giulio Lattanzio`}
-  description={pageDescription}
->
+<Layout title={pageTitle} description={pageDescription}>
   <div class="gl-shell">
     <PersonalHeader />
 
@@ -204,6 +205,8 @@ const areaDetail = area.slug === "networking-security"
 
       {isWifi ? (
         <>
+          <WifiAuthority />
+
           <section class="wifi-workflow">
             <div class="gl-wrap">
               <div class="wifi-section-head">
