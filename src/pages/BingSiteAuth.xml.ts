@@ -1,0 +1,14 @@
+import type { APIRoute } from "astro";
+
+const bingVerificationXml = `<?xml version="1.0"?>
+<users>
+	<user>D54245D05BEE7401D102BB174155DB55</user>
+</users>
+`;
+
+export const GET: APIRoute = () =>
+  new Response(bingVerificationXml, {
+    headers: {
+      "Content-Type": "application/xml; charset=utf-8",
+    },
+  });
