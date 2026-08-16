@@ -16,10 +16,10 @@ type Props = {
 
 const {
   tags = [],
-  eyebrow = "Ultimi contenuti",
-  heading = "Dal Knowledge Hub.",
+  eyebrow = "Ultimi articoli",
+  heading = "Gli ultimi contenuti pubblicati.",
   archiveHref = "/posts/",
-  archiveLabel = "Vedi tutti gli articoli →",
+  archiveLabel = "Tutti gli articoli →",
   emptyText = "I nuovi contenuti appariranno qui.",
 } = Astro.props;
 
@@ -76,7 +76,7 @@ const formatDate = (date: Date) =>
 
 <style>
   .latest-section {
-    padding: 100px 0;
+    padding: 104px 0 112px;
     border-top: 1px solid rgba(11, 18, 32, .10);
   }
 
@@ -85,10 +85,11 @@ const formatDate = (date: Date) =>
     align-items: end;
     justify-content: space-between;
     gap: 30px;
-    margin-bottom: 38px;
+    margin-bottom: 42px;
   }
 
   .latest-head h2 {
+    max-width: 720px;
     margin: 0;
     color: #0b1220;
     font-size: clamp(2.3rem, 4vw, 3.6rem);
@@ -106,58 +107,82 @@ const formatDate = (date: Date) =>
 
   .latest-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid rgba(11, 18, 32, .14);
   }
 
   .latest-card {
+    position: relative;
     display: flex;
-    min-height: 285px;
+    min-height: 310px;
     flex-direction: column;
-    padding: 28px;
+    padding: 30px 28px 26px;
     background: #fff;
-    border: 1px solid rgba(11, 18, 32, .12);
-    border-radius: 16px;
+    border-right: 1px solid rgba(11, 18, 32, .12);
+    border-bottom: 1px solid rgba(11, 18, 32, .12);
     color: inherit;
     text-decoration: none;
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    transition: background .2s ease, transform .2s ease;
+  }
+
+  .latest-card:first-child {
+    border-left: 1px solid rgba(11, 18, 32, .12);
+  }
+
+  .latest-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px auto auto 0;
+    width: 0;
+    height: 2px;
+    background: #2563eb;
+    transition: width .2s ease;
   }
 
   .latest-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(11, 18, 32, .32);
-    box-shadow: 0 18px 45px rgba(11, 18, 32, .07);
+    transform: translateY(-2px);
+    background: rgba(11, 18, 32, .018);
+  }
+
+  .latest-card:hover::before {
+    width: 100%;
   }
 
   .latest-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 8px 14px;
-    color: rgba(11, 18, 32, .56);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .04em;
+    color: rgba(11, 18, 32, .52);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .07em;
     text-transform: uppercase;
   }
 
+  .latest-meta span + span::before {
+    content: "•";
+    margin-right: 14px;
+    color: rgba(11, 18, 32, .28);
+  }
+
   .latest-card h3 {
-    margin: 36px 0 12px;
+    margin: 44px 0 14px;
     color: #0b1220;
-    font-size: 23px;
-    line-height: 1.25;
-    letter-spacing: -.035em;
+    font-size: clamp(1.35rem, 2vw, 1.65rem);
+    line-height: 1.2;
+    letter-spacing: -.04em;
   }
 
   .latest-card p {
     margin: 0;
-    color: rgba(11, 18, 32, .64);
+    color: rgba(11, 18, 32, .62);
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.68;
   }
 
   .read-more {
     margin-top: auto;
-    padding-top: 24px;
+    padding-top: 28px;
     color: #2563eb;
     font-size: 13px;
     font-weight: 750;
@@ -166,7 +191,6 @@ const formatDate = (date: Date) =>
   .latest-empty {
     padding: 36px;
     border: 1px solid rgba(11, 18, 32, .12);
-    border-radius: 16px;
   }
 
   .latest-empty p {
@@ -176,12 +200,33 @@ const formatDate = (date: Date) =>
   }
 
   @media (max-width: 900px) {
-    .latest-grid { grid-template-columns: 1fr; }
-    .latest-card { min-height: auto; }
+    .latest-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .latest-card,
+    .latest-card:first-child {
+      min-height: auto;
+      border-left: 1px solid rgba(11, 18, 32, .12);
+    }
   }
 
   @media (max-width: 650px) {
-    .latest-section { padding: 76px 0; }
-    .latest-head { align-items: flex-start; flex-direction: column; }
+    .latest-section {
+      padding: 76px 0 84px;
+    }
+
+    .latest-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .latest-card {
+      padding: 26px 24px;
+    }
+
+    .latest-card h3 {
+      margin-top: 34px;
+    }
   }
 </style>
