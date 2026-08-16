@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import PersonalHeader from "@/components/PersonalHeader.astro";
 import PersonalFooter from "@/components/PersonalFooter.astro";
+import { TECHNICAL_AREAS } from "@/data/technicalAreas";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { getPostUrl } from "@/utils/getPostPaths";
 import config from "@/config";
@@ -15,14 +16,19 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const { page } = Astro.props;
 const locale = Astro.currentLocale ?? config.site.lang;
+const isFirstPage = page.currentPage === 1;
+const pageTitle = isFirstPage
+  ? `Articoli e Knowledge Hub | ${config.site.title}`
+  : `Articoli – Pagina ${page.currentPage} | ${config.site.title}`;
+const pageDescription = isFirstPage
+  ? "Knowledge Hub tecnico di Giulio Lattanzio: articoli e approfondimenti su Wi-Fi, networking, sicurezza, VoIP, AudioCodes e troubleshooting."
+  : `Archivio degli articoli tecnici di Giulio Lattanzio, pagina ${page.currentPage}.`;
 
-const topics = [
-  { label: "Wi-Fi", slug: "wifi", text: "Wireless enterprise, RF, survey e troubleshooting." },
-  { label: "Networking", slug: "networking", text: "Reti, VLAN, analisi del traffico e troubleshooting." },
-  { label: "Fortinet", slug: "fortinet", text: "FortiGate, VPN, policy e sicurezza di rete." },
-  { label: "VoIP", slug: "voip", text: "SIP, call flow, routing e comunicazioni IP." },
-  { label: "AudioCodes", slug: "audiocodes", text: "SBC, routing SIP e interoperabilità." },
-];
+const areaCopy: Record<string, string> = {
+  wifi: "RF design, site survey, Ekahau, analisi e troubleshooting wireless.",
+  "networking-security": "Reti IP, switching, VLAN, Fortinet, Alcatel, VPN e analisi del traffico.",
+  voip: "SIP, AudioCodes SBC, call flow, routing e interoperabilità tra piattaforme.",
+};
 
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("it-IT", {
@@ -32,22 +38,19 @@ const formatDate = (date: Date) =>
   }).format(date);
 ---
 
-<Layout
-  title={`Articoli | ${config.site.title}`}
-  description="Articoli, appunti e approfondimenti tecnici di Giulio Lattanzio su Wi-Fi, networking, Fortinet, VoIP e AudioCodes."
->
+<Layout title={pageTitle} description={pageDescription}>
   <div class="gl-shell">
     <PersonalHeader active="articoli" />
 
     <main>
-      <section class="gl-section">
+      <section class="gl-section articles-hero-section">
         <div class="gl-wrap articles-hero">
           <div>
             <p class="gl-eyebrow">Knowledge Hub</p>
-            <h1 class="gl-title">Articoli, appunti e <span>approfondimenti tecnici.</span></h1>
+            <h1 class="gl-title">Esperienze, analisi e <span>approfondimenti tecnici.</span></h1>
             <p class="gl-lead">
-              Uno spazio personale dove raccolgo ciò che studio, sperimento e considero utile documentare
-              nel mondo delle reti, del Wi-Fi, della sicurezza e delle comunicazioni IP.
+              Una raccolta di articoli e appunti su Wi-Fi, networking, sicurezza e comunicazioni IP,
+              nati dall’esperienza operativa, dall’analisi dei problemi e dallo studio delle tecnologie.
             </p>
           </div>
           <div class="hero-actions">
@@ -57,26 +60,43 @@ const formatDate = (date: Date) =>
         </div>
       </section>
 
-      <section class="topics-band">
-        <div class="gl-wrap topics-grid">
-          {topics.map((topic, index) => (
-            <a class="topic-card" href={`/tags/${topic.slug}/`}>
-              <span>0{index + 1}</span>
-              <h2>{topic.label}</h2>
-              <p>{topic.text}</p>
-            </a>
-          ))}
+      <section class="areas-section">
+        <div class="gl-wrap">
+          <div class="areas-head">
+            <div>
+              <p class="gl-eyebrow">Aree tecniche</p>
+              <h2>Esplora i contenuti per macro-area.</h2>
+            </div>
+            <p>
+              Le tre aree principali organizzano il Knowledge Hub. I tag restano disponibili per scendere nel dettaglio
+              su tecnologie, protocolli e argomenti specifici senza frammentare la navigazione principale.
+            </p>
+          </div>
+
+          <div class="areas-grid">
+            {TECHNICAL_AREAS.map(area => (
+              <a class="area-card" href={`/${area.slug}/`}>
+                <div class="area-card-top">
+                  <span>{area.eyebrow}</span>
+                  <strong aria-hidden="true">↗</strong>
+                </div>
+                <h2>{area.title}</h2>
+                <p>{areaCopy[area.slug] ?? area.description}</p>
+                <span class="area-link">Esplora l’area →</span>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section class="gl-section gl-section-white">
+      <section class="gl-section gl-section-white archive-section">
         <div class="gl-wrap">
           <div class="section-heading">
             <div>
               <p class="gl-eyebrow">Archivio</p>
-              <h2>Ultimi contenuti</h2>
+              <h2>{isFirstPage ? "Tutti gli articoli." : `Articoli — pagina ${page.currentPage}.`}</h2>
             </div>
-            <a href="/tags/">Tutti gli argomenti →</a>
+            <a href="/tags/">Esplora tutti gli argomenti →</a>
           </div>
 
           {page.data.length > 0 ? (
@@ -117,36 +137,211 @@ const formatDate = (date: Date) =>
 </Layout>
 
 <style>
+  .articles-hero-section {
+    padding-top: 105px;
+    padding-bottom: 100px;
+  }
+
   .articles-hero {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: end;
-    gap: 60px;
+    gap: 70px;
   }
-  .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-  .topics-band { background: #fff; border-top: 1px solid #e4e7ec; border-bottom: 1px solid #e4e7ec; }
-  .topics-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
-  .topic-card { padding: 28px 24px; color: inherit; text-decoration: none; border-right: 1px solid #e4e7ec; }
-  .topic-card:first-child { border-left: 1px solid #e4e7ec; }
-  .topic-card > span { color: #2563eb; font-family: monospace; font-size: 12px; }
-  .topic-card h2 { margin: 28px 0 8px; color: #0b1220; font-size: 20px; }
-  .topic-card p { margin: 0; color: #667085; font-size: 13px; line-height: 1.6; }
-  .topic-card:hover h2 { color: #2563eb; }
-  .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 34px; }
-  .section-heading h2 { margin: 0; color: #0b1220; font-size: 36px; letter-spacing: -0.04em; }
-  .section-heading a { color: #2563eb; text-decoration: none; font-weight: 700; font-size: 14px; }
-  .card-tags { margin-top: 18px; }
-  .empty-state { padding: 40px; border: 1px solid #e4e7ec; border-radius: 16px; background: #f7f9fc; }
-  .empty-state h3 { margin: 0 0 6px; color: #0b1220; }
-  .empty-state p { margin: 0; color: #667085; }
+
+  .articles-hero .gl-lead {
+    max-width: 780px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .areas-section {
+    padding: 105px 0 115px;
+    background: #fff;
+    border-top: 1px solid rgba(11, 18, 32, .10);
+    border-bottom: 1px solid rgba(11, 18, 32, .10);
+  }
+
+  .areas-head {
+    display: grid;
+    grid-template-columns: 1fr .8fr;
+    gap: 90px;
+    align-items: end;
+    margin-bottom: 44px;
+  }
+
+  .areas-head h2,
+  .section-heading h2 {
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    line-height: 1.03;
+    letter-spacing: -.055em;
+  }
+
+  .areas-head > p {
+    margin: 0;
+    color: rgba(11, 18, 32, .64);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .area-card {
+    display: flex;
+    min-height: 310px;
+    flex-direction: column;
+    padding: 28px;
+    border: 1px solid rgba(11, 18, 32, .12);
+    border-radius: 20px;
+    background: #fff;
+    color: #0b1220;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+
+  .area-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(11, 18, 32, .28);
+    box-shadow: 0 18px 44px rgba(11, 18, 32, .07);
+  }
+
+  .area-card-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: rgba(11, 18, 32, .56);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  .area-card-top strong {
+    color: #0b1220;
+    font-size: 19px;
+    font-weight: 500;
+  }
+
+  .area-card h2 {
+    margin: 62px 0 12px;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -.045em;
+  }
+
+  .area-card p {
+    margin: 0;
+    color: rgba(11, 18, 32, .64);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .area-link {
+    margin-top: auto;
+    padding-top: 24px;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 750;
+  }
+
+  .archive-section {
+    padding-top: 105px;
+    padding-bottom: 110px;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 38px;
+  }
+
+  .section-heading a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 750;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .card-tags {
+    margin-top: 18px;
+  }
+
+  .empty-state {
+    padding: 40px;
+    border: 1px solid rgba(11, 18, 32, .12);
+    border-radius: 16px;
+    background: #fff;
+  }
+
+  .empty-state h3 {
+    margin: 0 0 6px;
+    color: #0b1220;
+  }
+
+  .empty-state p {
+    margin: 0;
+    color: rgba(11, 18, 32, .62);
+  }
+
   @media (max-width: 950px) {
-    .articles-hero { grid-template-columns: 1fr; gap: 30px; }
-    .topics-grid { grid-template-columns: repeat(2, 1fr); }
-    .topic-card { border-bottom: 1px solid #e4e7ec; }
+    .articles-hero,
+    .areas-head {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .hero-actions {
+      justify-content: flex-start;
+    }
+
+    .areas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .area-card {
+      min-height: 260px;
+    }
   }
+
   @media (max-width: 650px) {
-    .topics-grid { grid-template-columns: 1fr; }
-    .topic-card { border-left: 1px solid #e4e7ec; }
-    .section-heading { align-items: flex-start; flex-direction: column; }
+    .articles-hero-section {
+      padding-top: 72px;
+      padding-bottom: 78px;
+    }
+
+    .areas-section,
+    .archive-section {
+      padding-top: 78px;
+      padding-bottom: 82px;
+    }
+
+    .area-card {
+      min-height: auto;
+      padding: 24px;
+      border-radius: 18px;
+    }
+
+    .area-card h2 {
+      margin-top: 48px;
+    }
+
+    .section-heading {
+      align-items: flex-start;
+      flex-direction: column;
+    }
   }
 </style>
