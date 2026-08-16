@@ -1,0 +1,92 @@
+/*
+  Visual identity override.
+  White = page background, anthracite = structural dark surfaces,
+  #2563eb = text accent only.
+*/
+
+.gl-shell {
+  --gl-black: #0b1220;
+  --gl-navy: #0b1220;
+  --gl-blue: #2563eb;
+  --gl-white: #ffffff;
+}
+
+/* Dark structural surfaces */
+.gl-shell .knowledge-section,
+.gl-shell .summary-card,
+.gl-shell .tech-card-accent,
+.gl-shell .area-card-featured,
+.gl-shell .gl-prose pre {
+  background: #0b1220 !important;
+  border-color: #0b1220 !important;
+}
+
+.gl-shell .tech-card-accent,
+.gl-shell .area-card-featured {
+  box-shadow: 0 22px 52px rgba(11, 18, 32, 0.16) !important;
+}
+
+.gl-shell .tech-card-accent:hover,
+.gl-shell .area-card-featured:hover {
+  border-color: #0b1220 !important;
+  box-shadow: 0 28px 64px rgba(11, 18, 32, 0.22) !important;
+}
+
+/* Filled actions are anthracite, never blue. */
+.gl-shell .gl-button-primary {
+  background: #0b1220 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.gl-shell .gl-button-primary:hover {
+  background: #0b1220 !important;
+  box-shadow: 0 12px 28px rgba(11, 18, 32, 0.16) !important;
+}
+
+/* Decorative lines/borders stay neutral; blue is reserved for text. */
+.gl-shell .tech-card::before {
+  background: #0b1220 !important;
+}
+
+.gl-shell .tech-card-accent::before {
+  background: rgba(255, 255, 255, 0.38) !important;
+}
+
+.gl-shell .area-arrow {
+  color: #0b1220 !important;
+}
+
+.gl-shell .area-card-featured .area-arrow {
+  color: #ffffff !important;
+}
+
+.gl-shell .topic-card:hover,
+.gl-shell .latest-card:hover,
+.gl-shell .tag-card:hover,
+.gl-shell .related-card:hover,
+.gl-shell .gl-article-card:hover,
+.gl-shell .tech-card:hover,
+.gl-shell .area-card:hover,
+.gl-shell .gl-tag:hover {
+  border-color: rgba(11, 18, 32, 0.32) !important;
+}
+
+/* Blue remains the single text accent. */
+.gl-shell .gl-eyebrow,
+.gl-shell .gl-title span,
+.gl-shell .gl-nav a:hover,
+.gl-shell .gl-nav a.active,
+.gl-shell .text-link,
+.gl-shell .section-heading a,
+.gl-shell .latest-head > a,
+.gl-shell .read-more,
+.gl-shell .all-posts-link,
+.gl-shell .related-card span,
+.gl-shell .tag-card > span,
+.gl-shell .gl-pagination a,
+.gl-shell .gl-back,
+.gl-shell .gl-prose a,
+.gl-shell .gl-tag:hover {
+  color: #2563eb !important;
+}
