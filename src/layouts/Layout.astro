@@ -30,6 +30,13 @@ const rssHref = getRelativeLocaleUrl(
   Astro.currentLocale ?? config.site.lang,
   "rss.xml"
 );
+const isHomePage = Astro.url.pathname === "/";
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.title,
+  url: new URL("/", Astro.site ?? Astro.url).href,
+};
 ---
 
 <!doctype html>
@@ -72,16 +79,17 @@ const rssHref = getRelativeLocaleUrl(
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.title} />
+    <meta property="og:locale" content="it_IT" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImageURL} />
 
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={socialImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
 
     <link
       rel="alternate"
@@ -91,6 +99,7 @@ const rssHref = getRelativeLocaleUrl(
     />
 
     <meta name="theme-color" content="#ffffff" />
+    {isHomePage && <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />}
     <slot name="head" />
 
     {
