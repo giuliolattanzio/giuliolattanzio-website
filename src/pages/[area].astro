@@ -1,0 +1,265 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PersonalHeader from "@/components/PersonalHeader.astro";
+import PersonalFooter from "@/components/PersonalFooter.astro";
+import LatestArticles from "@/components/LatestArticles.astro";
+
+type Area = {
+  slug: string;
+  label: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  summary: string;
+  topics: string[];
+  tags: string[];
+  archiveHref: string;
+};
+
+const AREAS: Area[] = [
+  {
+    slug: "wifi",
+    label: "Wi-Fi",
+    eyebrow: "Wireless Engineering",
+    title: "Wi-Fi & RF",
+    description: "Uno spazio dedicato al wireless enterprise, alla progettazione RF, alle site survey, alla validazione sul campo e al troubleshooting Wi-Fi.",
+    summary: "Il Wi-Fi è il focus principale del mio percorso tecnico e rappresenta l'area su cui voglio concentrare maggiormente contenuti, appunti ed esperienze.",
+    topics: ["Ekahau", "Enterprise Wi-Fi", "Site Survey", "Survey Wi-Fi", "Analisi Wi-Fi"],
+    tags: ["wifi", "ekahau", "site-survey", "survey-wifi", "analisi-wifi"],
+    archiveHref: "/tags/wifi/",
+  },
+  {
+    slug: "networking",
+    label: "Networking",
+    eyebrow: "Infrastructure",
+    title: "Networking",
+    description: "Reti IP, segmentazione, VLAN, architetture, analisi del traffico e troubleshooting dell'infrastruttura.",
+    summary: "Questa area raccoglie gli aspetti infrastrutturali che fanno da base ai servizi di rete e alle attività di analisi quotidiane.",
+    topics: ["Reti IP", "VLAN", "Infrastrutture", "Analisi del traffico", "Troubleshooting"],
+    tags: ["networking"],
+    archiveHref: "/tags/networking/",
+  },
+  {
+    slug: "fortinet",
+    label: "Fortinet",
+    eyebrow: "Security",
+    title: "Fortinet",
+    description: "FortiGate, VPN, policy, segmentazione e sicurezza delle reti aziendali.",
+    summary: "Uno spazio per raccogliere configurazioni, ragionamenti tecnici e approfondimenti legati alle tecnologie Fortinet che utilizzo nel mio lavoro.",
+    topics: ["FortiGate", "Fortinet", "VPN", "Policy", "Security"],
+    tags: ["fortinet", "fortigate", "security"],
+    archiveHref: "/tags/fortinet/",
+  },
+  {
+    slug: "voip",
+    label: "VoIP",
+    eyebrow: "Voice over IP",
+    title: "VoIP & SIP",
+    description: "Call flow, routing SIP, interoperabilità e analisi delle comunicazioni IP.",
+    summary: "Questa sezione è dedicata ai sistemi VoIP e ai flussi SIP, con particolare attenzione all'analisi e all'interoperabilità tra piattaforme.",
+    topics: ["VoIP", "SIP", "Call Flow", "Routing", "Microsoft Teams"],
+    tags: ["voip", "sip", "microsoft-teams"],
+    archiveHref: "/tags/voip/",
+  },
+  {
+    slug: "audiocodes",
+    label: "AudioCodes",
+    eyebrow: "Unified Communications",
+    title: "AudioCodes",
+    description: "SBC, routing SIP, manipolazioni e integrazione con piattaforme di comunicazione.",
+    summary: "Uno spazio dedicato agli SBC AudioCodes, al routing delle chiamate e alle attività di integrazione e troubleshooting delle comunicazioni IP.",
+    topics: ["AudioCodes SBC", "SIP", "Routing", "Manipolazioni", "Interoperabilità"],
+    tags: ["audiocodes"],
+    archiveHref: "/tags/audiocodes/",
+  },
+];
+
+export function getStaticPaths() {
+  return AREAS.map(area => ({
+    params: { area: area.slug },
+    props: { area },
+  }));
+}
+
+const { area } = Astro.props as { area: Area };
+---
+
+<Layout
+  title={`${area.title} | Giulio Lattanzio`}
+  description={area.description}
+>
+  <div class="gl-shell">
+    <PersonalHeader />
+
+    <main>
+      <section class="area-hero">
+        <div class="gl-wrap area-hero-grid">
+          <div>
+            <a class="gl-back" href="/">← Home</a>
+            <p class="gl-eyebrow">{area.eyebrow}</p>
+            <h1 class="area-title">{area.title}</h1>
+            <p class="area-lead">{area.description}</p>
+          </div>
+
+          <aside class="area-summary">
+            <span>Area tecnica</span>
+            <p>{area.summary}</p>
+            <div class="area-topic-list" aria-label={`Temi ${area.label}`}>
+              {area.topics.map(topic => <span>{topic}</span>)}
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="area-content">
+        <div class="gl-wrap area-content-grid">
+          <div>
+            <p class="gl-eyebrow">Sezione tematica</p>
+            <h2>Uno spazio dedicato a {area.title}.</h2>
+          </div>
+          <div class="area-copy">
+            <p>
+              Questa pagina diventerà il punto di accesso ai contenuti, agli strumenti e agli appunti che riguardano questa area tecnica.
+              La svilupperemo progressivamente mantenendo una struttura semplice, leggibile e coerente con il resto del sito.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <LatestArticles
+        tags={area.tags}
+        eyebrow="Ultimi contenuti"
+        heading={`Dal Knowledge Hub: ${area.label}.`}
+        archiveHref={area.archiveHref}
+        archiveLabel={`Tutti gli articoli ${area.label} →`}
+        emptyText={`I contenuti dedicati a ${area.label} appariranno qui.`}
+      />
+    </main>
+
+    <PersonalFooter />
+  </div>
+</Layout>
+
+<style>
+  .area-hero {
+    padding: 100px 0 105px;
+    background: #fff;
+  }
+
+  .area-hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 90px;
+    align-items: center;
+  }
+
+  .area-title {
+    max-width: 720px;
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(3.6rem, 7vw, 6.4rem);
+    line-height: .96;
+    letter-spacing: -.065em;
+  }
+
+  .area-lead {
+    max-width: 720px;
+    margin: 28px 0 0;
+    color: rgba(11, 18, 32, .66);
+    font-size: 19px;
+    line-height: 1.75;
+  }
+
+  .area-summary {
+    padding: 34px;
+    background: #0b1220;
+    border-radius: 24px;
+    color: #fff;
+    box-shadow: 0 24px 58px rgba(11, 18, 32, .16);
+  }
+
+  .area-summary > span {
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .area-summary > p {
+    margin: 28px 0 0;
+    color: rgba(255, 255, 255, .84);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .area-topic-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 30px;
+  }
+
+  .area-topic-list span {
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 255, 255, .24);
+    border-radius: 8px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 11px;
+  }
+
+  .area-content {
+    position: relative;
+    padding: 105px 0;
+    background: #fff;
+  }
+
+  .area-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(1160px, calc(100% - 40px));
+    height: 1px;
+    transform: translateX(-50%);
+    background: rgba(11, 18, 32, .10);
+  }
+
+  .area-content-grid {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 100px;
+  }
+
+  .area-content h2 {
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    line-height: 1.03;
+    letter-spacing: -.055em;
+  }
+
+  .area-copy p {
+    max-width: 680px;
+    margin: 0;
+    color: rgba(11, 18, 32, .66);
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 900px) {
+    .area-hero-grid,
+    .area-content-grid {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .area-hero { padding: 72px 0 78px; }
+    .area-summary { padding: 26px; border-radius: 18px; }
+    .area-content { padding: 78px 0; }
+    .area-content::before { width: calc(100% - 28px); }
+  }
+</style>
