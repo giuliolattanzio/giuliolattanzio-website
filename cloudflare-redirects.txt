@@ -1,3 +1,10 @@
+/networking /networking-security/ 301
 /networking/ /networking-security/ 301
+/fortinet /networking-security/ 301
 /fortinet/ /networking-security/ 301
+/audiocodes /voip/ 301
 /audiocodes/ /voip/ 301
+/about /profilo/ 301
+/about/ /profilo/ 301
+/archives /posts/ 301
+/archives/ /posts/ 301
