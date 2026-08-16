@@ -2,10 +2,36 @@
 import { getCollection } from "astro:content";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { getPostUrl } from "@/utils/getPostPaths";
+import { slugifyStr } from "@/utils/slugify";
 import config from "@/config";
 
+type Props = {
+  tags?: string[];
+  eyebrow?: string;
+  heading?: string;
+  archiveHref?: string;
+  archiveLabel?: string;
+  emptyText?: string;
+};
+
+const {
+  tags = [],
+  eyebrow = "Ultimi contenuti",
+  heading = "Dal Knowledge Hub.",
+  archiveHref = "/posts/",
+  archiveLabel = "Vedi tutti gli articoli →",
+  emptyText = "I nuovi contenuti appariranno qui.",
+} = Astro.props;
+
 const posts = await getCollection("posts", ({ data }) => !data.draft);
-const latestPosts = getSortedPosts(posts).slice(0, 3);
+const requestedTags = new Set(tags.map(tag => slugifyStr(tag)));
+const latestPosts = getSortedPosts(posts)
+  .filter(post =>
+    requestedTags.size === 0 ||
+    post.data.tags?.some(tag => requestedTags.has(slugifyStr(tag)))
+  )
+  .slice(0, 3);
+
 const locale = Astro.currentLocale ?? config.site.lang;
 
 const formatDate = (date: Date) =>
@@ -16,17 +42,17 @@ const formatDate = (date: Date) =>
   }).format(date);
 ---
 
-{latestPosts.length > 0 && (
-  <section class="latest-section gl-section-white">
-    <div class="gl-wrap">
-      <div class="latest-head">
-        <div>
-          <p class="gl-eyebrow">Ultimi contenuti</p>
-          <h2>Dal Knowledge Hub.</h2>
-        </div>
-        <a href="/posts/">Vedi tutti gli articoli →</a>
+<section class="latest-section gl-section-white">
+  <div class="gl-wrap">
+    <div class="latest-head">
+      <div>
+        <p class="gl-eyebrow">{eyebrow}</p>
+        <h2>{heading}</h2>
       </div>
+      <a href={archiveHref}>{archiveLabel}</a>
+    </div>
 
+    {latestPosts.length > 0 ? (
       <div class="latest-grid">
         {latestPosts.map(post => (
           <a class="latest-card" href={getPostUrl(post.id, post.filePath, locale)}>
@@ -40,14 +66,18 @@ const formatDate = (date: Date) =>
           </a>
         ))}
       </div>
-    </div>
-  </section>
-)}
+    ) : (
+      <div class="latest-empty">
+        <p>{emptyText}</p>
+      </div>
+    )}
+  </div>
+</section>
 
 <style>
   .latest-section {
     padding: 100px 0;
-    border-top: 1px solid #e4e7ec;
+    border-top: 1px solid rgba(11, 18, 32, .10);
   }
 
   .latest-head {
@@ -85,8 +115,8 @@ const formatDate = (date: Date) =>
     min-height: 285px;
     flex-direction: column;
     padding: 28px;
-    background: #f7f9fc;
-    border: 1px solid #e4e7ec;
+    background: #fff;
+    border: 1px solid rgba(11, 18, 32, .12);
     border-radius: 16px;
     color: inherit;
     text-decoration: none;
@@ -95,15 +125,15 @@ const formatDate = (date: Date) =>
 
   .latest-card:hover {
     transform: translateY(-3px);
-    border-color: #bfdbfe;
-    box-shadow: 0 18px 45px rgba(16,24,40,.07);
+    border-color: rgba(11, 18, 32, .32);
+    box-shadow: 0 18px 45px rgba(11, 18, 32, .07);
   }
 
   .latest-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 8px 14px;
-    color: #667085;
+    color: rgba(11, 18, 32, .56);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: .04em;
@@ -120,7 +150,7 @@ const formatDate = (date: Date) =>
 
   .latest-card p {
     margin: 0;
-    color: #667085;
+    color: rgba(11, 18, 32, .64);
     font-size: 14px;
     line-height: 1.7;
   }
@@ -131,6 +161,18 @@ const formatDate = (date: Date) =>
     color: #2563eb;
     font-size: 13px;
     font-weight: 750;
+  }
+
+  .latest-empty {
+    padding: 36px;
+    border: 1px solid rgba(11, 18, 32, .12);
+    border-radius: 16px;
+  }
+
+  .latest-empty p {
+    margin: 0;
+    color: rgba(11, 18, 32, .62);
+    line-height: 1.7;
   }
 
   @media (max-width: 900px) {
