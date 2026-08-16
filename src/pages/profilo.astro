@@ -2,12 +2,62 @@
 import Layout from "@/layouts/Layout.astro";
 import PersonalHeader from "@/components/PersonalHeader.astro";
 import PersonalFooter from "@/components/PersonalFooter.astro";
+
+const profileUrl = new URL("/profilo/", Astro.site ?? Astro.url).href;
+const personId = `${profileUrl}#person`;
+const profileStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": profileUrl,
+      url: profileUrl,
+      name: "Profilo professionale di Giulio Lattanzio",
+      description:
+        "Profilo professionale di Giulio Lattanzio, Network, Wi-Fi & VoIP Specialist con focus su Wi-Fi enterprise, wireless engineering, survey Wi-Fi, site survey, Ekahau, RF design e troubleshooting wireless.",
+      mainEntity: { "@id": personId },
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "Giulio Lattanzio",
+      url: profileUrl,
+      jobTitle: "Network, Wi-Fi & VoIP Specialist",
+      description:
+        "Tecnico specializzato in Wi-Fi enterprise e wireless engineering, con esperienza in progettazione e analisi Wi-Fi, survey Wi-Fi, site survey passive e attive, Ekahau, RF design, roaming e troubleshooting wireless.",
+      knowsAbout: [
+        "Wi-Fi enterprise",
+        "Wireless Engineering",
+        "Survey Wi-Fi",
+        "Site Survey Wi-Fi",
+        "Ekahau",
+        "RF Design",
+        "Analisi Wi-Fi",
+        "Troubleshooting Wi-Fi",
+        "Networking",
+        "Fortinet",
+        "FortiGate",
+        "VoIP",
+        "SIP",
+        "AudioCodes",
+      ],
+    },
+  ],
+};
 ---
 
 <Layout
   title="Profilo | Giulio Lattanzio – Network, Wi-Fi & VoIP Specialist"
-  description="Profilo professionale di Giulio Lattanzio, Network, Wi-Fi & VoIP Specialist con focus su wireless enterprise, networking, Fortinet e AudioCodes."
+  description="Profilo professionale di Giulio Lattanzio, Network, Wi-Fi & VoIP Specialist con focus su Wi-Fi enterprise, survey Wi-Fi, site survey, Ekahau, RF design e troubleshooting wireless."
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(profileStructuredData)}
+    />
+  </Fragment>
+
   <div class="gl-shell">
     <PersonalHeader active="profilo" />
 
@@ -113,7 +163,7 @@ import PersonalFooter from "@/components/PersonalFooter.astro";
               <span class="focus-domain">Wireless Engineering</span>
               <div>
                 <h3>Wi-Fi & RF</h3>
-                <p>Progettazione, site survey, analisi RF, Ekahau e troubleshooting di reti wireless enterprise.</p>
+                <p>Progettazione, survey Wi-Fi e site survey, analisi RF, Ekahau e troubleshooting di reti wireless enterprise.</p>
               </div>
               <span class="focus-arrow" aria-hidden="true">↗</span>
             </a>
