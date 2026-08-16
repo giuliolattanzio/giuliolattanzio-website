@@ -16,11 +16,14 @@ const { area } = Astro.props as { area: Area };
 const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
 const isWifi = area.slug === "wifi";
 const isNetworking = area.slug === "networking-security";
+const isVoip = area.slug === "voip";
 const pageDescription = isWifi
   ? "Wi-Fi enterprise, RF design, site survey, Ekahau, roaming e troubleshooting wireless: articoli e approfondimenti tecnici di Giulio Lattanzio."
   : isNetworking
     ? "Networking e sicurezza: reti IP, switching, VLAN, routing, Fortinet/FortiGate, Alcatel, VPN, IPsec, Wireshark e troubleshooting di infrastruttura."
-    : area.description;
+    : isVoip
+      ? "VoIP e AudioCodes: SIP, call flow, SBC, call routing, message manipulations, Microsoft Teams, interoperabilità e troubleshooting delle comunicazioni IP."
+      : area.description;
 
 const areaDetail = area.slug === "networking-security"
   ? {
@@ -90,35 +93,35 @@ const areaDetail = area.slug === "networking-security"
   : area.slug === "voip"
     ? {
         eyebrow: "Unified Communications",
-        heading: "Dalla segnalazione SIP all'interoperabilità.",
+        heading: "Dalla segnalazione SIP all'interoperabilità tra piattaforme.",
         intro:
-          "Questa area riunisce VoIP e AudioCodes, con particolare attenzione al comportamento dei flussi SIP, agli SBC e all'integrazione tra piattaforme di comunicazione.",
+          "Questa area raccoglie gli aspetti operativi delle comunicazioni VoIP: lettura dei flussi SIP, gestione degli SBC AudioCodes, call routing, normalizzazione della segnalazione, integrazione con Microsoft Teams e troubleshooting.",
         cards: [
           {
             eyebrow: "Voice over IP",
             title: "SIP & Call Flow",
             description:
-              "Segnalazione SIP, lettura dei call flow, routing e analisi del comportamento delle chiamate.",
+              "Segnalazione SIP, lettura dei call flow e analisi dei messaggi per comprendere il comportamento delle chiamate e individuare eventuali anomalie.",
             tags: ["SIP", "Call Flow", "VoIP"],
           },
           {
             eyebrow: "Session Border Controller",
             title: "AudioCodes SBC",
             description:
-              "Gestione SBC, routing SIP, normalizzazione e funzionalità AudioCodes negli scenari di comunicazione IP.",
+              "Gestione degli SBC AudioCodes, call routing, normalizzazione e manipolazione della segnalazione negli scenari di comunicazione IP.",
             tags: ["AudioCodes", "SBC", "Routing"],
           },
           {
             eyebrow: "Integration & troubleshooting",
-            title: "Interoperabilità",
+            title: "Interoperabilità & troubleshooting",
             description:
-              "Integrazione tra sistemi, Microsoft Teams, analisi dei flussi e troubleshooting delle comunicazioni VoIP.",
-            tags: ["Microsoft Teams", "Interoperability", "Troubleshooting"],
+              "Integrazione tra piattaforme, Microsoft Teams, analisi end-to-end dei flussi e diagnosi dei problemi nelle comunicazioni VoIP.",
+            tags: ["Microsoft Teams", "Interoperabilità", "Troubleshooting"],
           },
         ],
-        topicsHeading: "Gli argomenti che troveranno spazio in questa sezione.",
+        topicsHeading: "Gli argomenti principali dell’area VoIP & AudioCodes.",
         topicsIntro:
-          "VoIP e AudioCodes convivono nello stesso hub: AudioCodes mantiene una presenza forte, mentre i tag permettono di distinguere SIP, SBC, routing e integrazioni specifiche.",
+          "Dalla segnalazione SIP agli SBC, dal routing alle integrazioni con Microsoft Teams: i contenuti approfondiscono il comportamento delle comunicazioni IP e gli strumenti utilizzati per analizzarle e gestirle.",
         topics: [
           {
             title: "SIP",
@@ -138,12 +141,12 @@ const areaDetail = area.slug === "networking-security"
           {
             title: "Message Manipulations",
             description:
-              "Normalizzazione e modifica della segnalazione per garantire compatibilità e interoperabilità tra sistemi differenti.",
+              "Normalizzazione e modifica della segnalazione SIP per garantire compatibilità e interoperabilità tra sistemi differenti.",
           },
           {
             title: "Microsoft Teams",
             description:
-              "Integrazione della telefonia con Teams e scenari di interoperabilità con infrastrutture e SBC.",
+              "Integrazione della telefonia con Teams e scenari di interoperabilità con infrastrutture e SBC AudioCodes.",
           },
           {
             title: "Troubleshooting VoIP",
@@ -172,7 +175,9 @@ const areaDetail = area.slug === "networking-security"
             <p class="area-lead">
               {isWifi
                 ? "Progettazione, analisi e validazione di reti Wi-Fi enterprise: RF design, site survey, Ekahau e troubleshooting wireless."
-                : area.description}
+                : isVoip
+                  ? "SIP, call flow, SBC AudioCodes, routing, interoperabilità e troubleshooting delle comunicazioni VoIP e delle integrazioni con Microsoft Teams."
+                  : area.description}
             </p>
           </div>
 
@@ -354,14 +359,16 @@ const areaDetail = area.slug === "networking-security"
 
       <LatestArticles
         tags={area.tags}
-        eyebrow={isWifi || isNetworking ? "Ultimi articoli" : "Ultimi contenuti"}
+        eyebrow={isWifi || isNetworking || isVoip ? "Ultimi articoli" : "Ultimi contenuti"}
         heading={isWifi
           ? "Approfondimenti su Wi-Fi e wireless engineering."
           : isNetworking
             ? "Approfondimenti su networking e sicurezza."
-            : `Dal Knowledge Hub: ${area.label}.`}
+            : isVoip
+              ? "Approfondimenti su VoIP, SIP e AudioCodes."
+              : `Dal Knowledge Hub: ${area.label}.`}
         archiveHref={area.archiveHref}
-        archiveLabel={isWifi || isNetworking ? "Tutti gli articoli →" : "Vai all’archivio completo →"}
+        archiveLabel={isWifi || isNetworking || isVoip ? "Tutti gli articoli →" : "Vai all’archivio completo →"}
         emptyText={`I contenuti dedicati a ${area.label} appariranno qui.`}
       />
 
