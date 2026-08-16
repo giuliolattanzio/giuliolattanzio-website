@@ -4,6 +4,7 @@ import PersonalHeader from "@/components/PersonalHeader.astro";
 import PersonalFooter from "@/components/PersonalFooter.astro";
 
 const profileUrl = new URL("/profilo/", Astro.site ?? Astro.url).href;
+const portraitUrl = new URL("/images/profile/giulio%20lattanzio.png", Astro.site ?? Astro.url).href;
 const personId = `${profileUrl}#person`;
 const profileStructuredData = {
   "@context": "https://schema.org",
@@ -15,6 +16,10 @@ const profileStructuredData = {
       name: "Profilo professionale di Giulio Lattanzio",
       description:
         "Profilo professionale di Giulio Lattanzio, Network, Wi-Fi & VoIP Specialist con focus su Wi-Fi enterprise, wireless engineering, survey Wi-Fi, site survey, Ekahau, RF design e troubleshooting wireless.",
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: portraitUrl,
+      },
       mainEntity: { "@id": personId },
     },
     {
@@ -22,6 +27,7 @@ const profileStructuredData = {
       "@id": personId,
       name: "Giulio Lattanzio",
       url: profileUrl,
+      image: portraitUrl,
       jobTitle: "Network, Wi-Fi & VoIP Specialist",
       description:
         "Tecnico specializzato in Wi-Fi enterprise e wireless engineering, con esperienza in progettazione e analisi Wi-Fi, survey Wi-Fi, site survey passive e attive, Ekahau, RF design, roaming e troubleshooting wireless.",
@@ -77,15 +83,14 @@ const profileStructuredData = {
             </p>
           </div>
 
-          <aside class="identity-card" aria-label="Sintesi del profilo professionale">
-            <p class="identity-kicker">Giulio Lattanzio</p>
-            <h2>Network, Wi-Fi & VoIP Specialist</h2>
-            <div class="identity-list">
-              <span>Wireless Engineering</span>
-              <span>Networking & Security</span>
-              <span>VoIP & AudioCodes</span>
-            </div>
-          </aside>
+          <figure class="profile-portrait">
+            <img
+              src="/images/profile/giulio%20lattanzio.png"
+              alt="Ritratto di Giulio Lattanzio, Network, Wi-Fi & VoIP Specialist"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </figure>
         </div>
       </section>
 
@@ -261,44 +266,24 @@ const profileStructuredData = {
     line-height: 1.8;
   }
 
-  .identity-card {
-    padding: 34px;
-    border: 1px solid rgba(11,18,32,.1);
-    border-radius: 24px;
-    background: #0b1220;
-    color: #fff;
-    box-shadow: 0 30px 70px rgba(11,18,32,.16);
-  }
-
-  .identity-kicker {
-    margin: 0 0 56px;
-    color: rgba(255,255,255,.58);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-
-  .identity-card h2 {
+  .profile-portrait {
+    width: min(100%, 420px);
+    aspect-ratio: 4 / 5;
     margin: 0;
-    max-width: 400px;
-    font-size: 31px;
-    line-height: 1.08;
-    letter-spacing: -.045em;
+    justify-self: end;
+    overflow: hidden;
+    border: 1px solid rgba(11,18,32,.12);
+    border-radius: 28px;
+    background: #fff;
+    box-shadow: 0 30px 70px rgba(11,18,32,.12);
   }
 
-  .identity-list {
-    display: grid;
-    gap: 0;
-    margin-top: 36px;
-    border-top: 1px solid rgba(255,255,255,.16);
-  }
-
-  .identity-list span {
-    padding: 13px 0;
-    border-bottom: 1px solid rgba(255,255,255,.16);
-    color: rgba(255,255,255,.78);
-    font-size: 13px;
+  .profile-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
   }
 
   .split {
@@ -544,6 +529,11 @@ const profileStructuredData = {
       gap: 45px;
     }
 
+    .profile-portrait {
+      justify-self: center;
+      width: min(100%,390px);
+    }
+
     .method-grid {
       grid-template-columns: 1fr;
       border-left: 0;
@@ -569,9 +559,9 @@ const profileStructuredData = {
       padding-bottom: 76px;
     }
 
-    .identity-card {
-      padding: 26px;
-      border-radius: 20px;
+    .profile-portrait {
+      width: min(88vw,360px);
+      border-radius: 22px;
     }
 
     .wifi-specialization-section,
