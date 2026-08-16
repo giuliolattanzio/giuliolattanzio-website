@@ -15,6 +15,9 @@ export function getStaticPaths() {
 const { area } = Astro.props as { area: Area };
 const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
 const isWifi = area.slug === "wifi";
+const pageDescription = isWifi
+  ? "Wi-Fi enterprise, RF design, site survey, Ekahau, roaming e troubleshooting wireless: articoli e approfondimenti tecnici di Giulio Lattanzio."
+  : area.description;
 
 const areaDetail = area.slug === "networking-security"
   ? {
@@ -151,7 +154,7 @@ const areaDetail = area.slug === "networking-security"
 
 <Layout
   title={`${area.title} | Giulio Lattanzio`}
-  description={area.description}
+  description={pageDescription}
 >
   <div class="gl-shell">
     <PersonalHeader />
@@ -163,7 +166,11 @@ const areaDetail = area.slug === "networking-security"
             <a class="gl-back" href="/">← Home</a>
             <p class="gl-eyebrow">{area.eyebrow}</p>
             <h1 class="area-title">{area.title}</h1>
-            <p class="area-lead">{area.description}</p>
+            <p class="area-lead">
+              {isWifi
+                ? "Progettazione, analisi e validazione di reti Wi-Fi enterprise: RF design, site survey, Ekahau e troubleshooting wireless."
+                : area.description}
+            </p>
           </div>
 
           {isWifi ? (
@@ -197,12 +204,22 @@ const areaDetail = area.slug === "networking-security"
                   <h2>Dal progetto alla validazione sul campo.</h2>
                 </div>
                 <p>
-                  Organizzo questa area attorno alle fasi che considero più importanti nel lavoro su una WLAN:
-                  progettare, misurare e verificare ciò che accade realmente nell'ambiente radio.
+                  Questa area segue un percorso semplice: progettare la rete, misurarla sul campo e analizzarne il comportamento reale per validare prestazioni e individuare eventuali criticità.
                 </p>
               </div>
 
               <div class="wifi-workflow-grid">
+                <article class="wifi-work-card">
+                  <span>Design & planning</span>
+                  <h3>Progettazione RF</h3>
+                  <p>Requisiti, copertura, capacità, posizionamento degli AP e criteri di progetto per reti Wi-Fi enterprise.</p>
+                  <div class="wifi-card-tags">
+                    <span>RF</span>
+                    <span>Capacity</span>
+                    <span>Enterprise Wi-Fi</span>
+                  </div>
+                </article>
+
                 <article class="wifi-work-card">
                   <span>Survey & validation</span>
                   <h3>Site Survey</h3>
@@ -216,23 +233,12 @@ const areaDetail = area.slug === "networking-security"
 
                 <article class="wifi-work-card">
                   <span>Analysis & troubleshooting</span>
-                  <h3>Analisi Wi-Fi</h3>
-                  <p>Copertura, interferenze, roaming, prestazioni e lettura dei dati per capire il comportamento reale della WLAN.</p>
+                  <h3>Analisi & Troubleshooting Wi-Fi</h3>
+                  <p>Analisi di copertura, interferenze, roaming e prestazioni per comprendere il comportamento reale della WLAN e individuare le cause dei problemi.</p>
                   <div class="wifi-card-tags">
                     <span>Roaming</span>
                     <span>Spectrum</span>
                     <span>Troubleshooting</span>
-                  </div>
-                </article>
-
-                <article class="wifi-work-card">
-                  <span>Design & planning</span>
-                  <h3>Progettazione RF</h3>
-                  <p>Requisiti, copertura, capacità, posizionamento degli AP e criteri di progetto per reti Wi-Fi enterprise.</p>
-                  <div class="wifi-card-tags">
-                    <span>RF</span>
-                    <span>Capacity</span>
-                    <span>Enterprise Wi-Fi</span>
                   </div>
                 </article>
               </div>
@@ -243,10 +249,10 @@ const areaDetail = area.slug === "networking-security"
             <div class="gl-wrap">
               <div class="wifi-topics-head">
                 <div>
-                  <h2>Gli argomenti che troveranno spazio in questa sezione.</h2>
+                  <h2>Gli argomenti principali dell’area Wi-Fi.</h2>
                 </div>
                 <p>
-                  Le categorie restano ampie; i tag e gli articoli permettono poi di scendere nel dettaglio senza frammentare la navigazione principale.
+                  Dalla radiofrequenza alla progettazione, dalle site survey al troubleshooting: i contenuti approfondiscono i diversi aspetti del wireless enterprise mantenendo una struttura editoriale semplice e coerente.
                 </p>
               </div>
 
@@ -345,10 +351,10 @@ const areaDetail = area.slug === "networking-security"
 
       <LatestArticles
         tags={area.tags}
-        eyebrow="Ultimi contenuti"
-        heading={`Dal Knowledge Hub: ${area.label}.`}
+        eyebrow={isWifi ? "Ultimi articoli" : "Ultimi contenuti"}
+        heading={isWifi ? "Approfondimenti su Wi-Fi e wireless engineering." : `Dal Knowledge Hub: ${area.label}.`}
         archiveHref={area.archiveHref}
-        archiveLabel="Vai all’archivio completo →"
+        archiveLabel={isWifi ? "Tutti gli articoli →" : "Vai all’archivio completo →"}
         emptyText={`I contenuti dedicati a ${area.label} appariranno qui.`}
       />
 
