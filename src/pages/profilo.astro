@@ -112,6 +112,27 @@ const profileStructuredData = {
         </div>
       </section>
 
+      <section class="wifi-specialization-section">
+        <div class="gl-wrap wifi-specialization-grid">
+          <div>
+            <p class="gl-eyebrow">Specializzazione Wi-Fi</p>
+            <h2>Wi-Fi enterprise, survey Wi-Fi e wireless engineering.</h2>
+          </div>
+          <div class="wifi-specialization-copy">
+            <p>
+              Il Wi-Fi rappresenta il principale focus del mio percorso tecnico. Mi occupo di wireless engineering,
+              progettazione e analisi di reti Wi-Fi enterprise, survey Wi-Fi e site survey, RF design, validazione sul campo
+              e troubleshooting wireless.
+            </p>
+            <p>
+              Utilizzo strumenti professionali come Ekahau per attività di progettazione, survey passive e attive,
+              raccolta delle misure, analisi RF e documentazione del comportamento reale delle infrastrutture wireless.
+            </p>
+            <a href="/wifi/">Approfondisci il mio focus Wi-Fi →</a>
+          </div>
+        </div>
+      </section>
+
       <section class="method-section">
         <div class="gl-wrap">
           <div class="method-head">
@@ -287,6 +308,7 @@ const profileStructuredData = {
   }
 
   .split h2,
+  .wifi-specialization-grid h2,
   .method-head h2,
   .focus-head h2,
   .site-purpose-grid h2,
@@ -308,6 +330,36 @@ const profileStructuredData = {
     color: #0b1220;
     font-size: 22px;
     line-height: 1.5;
+  }
+
+  .wifi-specialization-section {
+    padding: 105px 0;
+    background: #f7f8fa;
+    border-top: 1px solid rgba(11,18,32,.08);
+    border-bottom: 1px solid rgba(11,18,32,.08);
+  }
+
+  .wifi-specialization-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .wifi-specialization-copy p {
+    margin: 0 0 18px;
+    color: rgba(11,18,32,.66);
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  .wifi-specialization-copy a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 750;
+    text-decoration: none;
   }
 
   .method-section {
@@ -483,6 +535,7 @@ const profileStructuredData = {
   @media(max-width:950px) {
     .hero-grid,
     .split,
+    .wifi-specialization-grid,
     .method-head,
     .focus-head,
     .site-purpose-grid,
@@ -521,6 +574,7 @@ const profileStructuredData = {
       border-radius: 20px;
     }
 
+    .wifi-specialization-section,
     .method-section,
     .focus-section,
     .site-purpose-section {
