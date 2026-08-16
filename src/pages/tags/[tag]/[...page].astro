@@ -29,47 +29,64 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
 const { page, tagName } = Astro.props;
 const locale = Astro.currentLocale ?? config.site.lang;
+const isFirstPage = page.currentPage === 1;
+const pageTitle = isFirstPage
+  ? `${tagName}: articoli e approfondimenti | ${config.site.title}`
+  : `${tagName} – Pagina ${page.currentPage} | ${config.site.title}`;
+const pageDescription = isFirstPage
+  ? `Articoli, note e approfondimenti tecnici di Giulio Lattanzio dedicati a ${tagName}.`
+  : `Archivio degli articoli dedicati a ${tagName}, pagina ${page.currentPage}.`;
+
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("it-IT", { day: "2-digit", month: "long", year: "numeric" }).format(date);
 ---
 
-<Layout
-  title={`${tagName} | ${config.site.title}`}
-  description={`Articoli e approfondimenti tecnici dedicati a ${tagName}.`}
->
+<Layout title={pageTitle} description={pageDescription}>
   <div class="gl-shell">
     <PersonalHeader active="articoli" />
 
     <main>
-      <section class="gl-section">
+      <section class="gl-section tag-hero">
         <div class="gl-wrap">
-          <a class="gl-back" href="/tags/">← Tutti gli argomenti</a>
+          <div class="tag-navigation">
+            <a class="gl-back" href="/posts/">← Knowledge Hub</a>
+            <a href="/tags/">Tutti gli argomenti →</a>
+          </div>
           <p class="gl-eyebrow">Argomento</p>
-          <h1 class="gl-title">{tagName}</h1>
-          <p class="gl-lead">Articoli, note e approfondimenti associati a questo tema.</p>
+          <h1 class="gl-title">Articoli su <span>{tagName}.</span></h1>
+          <p class="gl-lead">
+            Note, analisi e approfondimenti tecnici associati a {tagName}.
+          </p>
         </div>
       </section>
 
-      <section class="gl-section gl-section-white">
+      <section class="gl-section gl-section-white tag-archive">
         <div class="gl-wrap">
+          <div class="tag-archive-head">
+            <div>
+              <p class="gl-eyebrow">Archivio</p>
+              <h2>{isFirstPage ? `Contenuti dedicati a ${tagName}.` : `Contenuti — pagina ${page.currentPage}.`}</h2>
+            </div>
+          </div>
+
           <div class="gl-article-list">
             {page.data.map(post => (
               <a class="gl-article-card" href={getPostUrl(post.id, post.filePath, locale)}>
                 <div>
                   <div class="gl-meta">{formatDate(post.data.pubDatetime)}</div>
-                  <h2>{post.data.title}</h2>
+                  <h3>{post.data.title}</h3>
                   <p>{post.data.description}</p>
                   <div class="gl-tag-list card-tags">
                     {post.data.tags.slice(0, 5).map(tag => <span class="gl-tag">{tag}</span>)}
                   </div>
                 </div>
-                <span class="gl-arrow">→</span>
+                <span class="gl-arrow" aria-hidden="true">→</span>
               </a>
             ))}
           </div>
 
           {(page.url.prev || page.url.next) && (
-            <nav class="gl-pagination" aria-label="Paginazione">
+            <nav class="gl-pagination" aria-label={`Paginazione articoli su ${tagName}`}>
               <span>{page.url.prev && <a href={page.url.prev}>← Più recenti</a>}</span>
               <span>{page.url.next && <a href={page.url.next}>Più vecchi →</a>}</span>
             </nav>
@@ -82,4 +99,42 @@ const formatDate = (date: Date) =>
   </div>
 </Layout>
 
-<style>.card-tags{margin-top:18px}</style>
+<style>
+  .tag-hero { padding-top: 95px; padding-bottom: 90px; }
+  .tag-hero .gl-lead { max-width: 760px; }
+
+  .tag-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+
+  .tag-navigation > a:last-child {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 750;
+  }
+
+  .tag-archive { padding-top: 95px; padding-bottom: 105px; }
+
+  .tag-archive-head { margin-bottom: 36px; }
+
+  .tag-archive-head h2 {
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(2.3rem, 4vw, 3.5rem);
+    line-height: 1.04;
+    letter-spacing: -.05em;
+  }
+
+  .card-tags { margin-top: 18px; }
+
+  @media (max-width: 650px) {
+    .tag-hero { padding-top: 70px; padding-bottom: 74px; }
+    .tag-archive { padding-top: 74px; padding-bottom: 82px; }
+    .tag-navigation { align-items: flex-start; flex-direction: column; margin-bottom: 30px; }
+  }
+</style>
