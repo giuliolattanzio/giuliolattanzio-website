@@ -15,6 +15,138 @@ export function getStaticPaths() {
 const { area } = Astro.props as { area: Area };
 const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
 const isWifi = area.slug === "wifi";
+
+const areaDetail = area.slug === "networking-security"
+  ? {
+      eyebrow: "Infrastructure & Security",
+      heading: "Dall'infrastruttura alla protezione della rete.",
+      intro:
+        "Questa area raccoglie gli aspetti che collegano il funzionamento della rete alla sua sicurezza: architettura, segmentazione, protezione e analisi operativa.",
+      cards: [
+        {
+          eyebrow: "Network infrastructure",
+          title: "Reti IP & VLAN",
+          description:
+            "Architetture IP, segmentazione, VLAN, connettività e organizzazione dell'infrastruttura di rete.",
+          tags: ["Networking", "VLAN", "Infrastructure"],
+        },
+        {
+          eyebrow: "Security",
+          title: "Fortinet & FortiGate",
+          description:
+            "Policy, VPN, segmentazione, protezione perimetrale e gestione della sicurezza con tecnologie Fortinet.",
+          tags: ["Fortinet", "FortiGate", "VPN"],
+        },
+        {
+          eyebrow: "Analysis & troubleshooting",
+          title: "Analisi & troubleshooting",
+          description:
+            "Osservazione del traffico, verifica dei flussi e diagnosi dei problemi che interessano rete e sicurezza.",
+          tags: ["Wireshark", "Traffic Analysis", "Troubleshooting"],
+        },
+      ],
+      topicsHeading: "Gli argomenti che troveranno spazio in questa sezione.",
+      topicsIntro:
+        "Networking e security rimangono un'unica macro-area: i singoli articoli e i tag permetteranno di approfondire i temi più verticali senza frammentare il sito.",
+      topics: [
+        {
+          title: "Reti IP",
+          description:
+            "Architetture, indirizzamento, connettività e principi operativi delle infrastrutture di rete.",
+        },
+        {
+          title: "VLAN & segmentazione",
+          description:
+            "Separazione logica delle reti, organizzazione dei domini e criteri di segmentazione dell'infrastruttura.",
+        },
+        {
+          title: "Fortinet & FortiGate",
+          description:
+            "Configurazione, policy e utilizzo delle piattaforme Fortinet nella protezione delle reti aziendali.",
+        },
+        {
+          title: "VPN & IPsec",
+          description:
+            "Connettività sicura, tunnel IPsec e scenari di accesso remoto o collegamento tra sedi.",
+        },
+        {
+          title: "Analisi del traffico",
+          description:
+            "Lettura dei flussi, packet analysis e osservazione del comportamento reale della rete.",
+        },
+        {
+          title: "Troubleshooting",
+          description:
+            "Metodo di analisi dei problemi attraverso verifiche, misure e correlazione delle informazioni disponibili.",
+        },
+      ],
+    }
+  : area.slug === "voip"
+    ? {
+        eyebrow: "Unified Communications",
+        heading: "Dalla segnalazione SIP all'interoperabilità.",
+        intro:
+          "Questa area riunisce VoIP e AudioCodes, con particolare attenzione al comportamento dei flussi SIP, agli SBC e all'integrazione tra piattaforme di comunicazione.",
+        cards: [
+          {
+            eyebrow: "Voice over IP",
+            title: "SIP & Call Flow",
+            description:
+              "Segnalazione SIP, lettura dei call flow, routing e analisi del comportamento delle chiamate.",
+            tags: ["SIP", "Call Flow", "VoIP"],
+          },
+          {
+            eyebrow: "Session Border Controller",
+            title: "AudioCodes SBC",
+            description:
+              "Gestione SBC, routing SIP, normalizzazione e funzionalità AudioCodes negli scenari di comunicazione IP.",
+            tags: ["AudioCodes", "SBC", "Routing"],
+          },
+          {
+            eyebrow: "Integration & troubleshooting",
+            title: "Interoperabilità",
+            description:
+              "Integrazione tra sistemi, Microsoft Teams, analisi dei flussi e troubleshooting delle comunicazioni VoIP.",
+            tags: ["Microsoft Teams", "Interoperability", "Troubleshooting"],
+          },
+        ],
+        topicsHeading: "Gli argomenti che troveranno spazio in questa sezione.",
+        topicsIntro:
+          "VoIP e AudioCodes convivono nello stesso hub: AudioCodes mantiene una presenza forte, mentre i tag permettono di distinguere SIP, SBC, routing e integrazioni specifiche.",
+        topics: [
+          {
+            title: "SIP",
+            description:
+              "Segnalazione, messaggi, dialoghi e principi necessari per interpretare il comportamento di una chiamata IP.",
+          },
+          {
+            title: "AudioCodes SBC",
+            description:
+              "Session Border Controller AudioCodes, configurazione, gestione e utilizzo negli scenari enterprise.",
+          },
+          {
+            title: "Call Routing",
+            description:
+              "Regole di instradamento, manipolazione delle destinazioni e logiche che determinano il percorso delle chiamate.",
+          },
+          {
+            title: "Message Manipulations",
+            description:
+              "Normalizzazione e modifica della segnalazione per garantire compatibilità e interoperabilità tra sistemi differenti.",
+          },
+          {
+            title: "Microsoft Teams",
+            description:
+              "Integrazione della telefonia con Teams e scenari di interoperabilità con infrastrutture e SBC.",
+          },
+          {
+            title: "Troubleshooting VoIP",
+            description:
+              "Analisi dei call flow, individuazione degli errori e correlazione tra segnalazione, routing e comportamento della chiamata.",
+          },
+        ],
+      }
+    : null;
 ---
 
 <Layout
@@ -143,6 +275,53 @@ const isWifi = area.slug === "wifi";
                   <h3>Troubleshooting</h3>
                   <p>Approccio alla diagnosi dei problemi wireless attraverso misure, osservazione e correlazione dei dati raccolti.</p>
                 </article>
+              </div>
+            </div>
+          </section>
+        </>
+      ) : areaDetail ? (
+        <>
+          <section class="pillar-workflow">
+            <div class="gl-wrap">
+              <div class="pillar-section-head">
+                <div>
+                  <p class="gl-eyebrow">{areaDetail.eyebrow}</p>
+                  <h2>{areaDetail.heading}</h2>
+                </div>
+                <p>{areaDetail.intro}</p>
+              </div>
+
+              <div class="pillar-workflow-grid">
+                {areaDetail.cards.map(card => (
+                  <article class="pillar-work-card">
+                    <span>{card.eyebrow}</span>
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
+                    <div class="pillar-card-tags">
+                      {card.tags.map(tag => <span>{tag}</span>)}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section class="pillar-topics">
+            <div class="gl-wrap">
+              <div class="pillar-topics-head">
+                <div>
+                  <h2>{areaDetail.topicsHeading}</h2>
+                </div>
+                <p>{areaDetail.topicsIntro}</p>
+              </div>
+
+              <div class="pillar-topic-grid">
+                {areaDetail.topics.map(topic => (
+                  <article>
+                    <h3>{topic.title}</h3>
+                    <p>{topic.description}</p>
+                  </article>
+                ))}
               </div>
             </div>
           </section>
@@ -293,6 +472,8 @@ const isWifi = area.slug === "wifi";
   .area-content,
   .wifi-workflow,
   .wifi-topics,
+  .pillar-workflow,
+  .pillar-topics,
   .area-navigation {
     position: relative;
   }
@@ -305,6 +486,8 @@ const isWifi = area.slug === "wifi";
   .area-content::before,
   .wifi-workflow::before,
   .wifi-topics::before,
+  .pillar-workflow::before,
+  .pillar-topics::before,
   .area-navigation::before {
     content: "";
     position: absolute;
@@ -325,7 +508,9 @@ const isWifi = area.slug === "wifi";
   .area-content h2,
   .area-navigation-head h2,
   .wifi-section-head h2,
-  .wifi-topics-head h2 {
+  .wifi-topics-head h2,
+  .pillar-section-head h2,
+  .pillar-topics-head h2 {
     margin: 0;
     color: #0b1220;
     font-size: clamp(2.5rem, 4.5vw, 4rem);
@@ -341,13 +526,16 @@ const isWifi = area.slug === "wifi";
     line-height: 1.8;
   }
 
-  .wifi-workflow {
+  .wifi-workflow,
+  .pillar-workflow {
     padding: 105px 0 115px;
     background: #fff;
   }
 
   .wifi-section-head,
-  .wifi-topics-head {
+  .wifi-topics-head,
+  .pillar-section-head,
+  .pillar-topics-head {
     display: grid;
     grid-template-columns: 1fr .85fr;
     gap: 90px;
@@ -356,20 +544,24 @@ const isWifi = area.slug === "wifi";
   }
 
   .wifi-section-head > p,
-  .wifi-topics-head > p {
+  .wifi-topics-head > p,
+  .pillar-section-head > p,
+  .pillar-topics-head > p {
     margin: 0;
     color: rgba(11, 18, 32, .64);
     font-size: 16px;
     line-height: 1.8;
   }
 
-  .wifi-workflow-grid {
+  .wifi-workflow-grid,
+  .pillar-workflow-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
   }
 
-  .wifi-work-card {
+  .wifi-work-card,
+  .pillar-work-card {
     display: flex;
     min-height: 350px;
     flex-direction: column;
@@ -382,13 +574,15 @@ const isWifi = area.slug === "wifi";
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
 
-  .wifi-work-card:hover {
+  .wifi-work-card:hover,
+  .pillar-work-card:hover {
     transform: translateY(-3px);
     border-color: rgba(11, 18, 32, .24);
     box-shadow: 0 20px 44px rgba(11, 18, 32, .07);
   }
 
-  .wifi-work-card > span {
+  .wifi-work-card > span,
+  .pillar-work-card > span {
     color: #2563eb;
     font-size: 11px;
     font-weight: 800;
@@ -396,21 +590,24 @@ const isWifi = area.slug === "wifi";
     text-transform: uppercase;
   }
 
-  .wifi-work-card h3 {
+  .wifi-work-card h3,
+  .pillar-work-card h3 {
     margin: 72px 0 14px;
     font-size: 29px;
     line-height: 1.15;
     letter-spacing: -.045em;
   }
 
-  .wifi-work-card p {
+  .wifi-work-card p,
+  .pillar-work-card p {
     margin: 0;
     color: rgba(11, 18, 32, .64);
     font-size: 14px;
     line-height: 1.75;
   }
 
-  .wifi-card-tags {
+  .wifi-card-tags,
+  .pillar-card-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -419,7 +616,8 @@ const isWifi = area.slug === "wifi";
   }
 
   .wifi-card-tags span,
-  .wifi-card-tags a {
+  .wifi-card-tags a,
+  .pillar-card-tags span {
     padding: 8px 10px;
     border: 1px solid rgba(11, 18, 32, .12);
     border-radius: 8px;
@@ -433,39 +631,46 @@ const isWifi = area.slug === "wifi";
     color: #2563eb;
   }
 
-  .wifi-topics {
+  .wifi-topics,
+  .pillar-topics {
     padding: 105px 0 115px;
     background: #0b1220;
     color: #fff;
   }
 
-  .wifi-topics::before {
+  .wifi-topics::before,
+  .pillar-topics::before {
     background: rgba(255, 255, 255, .10);
   }
 
-  .wifi-topics-head h2 {
+  .wifi-topics-head h2,
+  .pillar-topics-head h2 {
     color: #fff;
   }
 
-  .wifi-topics-head > p {
+  .wifi-topics-head > p,
+  .pillar-topics-head > p {
     color: rgba(255, 255, 255, .64);
   }
 
-  .wifi-topic-grid {
+  .wifi-topic-grid,
+  .pillar-topic-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     border-top: 1px solid rgba(255, 255, 255, .14);
     border-left: 1px solid rgba(255, 255, 255, .14);
   }
 
-  .wifi-topic-grid article {
+  .wifi-topic-grid article,
+  .pillar-topic-grid article {
     min-height: 215px;
     padding: 30px 28px;
     border-right: 1px solid rgba(255, 255, 255, .14);
     border-bottom: 1px solid rgba(255, 255, 255, .14);
   }
 
-  .wifi-topic-grid h3 {
+  .wifi-topic-grid h3,
+  .pillar-topic-grid h3 {
     margin: 0 0 16px;
     color: #fff;
     font-size: 25px;
@@ -473,7 +678,8 @@ const isWifi = area.slug === "wifi";
     letter-spacing: -.04em;
   }
 
-  .wifi-topic-grid p {
+  .wifi-topic-grid p,
+  .pillar-topic-grid p {
     margin: 0;
     color: rgba(255, 255, 255, .66);
     font-size: 14px;
@@ -559,7 +765,9 @@ const isWifi = area.slug === "wifi";
     .area-hero-grid,
     .area-content-grid,
     .wifi-section-head,
-    .wifi-topics-head {
+    .wifi-topics-head,
+    .pillar-section-head,
+    .pillar-topics-head {
       grid-template-columns: 1fr;
       gap: 50px;
     }
@@ -570,15 +778,19 @@ const isWifi = area.slug === "wifi";
     }
 
     .wifi-workflow-grid,
-    .wifi-topic-grid {
+    .wifi-topic-grid,
+    .pillar-workflow-grid,
+    .pillar-topic-grid {
       grid-template-columns: 1fr;
     }
 
-    .wifi-topic-grid {
+    .wifi-topic-grid,
+    .pillar-topic-grid {
       border-left: 0;
     }
 
-    .wifi-topic-grid article {
+    .wifi-topic-grid article,
+    .pillar-topic-grid article {
       min-height: auto;
       border-left: 1px solid rgba(255, 255, 255, .14);
     }
@@ -590,14 +802,21 @@ const isWifi = area.slug === "wifi";
     .area-summary { padding: 26px; border-radius: 18px; }
     .area-content,
     .wifi-workflow,
-    .wifi-topics { padding: 78px 0; }
+    .wifi-topics,
+    .pillar-workflow,
+    .pillar-topics { padding: 78px 0; }
     .area-content::before,
     .wifi-workflow::before,
     .wifi-topics::before,
+    .pillar-workflow::before,
+    .pillar-topics::before,
     .area-navigation::before { width: calc(100% - 28px); }
-    .wifi-work-card { min-height: auto; padding: 24px; border-radius: 18px; }
-    .wifi-work-card h3 { margin-top: 52px; }
-    .wifi-topic-grid article { padding: 24px; }
+    .wifi-work-card,
+    .pillar-work-card { min-height: auto; padding: 24px; border-radius: 18px; }
+    .wifi-work-card h3,
+    .pillar-work-card h3 { margin-top: 52px; }
+    .wifi-topic-grid article,
+    .pillar-topic-grid article { padding: 24px; }
     .area-navigation { padding: 76px 0 82px; }
     .area-navigation-head { align-items: flex-start; flex-direction: column; }
     .area-navigation-grid { grid-template-columns: 1fr; }
