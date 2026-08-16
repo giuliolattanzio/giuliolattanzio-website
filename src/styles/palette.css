@@ -90,3 +90,73 @@
 .gl-shell .gl-tag:hover {
   color: #2563eb !important;
 }
+
+/*
+  Homepage editorial order.
+  The visual sequence is:
+  Personal tech portfolio → Profilo → Aree tecniche → Technology stack
+  → Knowledge Hub → Ultimi contenuti.
+*/
+.gl-shell main:has(> .home-hero) {
+  display: flex;
+  flex-direction: column;
+}
+
+.gl-shell main:has(> .home-hero) > .home-hero {
+  order: 1;
+}
+
+.gl-shell main:has(> .home-hero) > .home-hero + .gl-section-white {
+  order: 2;
+}
+
+.gl-shell main:has(> .home-hero) > .areas-section {
+  order: 3;
+}
+
+.gl-shell main:has(> .home-hero) > .tech-section {
+  order: 4;
+}
+
+.gl-shell main:has(> .home-hero) > .knowledge-section {
+  order: 5;
+}
+
+.gl-shell main:has(> .home-hero) > .latest-section {
+  order: 6;
+}
+
+/* Subtle content-width separators between adjacent white sections. */
+.gl-shell main:has(> .home-hero) > .home-hero + .gl-section-white,
+.gl-shell main:has(> .home-hero) > .areas-section,
+.gl-shell main:has(> .home-hero) > .tech-section {
+  position: relative;
+  border-top: 0 !important;
+}
+
+.gl-shell main:has(> .home-hero) > .home-hero + .gl-section-white::before,
+.gl-shell main:has(> .home-hero) > .areas-section::before,
+.gl-shell main:has(> .home-hero) > .tech-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(1160px, calc(100% - 40px));
+  height: 1px;
+  transform: translateX(-50%);
+  background: rgba(11, 18, 32, 0.10);
+}
+
+/* Dark/light changes already provide enough separation. */
+.gl-shell main:has(> .home-hero) > .knowledge-section,
+.gl-shell main:has(> .home-hero) > .latest-section {
+  border-top: 0 !important;
+}
+
+@media (max-width: 760px) {
+  .gl-shell main:has(> .home-hero) > .home-hero + .gl-section-white::before,
+  .gl-shell main:has(> .home-hero) > .areas-section::before,
+  .gl-shell main:has(> .home-hero) > .tech-section::before {
+    width: calc(100% - 28px);
+  }
+}
