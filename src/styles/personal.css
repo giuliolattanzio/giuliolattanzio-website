@@ -53,16 +53,16 @@ body {
   text-decoration: none;
 }
 
-.gl-brand-mark {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
+.gl-brand-logo {
+  width: 48px;
+  height: 48px;
+  display: block;
+  object-fit: contain;
+  padding: 4px;
+  box-sizing: border-box;
+  border: 1px solid var(--gl-border);
   border-radius: 12px;
-  background: var(--gl-navy);
-  color: #fff;
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  background: #fff;
 }
 
 .gl-brand-copy strong,
@@ -210,6 +210,24 @@ body {
   gap: 30px;
   color: var(--gl-muted);
   font-size: 12px;
+}
+
+.gl-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gl-footer-logo {
+  width: 44px;
+  height: 44px;
+  display: block;
+  object-fit: contain;
+  padding: 4px;
+  box-sizing: border-box;
+  border: 1px solid var(--gl-border);
+  border-radius: 10px;
+  background: #fff;
 }
 
 .gl-footer strong {
@@ -409,6 +427,11 @@ body {
   .gl-nav a:nth-child(3),
   .gl-nav a:nth-child(4) {
     display: none;
+  }
+
+  .gl-brand-logo {
+    width: 44px;
+    height: 44px;
   }
 
   .gl-brand-copy small {
