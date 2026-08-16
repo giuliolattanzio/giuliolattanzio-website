@@ -7,7 +7,7 @@ import LatestArticles from "@/components/LatestArticles.astro";
 
 <Layout
   title="Giulio Lattanzio | Network & Security Specialist"
-  description="Portfolio personale e raccolta di contenuti tecnici su networking, Wi-Fi, VoIP, Fortinet e AudioCodes."
+  description="Portfolio personale e raccolta di contenuti tecnici su Wi-Fi, networking, sicurezza, VoIP e AudioCodes."
 >
   <div class="gl-shell">
     <PersonalHeader active="home" />
@@ -21,7 +21,7 @@ import LatestArticles from "@/components/LatestArticles.astro";
             <p class="gl-lead">
               Sono Giulio Lattanzio, Network & Security Specialist. Questo sito è la mia vetrina professionale:
               racconta chi sono, di cosa mi occupo, le tecnologie con cui lavoro e gli articoli che pubblico su Wi-Fi,
-              networking, Fortinet, VoIP e AudioCodes.
+              networking, sicurezza, VoIP e AudioCodes.
             </p>
           </div>
 
@@ -58,8 +58,8 @@ import LatestArticles from "@/components/LatestArticles.astro";
               <h2>I temi su cui lavoro e pubblico.</h2>
             </div>
             <p>
-              Il Wi-Fi rappresenta il focus principale del mio percorso, affiancato da networking,
-              sicurezza e comunicazioni IP.
+              Il Wi-Fi rappresenta il focus principale del mio percorso, affiancato da networking e sicurezza,
+              VoIP e tecnologie AudioCodes.
             </p>
           </div>
 
@@ -81,55 +81,40 @@ import LatestArticles from "@/components/LatestArticles.astro";
               </div>
             </a>
 
-            <a class="area-card" href="/networking/">
+            <a class="area-card" href="/networking-security/">
               <div class="area-card-top">
-                <span class="area-domain">Infrastructure</span>
+                <span class="area-domain">Infrastructure & Security</span>
                 <span class="area-arrow" aria-hidden="true">↗</span>
               </div>
-              <h3>Networking</h3>
-              <p>Reti IP, VLAN, architetture, analisi del traffico e troubleshooting dell'infrastruttura.</p>
-            </a>
-
-            <a class="area-card" href="/fortinet/">
-              <div class="area-card-top">
-                <span class="area-domain">Security</span>
-                <span class="area-arrow" aria-hidden="true">↗</span>
+              <div class="area-card-copy">
+                <h3>Networking & Security</h3>
+                <p>Reti IP, VLAN, Fortinet, FortiGate, VPN, segmentazione, sicurezza e troubleshooting dell'infrastruttura.</p>
               </div>
-              <h3>Fortinet</h3>
-              <p>FortiGate, VPN, policy, segmentazione e sicurezza delle reti aziendali.</p>
+              <div class="area-tags area-tags-light" aria-label="Temi networking e sicurezza">
+                <span>Fortinet</span>
+                <span>FortiGate</span>
+                <span>VLAN</span>
+                <span>IPsec</span>
+              </div>
             </a>
 
             <a class="area-card" href="/voip/">
               <div class="area-card-top">
-                <span class="area-domain">Voice over IP</span>
-                <span class="area-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3>VoIP & SIP</h3>
-              <p>Call flow, routing SIP, interoperabilità e analisi delle comunicazioni IP.</p>
-            </a>
-
-            <a class="area-card" href="/audiocodes/">
-              <div class="area-card-top">
                 <span class="area-domain">Unified Communications</span>
                 <span class="area-arrow" aria-hidden="true">↗</span>
               </div>
-              <h3>AudioCodes</h3>
-              <p>SBC, routing SIP, manipolazioni e integrazione con piattaforme di comunicazione.</p>
+              <div class="area-card-copy">
+                <h3>VoIP & AudioCodes</h3>
+                <p>SIP, call flow, routing, SBC AudioCodes, interoperabilità e integrazione con piattaforme di comunicazione.</p>
+              </div>
+              <div class="area-tags area-tags-light" aria-label="Temi VoIP e AudioCodes">
+                <span>AudioCodes SBC</span>
+                <span>SIP</span>
+                <span>VoIP</span>
+                <span>Microsoft Teams</span>
+              </div>
             </a>
           </div>
-        </div>
-      </section>
-
-      <LatestArticles />
-
-      <section class="knowledge-section">
-        <div class="gl-wrap knowledge-grid">
-          <div>
-            <p class="gl-eyebrow">Knowledge Hub</p>
-            <h2>Articoli, appunti e approfondimenti tecnici.</h2>
-            <p>La parte editoriale del sito crescerà nel tempo e raccoglierà ciò che studio, sperimento e considero utile documentare.</p>
-          </div>
-          <a class="gl-button white-button" href="/posts/">Vai agli articoli →</a>
         </div>
       </section>
 
@@ -205,6 +190,19 @@ import LatestArticles from "@/components/LatestArticles.astro";
           </div>
         </div>
       </section>
+
+      <section class="knowledge-section">
+        <div class="gl-wrap knowledge-grid">
+          <div>
+            <p class="gl-eyebrow">Knowledge Hub</p>
+            <h2>Articoli, appunti e approfondimenti tecnici.</h2>
+            <p>La parte editoriale del sito crescerà nel tempo e raccoglierà ciò che studio, sperimento e considero utile documentare.</p>
+          </div>
+          <a class="gl-button white-button" href="/posts/">Vai agli articoli →</a>
+        </div>
+      </section>
+
+      <LatestArticles />
     </main>
 
     <PersonalFooter />
@@ -302,9 +300,9 @@ import LatestArticles from "@/components/LatestArticles.astro";
 
   .areas-grid {
     display: grid;
-    grid-template-columns: 1.08fr .92fr .92fr;
-    grid-template-rows: repeat(2, minmax(230px, auto));
+    grid-template-columns: 1.08fr .96fr .96fr;
     gap: 16px;
+    align-items: stretch;
   }
 
   .area-card {
@@ -312,7 +310,8 @@ import LatestArticles from "@/components/LatestArticles.astro";
     display: flex;
     flex-direction: column;
     min-width: 0;
-    padding: 28px;
+    min-height: 390px;
+    padding: 30px;
     overflow: hidden;
     background: #fff;
     border: 1px solid rgba(11,18,32,.12);
@@ -325,22 +324,21 @@ import LatestArticles from "@/components/LatestArticles.astro";
 
   .area-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(37,99,235,.45);
+    border-color: rgba(11,18,32,.28);
     box-shadow: 0 22px 50px rgba(11,18,32,.08);
   }
 
   .area-card-featured {
-    grid-row: 1 / 3;
     padding: 34px;
-    background: #2563eb;
-    border-color: #2563eb;
+    background: #0b1220;
+    border-color: #0b1220;
     color: #fff;
-    box-shadow: 0 24px 56px rgba(37,99,235,.18);
+    box-shadow: 0 24px 56px rgba(11,18,32,.18);
   }
 
   .area-card-featured:hover {
-    border-color: #2563eb;
-    box-shadow: 0 28px 64px rgba(37,99,235,.24);
+    border-color: #0b1220;
+    box-shadow: 0 28px 64px rgba(11,18,32,.24);
   }
 
   .area-card-top {
@@ -370,7 +368,7 @@ import LatestArticles from "@/components/LatestArticles.astro";
   }
 
   .area-arrow {
-    color: #2563eb;
+    color: #0b1220;
     font-size: 21px;
     line-height: 1;
   }
@@ -385,15 +383,14 @@ import LatestArticles from "@/components/LatestArticles.astro";
   }
 
   .area-card h3 {
-    margin: 42px 0 12px;
+    margin: 18px 0 12px;
     color: #0b1220;
-    font-size: 25px;
+    font-size: 28px;
     line-height: 1.15;
-    letter-spacing: -.04em;
+    letter-spacing: -.045em;
   }
 
   .area-card-featured h3 {
-    margin-top: 18px;
     color: #fff;
     font-size: clamp(2.7rem,4vw,4.1rem);
     letter-spacing: -.055em;
@@ -426,6 +423,12 @@ import LatestArticles from "@/components/LatestArticles.astro";
     color: #fff;
     font-family: monospace;
     font-size: 11px;
+  }
+
+  .area-tags-light span {
+    border-color: rgba(11,18,32,.14);
+    color: #0b1220;
+    background: #fff;
   }
 
   .knowledge-section {
@@ -511,23 +514,23 @@ import LatestArticles from "@/components/LatestArticles.astro";
     inset: 0 auto auto 0;
     width: 100%;
     height: 3px;
-    background: #2563eb;
+    background: #0b1220;
   }
 
   .tech-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(37,99,235,.42);
+    border-color: rgba(11,18,32,.28);
     box-shadow: 0 22px 50px rgba(11,18,32,.08);
   }
 
   .tech-card-accent {
-    background: #2563eb;
-    border-color: #2563eb;
-    box-shadow: 0 20px 50px rgba(37,99,235,.18);
+    background: #0b1220;
+    border-color: #0b1220;
+    box-shadow: 0 20px 50px rgba(11,18,32,.18);
   }
 
   .tech-card-accent::before {
-    background: #2563eb;
+    background: rgba(255,255,255,.38);
   }
 
   .tech-card-head {
@@ -595,12 +598,10 @@ import LatestArticles from "@/components/LatestArticles.astro";
   @media(max-width:1050px) {
     .areas-grid {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto;
     }
 
     .area-card-featured {
       grid-column: 1 / 3;
-      grid-row: auto;
       min-height: 390px;
     }
   }
@@ -651,7 +652,10 @@ import LatestArticles from "@/components/LatestArticles.astro";
 
     .area-card-featured {
       grid-column: auto;
-      min-height: 380px;
+    }
+
+    .area-card {
+      min-height: 330px;
     }
 
     .area-card,
