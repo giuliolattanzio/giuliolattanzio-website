@@ -1,24 +1,26 @@
 html {
   color-scheme: light;
-  background: #f7f9fc;
+  background: #ffffff;
 }
 
 body {
-  background: #f7f9fc !important;
-  color: #101828 !important;
+  background: #ffffff !important;
+  color: #0b1220 !important;
 }
 
 .gl-shell {
+  /* Core palette: white, black, one blue. */
+  --gl-black: #0b1220;
   --gl-navy: #0b1220;
   --gl-blue: #2563eb;
-  --gl-blue-dark: #1d4ed8;
-  --gl-text: #101828;
-  --gl-muted: #667085;
-  --gl-border: #e4e7ec;
-  --gl-soft: #f7f9fc;
+  --gl-text: #0b1220;
+  --gl-muted: rgba(11, 18, 32, 0.64);
+  --gl-border: rgba(11, 18, 32, 0.12);
+  --gl-soft: rgba(37, 99, 235, 0.035);
   --gl-white: #ffffff;
+  --gl-shadow: rgba(11, 18, 32, 0.10);
   min-height: 100vh;
-  background: var(--gl-soft);
+  background: var(--gl-white);
   color: var(--gl-text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -32,8 +34,8 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(247, 249, 252, 0.92);
-  border-bottom: 1px solid rgba(228, 231, 236, 0.92);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid var(--gl-border);
   backdrop-filter: blur(14px);
 }
 
@@ -62,7 +64,7 @@ body {
   box-sizing: border-box;
   border: 1px solid var(--gl-border);
   border-radius: 12px;
-  background: #fff;
+  background: var(--gl-white);
 }
 
 .gl-brand-copy strong,
@@ -87,7 +89,7 @@ body {
 }
 
 .gl-nav a {
-  color: #475467;
+  color: rgba(11, 18, 32, 0.72);
   text-decoration: none;
   font-size: 14px;
   font-weight: 650;
@@ -101,10 +103,11 @@ body {
 
 .gl-section {
   padding: 96px 0;
+  background: var(--gl-white);
 }
 
 .gl-section-white {
-  background: #fff;
+  background: var(--gl-white);
 }
 
 .gl-eyebrow {
@@ -118,7 +121,7 @@ body {
 
 .gl-title {
   margin: 0;
-  color: var(--gl-navy);
+  color: var(--gl-black);
   font-size: clamp(2.8rem, 5vw, 4.8rem);
   line-height: 1.02;
   letter-spacing: -0.06em;
@@ -146,7 +149,7 @@ body {
   text-decoration: none;
   font-size: 14px;
   font-weight: 750;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .gl-button:hover {
@@ -155,21 +158,22 @@ body {
 
 .gl-button-primary {
   background: var(--gl-blue);
-  color: #fff;
+  color: var(--gl-white);
 }
 
 .gl-button-primary:hover {
-  background: var(--gl-blue-dark);
+  background: var(--gl-blue);
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.20);
 }
 
 .gl-button-secondary {
-  background: #fff;
+  background: var(--gl-white);
   color: var(--gl-text);
   border: 1px solid var(--gl-border);
 }
 
 .gl-card {
-  background: #fff;
+  background: var(--gl-white);
   border: 1px solid var(--gl-border);
   border-radius: 16px;
 }
@@ -186,19 +190,19 @@ body {
   padding: 7px 10px;
   border: 1px solid var(--gl-border);
   border-radius: 8px;
-  background: var(--gl-soft);
-  color: #475467;
+  background: var(--gl-white);
+  color: rgba(11, 18, 32, 0.72);
   font-size: 12px;
   text-decoration: none;
 }
 
 .gl-tag:hover {
   color: var(--gl-blue);
-  border-color: #93c5fd;
+  border-color: rgba(37, 99, 235, 0.55);
 }
 
 .gl-footer {
-  background: #fff;
+  background: var(--gl-white);
   border-top: 1px solid var(--gl-border);
 }
 
@@ -227,7 +231,7 @@ body {
   box-sizing: border-box;
   border: 1px solid var(--gl-border);
   border-radius: 10px;
-  background: #fff;
+  background: var(--gl-white);
 }
 
 .gl-footer strong {
@@ -264,23 +268,24 @@ body {
   grid-template-columns: 1fr auto;
   gap: 30px;
   padding: 30px;
-  background: #fff;
+  background: var(--gl-white);
   border: 1px solid var(--gl-border);
   border-radius: 16px;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .gl-article-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 45px rgba(16, 24, 40, 0.08);
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 18px 45px var(--gl-shadow);
 }
 
 .gl-article-card h2,
 .gl-article-card h3 {
   margin: 8px 0 10px;
-  color: var(--gl-navy);
+  color: var(--gl-black);
   font-size: 24px;
   letter-spacing: -0.035em;
 }
@@ -293,7 +298,7 @@ body {
 }
 
 .gl-meta {
-  color: #98a2b3;
+  color: rgba(11, 18, 32, 0.48);
   font-size: 12px;
 }
 
@@ -338,7 +343,7 @@ body {
 
 .gl-prose {
   padding-bottom: 90px;
-  color: #344054;
+  color: rgba(11, 18, 32, 0.78);
   font-size: 17px;
   line-height: 1.8;
 }
@@ -346,7 +351,7 @@ body {
 .gl-prose h2,
 .gl-prose h3,
 .gl-prose h4 {
-  color: var(--gl-navy);
+  color: var(--gl-black);
   letter-spacing: -0.03em;
   line-height: 1.2;
 }
@@ -362,7 +367,7 @@ body {
   margin: 1.6em 0;
   padding: 4px 0 4px 22px;
   border-left: 4px solid var(--gl-blue);
-  color: #475467;
+  color: rgba(11, 18, 32, 0.70);
 }
 .gl-prose img {
   max-width: 100%;
@@ -387,14 +392,14 @@ body {
   margin: 1.5em 0;
   padding: 20px;
   border-radius: 14px;
-  background: #0b1220 !important;
-  color: #e5e7eb;
+  background: var(--gl-black) !important;
+  color: var(--gl-white);
 }
 .gl-prose code:not(pre code) {
   padding: 0.15em 0.35em;
   border-radius: 5px;
-  background: #eef2f7;
-  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.07);
+  color: var(--gl-blue);
   font-size: 0.9em;
 }
 
@@ -409,9 +414,146 @@ body {
 
 .gl-search-box {
   padding: 34px;
-  background: #fff;
+  background: var(--gl-white);
   border: 1px solid var(--gl-border);
   border-radius: 16px;
+}
+
+/*
+  Site-wide palette normalization.
+  Component-local styles may use older gray/blue values; these overrides keep
+  the final interface on the three-color system: white, black and #2563eb.
+*/
+.gl-shell .home-hero,
+.gl-shell .profile-hero,
+.gl-shell .article-hero,
+.gl-shell .cover-area,
+.gl-shell .article-content-section,
+.gl-shell .article-end,
+.gl-shell .topics-band,
+.gl-shell .latest-section,
+.gl-shell .tech-section,
+.gl-shell .gl-section,
+.gl-shell .gl-section-white,
+.gl-shell .tag-card,
+.gl-shell .empty-state,
+.gl-shell .topic-card,
+.gl-shell .grid article,
+.gl-shell .tech-card:not(.tech-card-accent),
+.gl-shell .latest-card,
+.gl-shell .related-card {
+  background: #ffffff !important;
+}
+
+.gl-shell .knowledge-section,
+.gl-shell .summary-card,
+.gl-shell .gl-prose pre {
+  background: #0b1220 !important;
+}
+
+.gl-shell .tech-card-accent {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 20px 50px rgba(37, 99, 235, 0.18) !important;
+}
+
+.gl-shell .tech-card-accent::before {
+  background: rgba(255, 255, 255, 0.42) !important;
+}
+
+.gl-shell .tech-card::before {
+  background: #2563eb !important;
+}
+
+.gl-shell .copy p,
+.gl-shell .section-head > p,
+.gl-shell .topic-grid p,
+.gl-shell .tech-intro > p,
+.gl-shell .tech-card > p,
+.gl-shell .tech-domain,
+.gl-shell .latest-meta,
+.gl-shell .latest-card p,
+.gl-shell .topic-card p,
+.gl-shell .empty-state p,
+.gl-shell .article-description,
+.gl-shell .article-info strong,
+.gl-shell .info-label,
+.gl-shell .related-card small,
+.gl-shell .tag-card small,
+.gl-shell .summary-card > p,
+.gl-shell .knowledge-section p:not(.gl-eyebrow) {
+  color: rgba(11, 18, 32, 0.64) !important;
+}
+
+.gl-shell .knowledge-section p:not(.gl-eyebrow),
+.gl-shell .summary-card > p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.gl-shell .tech-card-accent .tech-domain,
+.gl-shell .tech-card-accent > p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.gl-shell .tech-card-accent h3,
+.gl-shell .knowledge-section h2,
+.gl-shell .summary-card h2 {
+  color: #ffffff !important;
+}
+
+.gl-shell .topic-grid,
+.gl-shell .topics-band,
+.gl-shell .topic-card,
+.gl-shell .grid,
+.gl-shell .grid article,
+.gl-shell .tech-card,
+.gl-shell .latest-section,
+.gl-shell .latest-card,
+.gl-shell .tag-card,
+.gl-shell .empty-state,
+.gl-shell .article-info,
+.gl-shell .cover-image,
+.gl-shell .article-content-section,
+.gl-shell .article-end,
+.gl-shell .related-card,
+.gl-shell .gl-search-box,
+.gl-shell .hero-portrait {
+  border-color: rgba(11, 18, 32, 0.12) !important;
+}
+
+.gl-shell .topic-card:hover,
+.gl-shell .latest-card:hover,
+.gl-shell .tag-card:hover,
+.gl-shell .related-card:hover,
+.gl-shell .gl-article-card:hover,
+.gl-shell .tech-card:hover {
+  border-color: rgba(37, 99, 235, 0.52) !important;
+}
+
+.gl-shell .tech-index,
+.gl-shell .tech-tags span,
+.gl-shell .tag-card,
+.gl-shell .empty-state {
+  background: #ffffff !important;
+}
+
+.gl-shell .tech-card-accent .tech-index,
+.gl-shell .tech-card-accent .tech-tags span {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  color: #ffffff !important;
+}
+
+.gl-shell .text-link,
+.gl-shell .topic-grid a > span,
+.gl-shell .topic-card > span,
+.gl-shell .section-heading a,
+.gl-shell .latest-head > a,
+.gl-shell .read-more,
+.gl-shell .all-posts-link,
+.gl-shell .related-card span,
+.gl-shell .tag-card > span {
+  color: #2563eb !important;
 }
 
 @media (max-width: 760px) {
