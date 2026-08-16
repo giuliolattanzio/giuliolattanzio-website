@@ -123,64 +123,58 @@ import LatestArticles from "@/components/LatestArticles.astro";
           <div class="tech-intro">
             <div>
               <p class="gl-eyebrow">Tecnologie & strumenti</p>
-              <h2>Le tecnologie che fanno parte del mio lavoro quotidiano.</h2>
+              <h2>Tecnologie, piattaforme e strumenti del mio stack tecnico.</h2>
             </div>
             <p>
-              Una panoramica di strumenti, piattaforme, vendor e protocolli utilizzati nelle attività di progettazione,
+              Una panoramica sintetica di vendor, strumenti e protocolli che utilizzo nelle attività di progettazione,
               gestione, analisi e troubleshooting delle infrastrutture di rete e comunicazione.
             </p>
           </div>
 
-          <div class="tech-matrix">
-            <section class="tech-group" aria-labelledby="tech-wireless">
-              <p class="tech-group-kicker">01 / Wireless</p>
+          <div class="tech-panel">
+            <section class="tech-column" aria-labelledby="tech-wireless">
               <h3 id="tech-wireless">Wireless Engineering</h3>
-              <div class="tech-list" aria-label="Tecnologie e strumenti wireless">
-                <span>Ekahau</span>
-                <span>RF Design</span>
-                <span>Site Survey</span>
-                <span>Spectrum Analysis</span>
-                <span>Enterprise Wi-Fi</span>
-                <span>Roaming</span>
-              </div>
+              <ul class="tech-items" aria-label="Tecnologie e strumenti wireless">
+                <li>Ekahau</li>
+                <li>RF Design</li>
+                <li>Site Survey</li>
+                <li>Spectrum Analysis</li>
+                <li>Enterprise Wi-Fi</li>
+                <li>Roaming</li>
+              </ul>
             </section>
 
-            <section class="tech-group" aria-labelledby="tech-network">
-              <p class="tech-group-kicker">02 / Network</p>
+            <section class="tech-column" aria-labelledby="tech-network">
               <h3 id="tech-network">Network & Security</h3>
-              <div class="tech-list" aria-label="Tecnologie networking e sicurezza">
-                <span>FortiGate</span>
-                <span>Fortinet</span>
-                <span>Alcatel</span>
-                <span>VLAN</span>
-                <span>IPsec</span>
-                <span>VPN</span>
-                <span>Routing</span>
-              </div>
+              <ul class="tech-items" aria-label="Tecnologie networking e sicurezza">
+                <li>Fortinet / FortiGate</li>
+                <li>Alcatel</li>
+                <li>VLAN</li>
+                <li>Routing</li>
+                <li>VPN / IPsec</li>
+              </ul>
             </section>
 
-            <section class="tech-group" aria-labelledby="tech-voice">
-              <p class="tech-group-kicker">03 / Voice</p>
+            <section class="tech-column" aria-labelledby="tech-voice">
               <h3 id="tech-voice">Voice & Unified Communications</h3>
-              <div class="tech-list" aria-label="Tecnologie VoIP e unified communications">
-                <span>AudioCodes SBC</span>
-                <span>SIP</span>
-                <span>Call Flow</span>
-                <span>Microsoft Teams</span>
-                <span>SIP Routing</span>
-                <span>Interoperabilità</span>
-              </div>
+              <ul class="tech-items" aria-label="Tecnologie VoIP e unified communications">
+                <li>AudioCodes SBC</li>
+                <li>SIP</li>
+                <li>Call Flow</li>
+                <li>SIP Routing</li>
+                <li>Microsoft Teams</li>
+                <li>Interoperabilità</li>
+              </ul>
             </section>
 
-            <section class="tech-group" aria-labelledby="tech-analysis">
-              <p class="tech-group-kicker">04 / Analysis</p>
+            <section class="tech-column" aria-labelledby="tech-analysis">
               <h3 id="tech-analysis">Analysis & Troubleshooting</h3>
-              <div class="tech-list" aria-label="Strumenti di analisi e troubleshooting">
-                <span>Wireshark</span>
-                <span>Packet Analysis</span>
-                <span>Traffic Analysis</span>
-                <span>Troubleshooting</span>
-              </div>
+              <ul class="tech-items" aria-label="Strumenti di analisi e troubleshooting">
+                <li>Wireshark</li>
+                <li>Packet Analysis</li>
+                <li>Traffic Analysis</li>
+                <li>Troubleshooting</li>
+              </ul>
             </section>
           </div>
         </div>
@@ -411,8 +405,7 @@ import LatestArticles from "@/components/LatestArticles.astro";
 
   .tech-section {
     padding: 110px 0 120px;
-    background: #0b1220;
-    color: #fff;
+    background: #fff;
     border-top: 1px solid rgba(11,18,32,.1);
   }
 
@@ -421,13 +414,13 @@ import LatestArticles from "@/components/LatestArticles.astro";
     grid-template-columns: 1.05fr .95fr;
     gap: 90px;
     align-items: end;
-    margin-bottom: 56px;
+    margin-bottom: 46px;
   }
 
   .tech-intro h2 {
     max-width: 700px;
     margin: 0;
-    color: #fff;
+    color: #0b1220;
     font-size: clamp(2.5rem, 4.5vw, 4.2rem);
     line-height: 1.02;
     letter-spacing: -.058em;
@@ -436,62 +429,85 @@ import LatestArticles from "@/components/LatestArticles.astro";
   .tech-intro > p {
     max-width: 590px;
     margin: 0;
-    color: rgba(255,255,255,.64);
+    color: rgba(11,18,32,.64);
     font-size: 16px;
     line-height: 1.8;
   }
 
-  .tech-matrix {
+  .tech-panel {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-top: 1px solid rgba(255,255,255,.15);
-    border-left: 1px solid rgba(255,255,255,.15);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden;
+    background: #0b1220;
+    border: 1px solid #0b1220;
+    border-radius: 24px;
+    box-shadow: 0 24px 54px rgba(11,18,32,.14);
   }
 
-  .tech-group {
-    min-height: 285px;
-    padding: 34px;
-    border-right: 1px solid rgba(255,255,255,.15);
-    border-bottom: 1px solid rgba(255,255,255,.15);
+  .tech-column {
+    position: relative;
+    min-width: 0;
+    min-height: 300px;
+    padding: 30px 28px 32px;
+    border-left: 1px solid rgba(255,255,255,.13);
   }
 
-  .tech-group-kicker {
-    margin: 0 0 52px;
-    color: #2563eb;
-    font-family: monospace;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .08em;
-    text-transform: uppercase;
+  .tech-column:first-child {
+    border-left: 0;
   }
 
-  .tech-group h3 {
-    margin: 0 0 26px;
+  .tech-column::before {
+    content: "";
+    display: block;
+    width: 26px;
+    height: 2px;
+    margin-bottom: 22px;
+    background: #2563eb;
+  }
+
+  .tech-column h3 {
+    min-height: 48px;
+    margin: 0 0 24px;
     color: #fff;
-    font-size: 27px;
-    line-height: 1.15;
-    letter-spacing: -.04em;
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -.025em;
   }
 
-  .tech-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
+  .tech-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .tech-list span {
-    padding: 9px 11px;
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 8px;
-    color: rgba(255,255,255,.88);
-    font-family: monospace;
-    font-size: 11px;
-    line-height: 1;
+  .tech-items li {
+    padding: 10px 0;
+    border-top: 1px solid rgba(255,255,255,.11);
+    color: rgba(255,255,255,.84);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .tech-items li:first-child {
+    color: #fff;
+    font-weight: 700;
   }
 
   @media(max-width:1050px) {
     .areas-grid {
       grid-template-columns: 1fr 1fr;
+    }
+
+    .tech-panel {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tech-column:nth-child(3) {
+      border-left: 0;
+    }
+
+    .tech-column:nth-child(n+3) {
+      border-top: 1px solid rgba(255,255,255,.13);
     }
   }
 
@@ -508,16 +524,6 @@ import LatestArticles from "@/components/LatestArticles.astro";
     .hero-portrait {
       justify-self: center;
       width: min(100%,390px);
-    }
-
-    .tech-matrix {
-      grid-template-columns: 1fr;
-      border-left: 0;
-    }
-
-    .tech-group {
-      min-height: auto;
-      border-left: 1px solid rgba(255,255,255,.15);
     }
   }
 
@@ -551,12 +557,24 @@ import LatestArticles from "@/components/LatestArticles.astro";
       margin-top: 44px;
     }
 
-    .tech-group {
-      padding: 26px;
+    .tech-panel {
+      grid-template-columns: 1fr;
+      border-radius: 20px;
     }
 
-    .tech-group-kicker {
-      margin-bottom: 38px;
+    .tech-column {
+      min-height: auto;
+      padding: 26px;
+      border-left: 0;
+      border-top: 1px solid rgba(255,255,255,.13);
+    }
+
+    .tech-column:first-child {
+      border-top: 0;
+    }
+
+    .tech-column h3 {
+      min-height: 0;
     }
   }
 </style>
