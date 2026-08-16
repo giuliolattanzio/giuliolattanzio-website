@@ -18,25 +18,31 @@ const pagefindBundlePath = getAssetPath("pagefind/");
 ---
 
 <Layout
-  title={`Cerca | ${config.site.title}`}
-  description="Cerca negli articoli e negli approfondimenti tecnici di Giulio Lattanzio."
+  title={`Cerca nel Knowledge Hub | ${config.site.title}`}
+  description="Cerca negli articoli e negli approfondimenti tecnici di Giulio Lattanzio su Wi-Fi, networking, sicurezza, VoIP e AudioCodes."
 >
   <div class="gl-shell">
     <PersonalHeader active="search" />
 
     <main>
-      <section class="gl-section">
+      <section class="gl-section search-section">
         <div class="gl-wrap search-hero">
+          <a class="gl-back" href="/posts/">← Knowledge Hub</a>
           <p class="gl-eyebrow">Ricerca</p>
           <h1 class="gl-title">Trova un <span>contenuto tecnico.</span></h1>
           <p class="gl-lead">
-            Cerca tra articoli e approfondimenti su Wi-Fi, networking, Fortinet, VoIP e AudioCodes.
+            Cerca nel Knowledge Hub tra articoli su Wi-Fi, networking, sicurezza, VoIP, AudioCodes e troubleshooting.
           </p>
         </div>
       </section>
 
-      <section class="gl-section gl-section-white">
+      <section class="gl-section gl-section-white results-section">
         <div class="gl-wrap search-wrap">
+          <div class="results-head">
+            <p class="gl-eyebrow">Cerca negli articoli</p>
+            <h2>Inserisci una tecnologia, un protocollo o un argomento.</h2>
+          </div>
+
           <div
             id="pagefind-search"
             class="gl-search-box"
@@ -95,8 +101,24 @@ const pagefindBundlePath = getAssetPath("pagefind/");
 </script>
 
 <style>
+  .search-section { padding-top: 95px; padding-bottom: 90px; }
   .search-hero { max-width: 900px; }
+  .search-hero .gl-lead { max-width: 780px; }
+  .results-section { padding-top: 90px; padding-bottom: 105px; }
   .search-wrap { max-width: 900px; }
+  .results-head { margin-bottom: 34px; }
+  .results-head h2 {
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -.05em;
+  }
+
+  @media (max-width: 650px) {
+    .search-section { padding-top: 70px; padding-bottom: 74px; }
+    .results-section { padding-top: 72px; padding-bottom: 82px; }
+  }
 </style>
 
 <style is:global>
