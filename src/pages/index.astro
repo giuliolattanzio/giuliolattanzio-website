@@ -29,22 +29,14 @@ import LatestArticles from "@/components/LatestArticles.astro";
             </div>
           </div>
 
-          <aside class="identity-card">
-            <div class="identity-top"><span>C:\&gt; whoami</span><small>ONLINE</small></div>
-            <div class="identity-main">
-              <img
-                class="avatar-logo"
-                src="/images/branding/giuliolattanzio_logo.png"
-                alt="Logo Giulio Lattanzio"
-                width="64"
-                height="64"
-              />
-              <div><h2>Giulio Lattanzio</h2><p>Network & Security Specialist</p></div>
-            </div>
-            <div class="identity-tags">
-              <span>Networking</span><span>Wi-Fi</span><span>Fortinet</span><span>VoIP</span><span>AudioCodes</span>
-            </div>
-          </aside>
+          <figure class="hero-portrait">
+            <img
+              src="/images/profile/giulio%20lattanzio.png"
+              alt="Ritratto di Giulio Lattanzio"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </figure>
         </div>
       </section>
 
@@ -112,15 +104,27 @@ import LatestArticles from "@/components/LatestArticles.astro";
   .home-hero { padding-top: 110px; padding-bottom: 95px; }
   .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
-  .identity-card { padding: 28px; border-radius: 24px; background: #0b1220; color: #fff; box-shadow: 0 30px 70px rgba(16,24,40,.16); }
-  .identity-top { display: flex; justify-content: space-between; padding-bottom: 28px; border-bottom: 1px solid #243047; color: #60a5fa; font-family: monospace; font-size: 12px; }
-  .identity-top small { color: #86efac; letter-spacing: .12em; }
-  .identity-main { display: flex; align-items: center; gap: 18px; padding: 32px 0; }
-  .avatar-logo { width: 64px; height: 64px; object-fit: contain; display: block; background: #fff; border-radius: 16px; padding: 5px; box-sizing: border-box; }
-  .identity-main h2 { margin: 0; font-size: 22px; }
-  .identity-main p { margin: 6px 0 0; color: #94a3b8; }
-  .identity-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .identity-tags span { padding: 8px 10px; border: 1px solid #2b3850; border-radius: 8px; color: #cbd5e1; font-size: 12px; }
+
+  .hero-portrait {
+    width: min(100%, 420px);
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    justify-self: end;
+    overflow: hidden;
+    border: 1px solid #e4e7ec;
+    border-radius: 28px;
+    background: #e9edf3;
+    box-shadow: 0 30px 70px rgba(16, 24, 40, .14);
+  }
+
+  .hero-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
   .split { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; }
   .split h2, .section-head h2, .knowledge-section h2 { margin: 0; color: #0b1220; font-size: clamp(2.3rem,4vw,3.8rem); line-height: 1.05; letter-spacing: -.055em; }
   .copy p { color: #667085; line-height: 1.8; }
@@ -141,6 +145,18 @@ import LatestArticles from "@/components/LatestArticles.astro";
   .white-button { background: #fff; color: #0b1220; }
   .stack-list { display: flex; flex-wrap: wrap; gap: 10px; }
   .stack-list span { padding: 10px 13px; border: 1px solid #e4e7ec; background: #f7f9fc; border-radius: 8px; color: #344054; font-family: monospace; font-size: 12px; }
-  @media(max-width:950px){.hero-grid,.split,.section-head,.knowledge-grid{grid-template-columns:1fr;gap:45px}.topic-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:650px){.home-hero{padding-top:70px}.hero-actions{flex-direction:column}.topic-grid{grid-template-columns:1fr}.topic-grid a{min-height:auto}}
+
+  @media(max-width:950px){
+    .hero-grid,.split,.section-head,.knowledge-grid{grid-template-columns:1fr;gap:45px}
+    .hero-portrait{justify-self:center;width:min(100%,390px)}
+    .topic-grid{grid-template-columns:repeat(2,1fr)}
+  }
+
+  @media(max-width:650px){
+    .home-hero{padding-top:70px}
+    .hero-actions{flex-direction:column}
+    .hero-portrait{width:min(88vw,360px);border-radius:22px}
+    .topic-grid{grid-template-columns:1fr}
+    .topic-grid a{min-height:auto}
+  }
 </style>
