@@ -41,7 +41,7 @@ const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("it-IT", { day: "2-digit", month: "long", year: "numeric" }).format(date);
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle} description={pageDescription} robots="noindex,follow">
   <div class="gl-shell">
     <PersonalHeader active="articoli" />
 
