@@ -84,25 +84,25 @@ import PersonalFooter from "@/components/PersonalFooter.astro";
 <style>
   .profile-hero { padding-top: 105px; padding-bottom: 90px; }
   .hero-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:80px; align-items:center; }
-  .summary-card { padding:30px; border-radius:24px; background:#0b1220; color:#fff; box-shadow:0 30px 70px rgba(16,24,40,.16); }
-  .prompt { color:#60a5fa; font-family:monospace; font-size:12px; }
+  .summary-card { padding:30px; border-radius:24px; background:#0b1220; color:#fff; box-shadow:0 30px 70px rgba(11,18,32,.16); }
+  .prompt { color:#ffffff; font-family:monospace; font-size:12px; opacity:.82; }
   .summary-card h2 { margin:42px 0 6px; font-size:28px; }
-  .summary-card>p { margin:0; color:#94a3b8; }
+  .summary-card>p { margin:0; color:rgba(255,255,255,.72); }
   .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
-  .tags span { padding:8px 10px; border:1px solid #2b3850; border-radius:8px; color:#cbd5e1; font-size:12px; }
+  .tags span { padding:8px 10px; border:1px solid rgba(255,255,255,.24); border-radius:8px; color:rgba(255,255,255,.84); font-size:12px; }
   .split { display:grid; grid-template-columns:.8fr 1.2fr; gap:100px; }
   .split h2,.section-head h2,.knowledge-section h2 { margin:0; color:#0b1220; font-size:clamp(2.3rem,4vw,3.8rem); line-height:1.05; letter-spacing:-.055em; }
-  .copy p { color:#667085; line-height:1.8; }
-  .copy .large { margin-top:0; color:#101828; font-size:22px; line-height:1.5; }
+  .copy p { color:rgba(11,18,32,.64); line-height:1.8; }
+  .copy .large { margin-top:0; color:#0b1220; font-size:22px; line-height:1.5; }
   .section-head { margin-bottom:46px; }
-  .grid { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid #e4e7ec; border-left:1px solid #e4e7ec; }
-  .grid article { min-height:230px; padding:28px; background:#fff; border-right:1px solid #e4e7ec; border-bottom:1px solid #e4e7ec; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(11,18,32,.12); border-left:1px solid rgba(11,18,32,.12); }
+  .grid article { min-height:230px; padding:28px; background:#fff; border-right:1px solid rgba(11,18,32,.12); border-bottom:1px solid rgba(11,18,32,.12); }
   .grid article>span { color:#2563eb; font-family:monospace; font-size:12px; }
   .grid h3 { margin:38px 0 10px; font-size:21px; color:#0b1220; }
-  .grid p { margin:0; color:#667085; font-size:14px; line-height:1.65; }
+  .grid p { margin:0; color:rgba(11,18,32,.64); font-size:14px; line-height:1.65; }
   .knowledge-section { padding:105px 0; background:#0b1220; color:#fff; }
   .knowledge-section h2 { color:#fff; }
-  .knowledge-section p:not(.gl-eyebrow) { color:#94a3b8; line-height:1.75; max-width:700px; }
+  .knowledge-section p:not(.gl-eyebrow) { color:rgba(255,255,255,.72); line-height:1.75; max-width:700px; }
   .next-grid { display:grid; grid-template-columns:1fr auto; gap:60px; align-items:end; }
   .white-button { background:#fff; color:#0b1220; }
   @media(max-width:900px){.hero-grid,.split,.next-grid{grid-template-columns:1fr;gap:45px}.grid{grid-template-columns:repeat(2,1fr)}}
