@@ -15,47 +15,50 @@ export function getStaticPaths() {
 const { area } = Astro.props as { area: Area };
 const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
 const isWifi = area.slug === "wifi";
+const isNetworking = area.slug === "networking-security";
 const pageDescription = isWifi
   ? "Wi-Fi enterprise, RF design, site survey, Ekahau, roaming e troubleshooting wireless: articoli e approfondimenti tecnici di Giulio Lattanzio."
-  : area.description;
+  : isNetworking
+    ? "Networking e sicurezza: reti IP, switching, VLAN, routing, Fortinet/FortiGate, Alcatel, VPN, IPsec, Wireshark e troubleshooting di infrastruttura."
+    : area.description;
 
 const areaDetail = area.slug === "networking-security"
   ? {
       eyebrow: "Infrastructure & Security",
-      heading: "Dall'infrastruttura alla protezione della rete.",
+      heading: "Dall'infrastruttura alla sicurezza operativa della rete.",
       intro:
-        "Questa area raccoglie gli aspetti che collegano il funzionamento della rete alla sua sicurezza: architettura, segmentazione, protezione e analisi operativa.",
+        "Questa area collega architettura IP, switching e segmentazione alla protezione e all'analisi operativa: dalla gestione della rete con tecnologie Alcatel alla sicurezza Fortinet/FortiGate e al troubleshooting.",
       cards: [
         {
           eyebrow: "Network infrastructure",
-          title: "Reti IP & VLAN",
+          title: "Reti IP, VLAN & switching",
           description:
-            "Architetture IP, segmentazione, VLAN, connettività e organizzazione dell'infrastruttura di rete.",
-          tags: ["Networking", "VLAN", "Infrastructure"],
+            "Architetture IP, switching, routing, segmentazione e VLAN per organizzare e gestire l'infrastruttura di rete, anche su tecnologie Alcatel.",
+          tags: ["Networking", "Alcatel", "VLAN"],
         },
         {
           eyebrow: "Security",
           title: "Fortinet & FortiGate",
           description:
-            "Policy, VPN, segmentazione, protezione perimetrale e gestione della sicurezza con tecnologie Fortinet.",
+            "Policy, VPN, segmentazione, protezione perimetrale e gestione della sicurezza con tecnologie Fortinet e FortiGate.",
           tags: ["Fortinet", "FortiGate", "VPN"],
         },
         {
           eyebrow: "Analysis & troubleshooting",
           title: "Analisi & troubleshooting",
           description:
-            "Osservazione del traffico, verifica dei flussi e diagnosi dei problemi che interessano rete e sicurezza.",
+            "Osservazione del traffico, verifica dei flussi, packet analysis e diagnosi dei problemi che interessano rete e sicurezza.",
           tags: ["Wireshark", "Traffic Analysis", "Troubleshooting"],
         },
       ],
-      topicsHeading: "Gli argomenti che troveranno spazio in questa sezione.",
+      topicsHeading: "Gli argomenti principali dell’area Networking & Security.",
       topicsIntro:
-        "Networking e security rimangono un'unica macro-area: i singoli articoli e i tag permetteranno di approfondire i temi più verticali senza frammentare il sito.",
+        "Dalle infrastrutture IP alla segmentazione, dalla sicurezza Fortinet alla connettività VPN e all'analisi del traffico: i contenuti restano raccolti in un unico hub, mentre articoli e tag consentono di approfondire i singoli temi.",
       topics: [
         {
-          title: "Reti IP",
+          title: "Reti IP & switching",
           description:
-            "Architetture, indirizzamento, connettività e principi operativi delle infrastrutture di rete.",
+            "Architetture, indirizzamento, switching, routing e gestione operativa delle infrastrutture, incluse piattaforme Alcatel.",
         },
         {
           title: "VLAN & segmentazione",
@@ -75,7 +78,7 @@ const areaDetail = area.slug === "networking-security"
         {
           title: "Analisi del traffico",
           description:
-            "Lettura dei flussi, packet analysis e osservazione del comportamento reale della rete.",
+            "Lettura dei flussi, packet analysis e osservazione del comportamento reale della rete attraverso strumenti come Wireshark.",
         },
         {
           title: "Troubleshooting",
@@ -351,10 +354,14 @@ const areaDetail = area.slug === "networking-security"
 
       <LatestArticles
         tags={area.tags}
-        eyebrow={isWifi ? "Ultimi articoli" : "Ultimi contenuti"}
-        heading={isWifi ? "Approfondimenti su Wi-Fi e wireless engineering." : `Dal Knowledge Hub: ${area.label}.`}
+        eyebrow={isWifi || isNetworking ? "Ultimi articoli" : "Ultimi contenuti"}
+        heading={isWifi
+          ? "Approfondimenti su Wi-Fi e wireless engineering."
+          : isNetworking
+            ? "Approfondimenti su networking e sicurezza."
+            : `Dal Knowledge Hub: ${area.label}.`}
         archiveHref={area.archiveHref}
-        archiveLabel={isWifi ? "Tutti gli articoli →" : "Vai all’archivio completo →"}
+        archiveLabel={isWifi || isNetworking ? "Tutti gli articoli →" : "Vai all’archivio completo →"}
         emptyText={`I contenuti dedicati a ${area.label} appariranno qui.`}
       />
 
