@@ -32,7 +32,13 @@ import LatestArticles from "@/components/LatestArticles.astro";
           <aside class="identity-card">
             <div class="identity-top"><span>C:\&gt; whoami</span><small>ONLINE</small></div>
             <div class="identity-main">
-              <span class="avatar">GL</span>
+              <img
+                class="avatar-logo"
+                src="/images/branding/giuliolattanzio_logo.png"
+                alt="Logo Giulio Lattanzio"
+                width="64"
+                height="64"
+              />
               <div><h2>Giulio Lattanzio</h2><p>Network & Security Specialist</p></div>
             </div>
             <div class="identity-tags">
@@ -110,7 +116,7 @@ import LatestArticles from "@/components/LatestArticles.astro";
   .identity-top { display: flex; justify-content: space-between; padding-bottom: 28px; border-bottom: 1px solid #243047; color: #60a5fa; font-family: monospace; font-size: 12px; }
   .identity-top small { color: #86efac; letter-spacing: .12em; }
   .identity-main { display: flex; align-items: center; gap: 18px; padding: 32px 0; }
-  .avatar { width: 64px; height: 64px; display: grid; place-items: center; background: #1d4ed8; border-radius: 16px; font-size: 20px; font-weight: 800; }
+  .avatar-logo { width: 64px; height: 64px; object-fit: contain; display: block; background: #fff; border-radius: 16px; padding: 5px; box-sizing: border-box; }
   .identity-main h2 { margin: 0; font-size: 22px; }
   .identity-main p { margin: 6px 0 0; color: #94a3b8; }
   .identity-tags { display: flex; flex-wrap: wrap; gap: 8px; }
