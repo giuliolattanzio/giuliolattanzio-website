@@ -14,6 +14,7 @@ export function getStaticPaths() {
 
 const { area } = Astro.props as { area: Area };
 const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
+const isWifi = area.slug === "wifi";
 ---
 
 <Layout
@@ -43,20 +44,121 @@ const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
         </div>
       </section>
 
-      <section class="area-content">
-        <div class="gl-wrap area-content-grid">
-          <div>
-            <p class="gl-eyebrow">Sezione tematica</p>
-            <h2>Uno spazio dedicato a {area.title}.</h2>
+      {isWifi ? (
+        <>
+          <section class="wifi-workflow">
+            <div class="gl-wrap">
+              <div class="wifi-section-head">
+                <div>
+                  <p class="gl-eyebrow">Wireless engineering</p>
+                  <h2>Dal progetto alla validazione sul campo.</h2>
+                </div>
+                <p>
+                  Organizzo questa area attorno alle fasi che considero più importanti nel lavoro su una WLAN:
+                  progettare, misurare e verificare ciò che accade realmente nell'ambiente radio.
+                </p>
+              </div>
+
+              <div class="wifi-workflow-grid">
+                <article class="wifi-work-card wifi-work-card-dark">
+                  <span>Design & planning</span>
+                  <h3>Progettazione RF</h3>
+                  <p>Requisiti, copertura, capacità, posizionamento degli AP e criteri di progetto per reti Wi-Fi enterprise.</p>
+                  <div class="wifi-card-tags">
+                    <span>RF</span>
+                    <span>Capacity</span>
+                    <span>Enterprise Wi-Fi</span>
+                  </div>
+                </article>
+
+                <article class="wifi-work-card">
+                  <span>Survey & validation</span>
+                  <h3>Site Survey</h3>
+                  <p>Survey passive e attive, misurazioni sul campo, validazione post-deployment e analisi delle heatmap.</p>
+                  <div class="wifi-card-tags wifi-card-tags-light">
+                    <a href="/tags/site-survey/">Site Survey</a>
+                    <a href="/tags/ekahau/">Ekahau</a>
+                    <a href="/tags/analisi-wifi/">Analisi Wi-Fi</a>
+                  </div>
+                </article>
+
+                <article class="wifi-work-card">
+                  <span>Analysis & troubleshooting</span>
+                  <h3>Analisi Wi-Fi</h3>
+                  <p>Copertura, interferenze, roaming, prestazioni e lettura dei dati per capire il comportamento reale della WLAN.</p>
+                  <div class="wifi-card-tags wifi-card-tags-light">
+                    <span>Roaming</span>
+                    <span>Spectrum</span>
+                    <span>Troubleshooting</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="wifi-topics">
+            <div class="gl-wrap">
+              <div class="wifi-topics-head">
+                <div>
+                  <p class="gl-eyebrow">Temi principali</p>
+                  <h2>Gli argomenti che troveranno spazio in questa sezione.</h2>
+                </div>
+                <p>
+                  Le categorie restano ampie; i tag e gli articoli permettono poi di scendere nel dettaglio senza frammentare la navigazione principale.
+                </p>
+              </div>
+
+              <div class="wifi-topic-grid">
+                <article>
+                  <span>RF</span>
+                  <h3>Radio Frequency</h3>
+                  <p>Copertura, SNR, interferenze, canali, potenza e principi che determinano il comportamento di una rete wireless.</p>
+                </article>
+                <article>
+                  <span>Design</span>
+                  <h3>Wi-Fi Design</h3>
+                  <p>Progettazione orientata ai requisiti, capacità, densità degli utenti e caratteristiche degli ambienti.</p>
+                </article>
+                <article>
+                  <span>Survey</span>
+                  <h3>Site Survey</h3>
+                  <p>Metodologie di misura, survey passive e attive, raccolta dati e validazione delle reti installate.</p>
+                </article>
+                <article>
+                  <span>Tools</span>
+                  <h3>Ekahau</h3>
+                  <p>Utilizzo degli strumenti di survey e progettazione per leggere, rappresentare e documentare l'ambiente RF.</p>
+                </article>
+                <article>
+                  <span>Mobility</span>
+                  <h3>Roaming</h3>
+                  <p>Comportamento dei client, transizione tra celle e fattori che influenzano continuità e qualità della connessione.</p>
+                </article>
+                <article>
+                  <span>Analysis</span>
+                  <h3>Troubleshooting</h3>
+                  <p>Approccio alla diagnosi dei problemi wireless attraverso misure, osservazione e correlazione dei dati raccolti.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+        </>
+      ) : (
+        <section class="area-content">
+          <div class="gl-wrap area-content-grid">
+            <div>
+              <p class="gl-eyebrow">Sezione tematica</p>
+              <h2>Uno spazio dedicato a {area.title}.</h2>
+            </div>
+            <div class="area-copy">
+              <p>
+                Questa pagina è il punto di accesso ai contenuti, agli strumenti e agli appunti che riguardano questa area tecnica.
+                La struttura è già pronta per essere sviluppata progressivamente mantenendo una navigazione semplice e coerente.
+              </p>
+            </div>
           </div>
-          <div class="area-copy">
-            <p>
-              Questa pagina è il punto di accesso ai contenuti, agli strumenti e agli appunti che riguardano questa area tecnica.
-              La struttura è già pronta per essere sviluppata progressivamente mantenendo una navigazione semplice e coerente.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <LatestArticles
         tags={area.tags}
@@ -164,13 +266,21 @@ const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
     font-size: 11px;
   }
 
-  .area-content {
+  .area-content,
+  .wifi-workflow,
+  .wifi-topics,
+  .area-navigation {
     position: relative;
+  }
+
+  .area-content {
     padding: 105px 0;
     background: #fff;
   }
 
   .area-content::before,
+  .wifi-workflow::before,
+  .wifi-topics::before,
   .area-navigation::before {
     content: "";
     position: absolute;
@@ -189,7 +299,9 @@ const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
   }
 
   .area-content h2,
-  .area-navigation-head h2 {
+  .area-navigation-head h2,
+  .wifi-section-head h2,
+  .wifi-topics-head h2 {
     margin: 0;
     color: #0b1220;
     font-size: clamp(2.5rem, 4.5vw, 4rem);
@@ -205,8 +317,157 @@ const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
     line-height: 1.8;
   }
 
+  .wifi-workflow {
+    padding: 105px 0 115px;
+    background: #fff;
+  }
+
+  .wifi-section-head,
+  .wifi-topics-head {
+    display: grid;
+    grid-template-columns: 1fr .85fr;
+    gap: 90px;
+    align-items: end;
+    margin-bottom: 46px;
+  }
+
+  .wifi-section-head > p,
+  .wifi-topics-head > p {
+    margin: 0;
+    color: rgba(11, 18, 32, .64);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .wifi-workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .wifi-work-card {
+    display: flex;
+    min-height: 350px;
+    flex-direction: column;
+    padding: 30px;
+    border: 1px solid rgba(11, 18, 32, .12);
+    border-radius: 22px;
+    background: #fff;
+    color: #0b1220;
+    box-shadow: 0 14px 34px rgba(11, 18, 32, .035);
+  }
+
+  .wifi-work-card-dark {
+    background: #0b1220;
+    border-color: #0b1220;
+    color: #fff;
+    box-shadow: 0 22px 52px rgba(11, 18, 32, .16);
+  }
+
+  .wifi-work-card > span,
+  .wifi-topic-grid article > span {
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  .wifi-work-card h3 {
+    margin: 72px 0 14px;
+    font-size: 29px;
+    line-height: 1.15;
+    letter-spacing: -.045em;
+  }
+
+  .wifi-work-card p {
+    margin: 0;
+    color: rgba(11, 18, 32, .64);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .wifi-work-card-dark p {
+    color: rgba(255, 255, 255, .78);
+  }
+
+  .wifi-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 28px;
+  }
+
+  .wifi-card-tags span,
+  .wifi-card-tags a {
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 255, 255, .24);
+    border-radius: 8px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 11px;
+    text-decoration: none;
+  }
+
+  .wifi-card-tags-light span,
+  .wifi-card-tags-light a {
+    border-color: rgba(11, 18, 32, .12);
+    color: #0b1220;
+  }
+
+  .wifi-card-tags-light a:hover {
+    color: #2563eb;
+  }
+
+  .wifi-topics {
+    padding: 105px 0 115px;
+    background: #0b1220;
+    color: #fff;
+  }
+
+  .wifi-topics::before {
+    background: rgba(255, 255, 255, .10);
+  }
+
+  .wifi-topics-head h2 {
+    color: #fff;
+  }
+
+  .wifi-topics-head > p {
+    color: rgba(255, 255, 255, .64);
+  }
+
+  .wifi-topic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid rgba(255, 255, 255, .14);
+    border-left: 1px solid rgba(255, 255, 255, .14);
+  }
+
+  .wifi-topic-grid article {
+    min-height: 245px;
+    padding: 28px;
+    border-right: 1px solid rgba(255, 255, 255, .14);
+    border-bottom: 1px solid rgba(255, 255, 255, .14);
+  }
+
+  .wifi-topic-grid h3 {
+    margin: 38px 0 12px;
+    color: #fff;
+    font-size: 25px;
+    line-height: 1.15;
+    letter-spacing: -.04em;
+  }
+
+  .wifi-topic-grid p {
+    margin: 0;
+    color: rgba(255, 255, 255, .66);
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
   .area-navigation {
-    position: relative;
     padding: 95px 0 110px;
     background: #fff;
   }
@@ -281,20 +542,43 @@ const otherAreas = TECHNICAL_AREAS.filter(item => item.slug !== area.slug);
     font-size: 13px;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 950px) {
     .area-hero-grid,
-    .area-content-grid {
+    .area-content-grid,
+    .wifi-section-head,
+    .wifi-topics-head {
       grid-template-columns: 1fr;
       gap: 50px;
+    }
+
+    .wifi-workflow-grid,
+    .wifi-topic-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .wifi-topic-grid {
+      border-left: 0;
+    }
+
+    .wifi-topic-grid article {
+      min-height: auto;
+      border-left: 1px solid rgba(255, 255, 255, .14);
     }
   }
 
   @media (max-width: 650px) {
     .area-hero { padding: 72px 0 78px; }
     .area-summary { padding: 26px; border-radius: 18px; }
-    .area-content { padding: 78px 0; }
+    .area-content,
+    .wifi-workflow,
+    .wifi-topics { padding: 78px 0; }
     .area-content::before,
+    .wifi-workflow::before,
+    .wifi-topics::before,
     .area-navigation::before { width: calc(100% - 28px); }
+    .wifi-work-card { min-height: auto; padding: 24px; border-radius: 18px; }
+    .wifi-work-card h3 { margin-top: 52px; }
+    .wifi-topic-grid article { padding: 24px; }
     .area-navigation { padding: 76px 0 82px; }
     .area-navigation-head { align-items: flex-start; flex-direction: column; }
     .area-navigation-grid { grid-template-columns: 1fr; }
