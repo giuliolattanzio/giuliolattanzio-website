@@ -12,23 +12,49 @@ export async function getStaticPaths() {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
   const sortedPosts = getSortedPosts(posts);
 
-  return sortedPosts.map((post, index) => ({
-    params: { slug: getPostSlug(post.id, post.filePath) },
-    props: {
-      post,
-      prevPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
-      nextPost: index > 0 ? sortedPosts[index - 1] : null,
-    },
-  }));
+  return sortedPosts.map((post, index) => {
+    const currentTags = new Set(post.data.tags.map(tag => slugifyStr(tag)));
+    const scored = sortedPosts
+      .filter(candidate => candidate.id !== post.id)
+      .map(candidate => ({
+        post: candidate,
+        score: candidate.data.tags.reduce(
+          (total, tag) => total + (currentTags.has(slugifyStr(tag)) ? 1 : 0),
+          0
+        ),
+      }))
+      .filter(item => item.score > 0)
+      .sort(
+        (a, b) =>
+          b.score - a.score ||
+          b.post.data.pubDatetime.valueOf() - a.post.data.pubDatetime.valueOf()
+      )
+      .map(item => item.post);
+
+    const fallback = [
+      index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+      index > 0 ? sortedPosts[index - 1] : null,
+    ].filter(Boolean) as CollectionEntry<"posts">[];
+
+    const relatedPosts = [...scored];
+    for (const candidate of fallback) {
+      if (relatedPosts.length >= 2) break;
+      if (!relatedPosts.some(item => item.id === candidate.id)) relatedPosts.push(candidate);
+    }
+
+    return {
+      params: { slug: getPostSlug(post.id, post.filePath) },
+      props: { post, relatedPosts: relatedPosts.slice(0, 2) },
+    };
+  });
 }
 
 type Props = {
   post: CollectionEntry<"posts">;
-  prevPost: CollectionEntry<"posts"> | null;
-  nextPost: CollectionEntry<"posts"> | null;
+  relatedPosts: CollectionEntry<"posts">[];
 };
 
-const { post, prevPost, nextPost } = Astro.props;
+const { post, relatedPosts } = Astro.props;
 const locale = Astro.currentLocale ?? config.site.lang;
 const { Content } = await render(post);
 
@@ -68,11 +94,19 @@ const formatDate = (date: Date) =>
 const tagLabels: Record<string, string> = {
   wifi: "Wi-Fi",
   networking: "Networking",
+  alcatel: "Alcatel",
   fortinet: "Fortinet",
   fortigate: "FortiGate",
+  vlan: "VLAN",
+  routing: "Routing",
+  vpn: "VPN",
+  ipsec: "IPsec",
   voip: "VoIP",
   sip: "SIP",
   audiocodes: "AudioCodes",
+  "audiocodes-sbc": "AudioCodes SBC",
+  "call-flow": "Call Flow",
+  interoperabilita: "Interoperabilità",
   ekahau: "Ekahau",
   "site-survey": "Site Survey",
   "survey-wifi": "Survey Wi-Fi",
@@ -83,11 +117,12 @@ const tagLabels: Record<string, string> = {
   "microsoft-teams": "Microsoft Teams",
 };
 
-const formatTag = (tag: string) => tagLabels[tag] ?? tag;
+const formatTag = (tag: string) => tagLabels[slugifyStr(tag)] ?? tag;
 ---
 
 <PostLayout
   title={`${title} | ${config.site.title}`}
+  headline={title}
   description={description}
   ogImage={ogImage}
   canonicalURL={canonicalURL}
@@ -122,7 +157,7 @@ const formatTag = (tag: string) => tagLabels[tag] ?? tag;
             )}
           </div>
 
-          <div class="gl-tag-list article-tags">
+          <div class="gl-tag-list article-tags" aria-label="Argomenti dell'articolo">
             {tags.map(tag => (
               <a class="gl-tag" href={`/tags/${slugifyStr(tag)}/`}>{formatTag(tag)}</a>
             ))}
@@ -133,7 +168,13 @@ const formatTag = (tag: string) => tagLabels[tag] ?? tag;
       {coverImage && (
         <div class="cover-area">
           <div class="article-heading-wrap">
-            <img class="cover-image" src={coverImage} alt={`Immagine di copertina: ${title}`} />
+            <img
+              class="cover-image"
+              src={coverImage}
+              alt={`Immagine di copertina dell'articolo: ${title}`}
+              loading="eager"
+              fetchpriority="high"
+            />
           </div>
         </div>
       )}
@@ -149,31 +190,20 @@ const formatTag = (tag: string) => tagLabels[tag] ?? tag;
           <div class="article-end-head">
             <div>
               <p class="gl-eyebrow">Continua a esplorare</p>
-              <h2>Altri contenuti del Knowledge Hub.</h2>
+              <h2>Approfondimenti correlati.</h2>
             </div>
             <a class="all-posts-link" href="/posts/">Tutti gli articoli →</a>
           </div>
 
-          {(prevPost || nextPost) && (
+          {relatedPosts.length > 0 && (
             <div class="related-grid">
-              <div>
-                {prevPost && (
-                  <a class="related-card" href={getPostUrl(prevPost.id, prevPost.filePath, locale)}>
-                    <span>Articolo precedente</span>
-                    <strong>{prevPost.data.title}</strong>
-                    <small>{prevPost.data.description}</small>
-                  </a>
-                )}
-              </div>
-              <div>
-                {nextPost && (
-                  <a class="related-card" href={getPostUrl(nextPost.id, nextPost.filePath, locale)}>
-                    <span>Articolo successivo</span>
-                    <strong>{nextPost.data.title}</strong>
-                    <small>{nextPost.data.description}</small>
-                  </a>
-                )}
-              </div>
+              {relatedPosts.map(related => (
+                <a class="related-card" href={getPostUrl(related.id, related.filePath, locale)}>
+                  <span>Articolo correlato</span>
+                  <strong>{related.data.title}</strong>
+                  <small>{related.data.description}</small>
+                </a>
+              ))}
             </div>
           )}
         </div>
@@ -221,9 +251,7 @@ const formatTag = (tag: string) => tagLabels[tag] ?? tag;
     border-top: 1px solid #e4e7ec;
   }
 
-  .article-info-item {
-    min-width: 130px;
-  }
+  .article-info-item { min-width: 130px; }
 
   .info-label {
     display: block;
@@ -241,9 +269,7 @@ const formatTag = (tag: string) => tagLabels[tag] ?? tag;
     font-weight: 650;
   }
 
-  .article-tags {
-    margin-top: 22px;
-  }
+  .article-tags { margin-top: 22px; }
 
   .cover-area {
     padding: 0 0 62px;
@@ -266,9 +292,7 @@ const formatTag = (tag: string) => tagLabels[tag] ?? tag;
     border-top: 1px solid #e4e7ec;
   }
 
-  .gl-prose {
-    padding-top: 64px;
-  }
+  .gl-prose { padding-top: 64px; }
 
   .article-end {
     padding: 70px 0;
@@ -302,14 +326,13 @@ const formatTag = (tag: string) => tagLabels[tag] ?? tag;
 
   .related-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
 
   .related-card {
     display: flex;
     min-height: 175px;
-    height: 100%;
     flex-direction: column;
     padding: 24px;
     background: #fff;
@@ -436,9 +459,7 @@ const formatTag = (tag: string) => tagLabels[tag] ?? tag;
     border-top: 1px solid #e4e7ec;
   }
 
-  #article figure {
-    margin: 2rem 0;
-  }
+  #article figure { margin: 2rem 0; }
 
   #article figcaption {
     margin-top: .65rem;
