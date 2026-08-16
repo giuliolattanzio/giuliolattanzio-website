@@ -69,10 +69,20 @@ content:
               label: Wi-Fi
             - name: networking
               label: Networking
+            - name: alcatel
+              label: Alcatel
             - name: fortinet
               label: Fortinet
             - name: fortigate
               label: FortiGate
+            - name: vlan
+              label: VLAN
+            - name: routing
+              label: Routing
+            - name: vpn
+              label: VPN
+            - name: ipsec
+              label: IPsec
             - name: voip
               label: VoIP
             - name: sip
