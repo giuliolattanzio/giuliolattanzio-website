@@ -34,13 +34,24 @@ const isWifi = area.slug === "wifi";
             <p class="area-lead">{area.description}</p>
           </div>
 
-          <aside class="area-summary">
-            <span>Area tecnica</span>
-            <p>{area.summary}</p>
-            <div class="area-topic-list" aria-label={`Temi ${area.label}`}>
-              {area.topics.map(topic => <span>{topic}</span>)}
-            </div>
-          </aside>
+          {isWifi ? (
+            <figure class="area-portrait">
+              <img
+                src="/images/profile/giulio-lattanzio-survey.PNG"
+                alt="Giulio Lattanzio durante un'attività di site survey Wi-Fi"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </figure>
+          ) : (
+            <aside class="area-summary">
+              <span>Area tecnica</span>
+              <p>{area.summary}</p>
+              <div class="area-topic-list" aria-label={`Temi ${area.label}`}>
+                {area.topics.map(topic => <span>{topic}</span>)}
+              </div>
+            </aside>
+          )}
         </div>
       </section>
 
@@ -60,22 +71,11 @@ const isWifi = area.slug === "wifi";
               </div>
 
               <div class="wifi-workflow-grid">
-                <article class="wifi-work-card wifi-work-card-dark">
-                  <span>Design & planning</span>
-                  <h3>Progettazione RF</h3>
-                  <p>Requisiti, copertura, capacità, posizionamento degli AP e criteri di progetto per reti Wi-Fi enterprise.</p>
-                  <div class="wifi-card-tags">
-                    <span>RF</span>
-                    <span>Capacity</span>
-                    <span>Enterprise Wi-Fi</span>
-                  </div>
-                </article>
-
                 <article class="wifi-work-card">
                   <span>Survey & validation</span>
                   <h3>Site Survey</h3>
                   <p>Survey passive e attive, misurazioni sul campo, validazione post-deployment e analisi delle heatmap.</p>
-                  <div class="wifi-card-tags wifi-card-tags-light">
+                  <div class="wifi-card-tags">
                     <a href="/tags/site-survey/">Site Survey</a>
                     <a href="/tags/ekahau/">Ekahau</a>
                     <a href="/tags/analisi-wifi/">Analisi Wi-Fi</a>
@@ -86,10 +86,21 @@ const isWifi = area.slug === "wifi";
                   <span>Analysis & troubleshooting</span>
                   <h3>Analisi Wi-Fi</h3>
                   <p>Copertura, interferenze, roaming, prestazioni e lettura dei dati per capire il comportamento reale della WLAN.</p>
-                  <div class="wifi-card-tags wifi-card-tags-light">
+                  <div class="wifi-card-tags">
                     <span>Roaming</span>
                     <span>Spectrum</span>
                     <span>Troubleshooting</span>
+                  </div>
+                </article>
+
+                <article class="wifi-work-card">
+                  <span>Design & planning</span>
+                  <h3>Progettazione RF</h3>
+                  <p>Requisiti, copertura, capacità, posizionamento degli AP e criteri di progetto per reti Wi-Fi enterprise.</p>
+                  <div class="wifi-card-tags">
+                    <span>RF</span>
+                    <span>Capacity</span>
+                    <span>Enterprise Wi-Fi</span>
                   </div>
                 </article>
               </div>
@@ -100,7 +111,6 @@ const isWifi = area.slug === "wifi";
             <div class="gl-wrap">
               <div class="wifi-topics-head">
                 <div>
-                  <p class="gl-eyebrow">Temi principali</p>
                   <h2>Gli argomenti che troveranno spazio in questa sezione.</h2>
                 </div>
                 <p>
@@ -110,32 +120,26 @@ const isWifi = area.slug === "wifi";
 
               <div class="wifi-topic-grid">
                 <article>
-                  <span>RF</span>
                   <h3>Radio Frequency</h3>
                   <p>Copertura, SNR, interferenze, canali, potenza e principi che determinano il comportamento di una rete wireless.</p>
                 </article>
                 <article>
-                  <span>Design</span>
                   <h3>Wi-Fi Design</h3>
                   <p>Progettazione orientata ai requisiti, capacità, densità degli utenti e caratteristiche degli ambienti.</p>
                 </article>
                 <article>
-                  <span>Survey</span>
                   <h3>Site Survey</h3>
                   <p>Metodologie di misura, survey passive e attive, raccolta dati e validazione delle reti installate.</p>
                 </article>
                 <article>
-                  <span>Tools</span>
                   <h3>Ekahau</h3>
                   <p>Utilizzo degli strumenti di survey e progettazione per leggere, rappresentare e documentare l'ambiente RF.</p>
                 </article>
                 <article>
-                  <span>Mobility</span>
                   <h3>Roaming</h3>
                   <p>Comportamento dei client, transizione tra celle e fattori che influenzano continuità e qualità della connessione.</p>
                 </article>
                 <article>
-                  <span>Analysis</span>
                   <h3>Troubleshooting</h3>
                   <p>Approccio alla diagnosi dei problemi wireless attraverso misure, osservazione e correlazione dei dati raccolti.</p>
                 </article>
@@ -225,6 +229,26 @@ const isWifi = area.slug === "wifi";
     color: rgba(11, 18, 32, .66);
     font-size: 19px;
     line-height: 1.75;
+  }
+
+  .area-portrait {
+    width: min(100%, 445px);
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    justify-self: end;
+    overflow: hidden;
+    border: 1px solid rgba(11, 18, 32, .10);
+    border-radius: 28px;
+    background: #fff;
+    box-shadow: 0 28px 68px rgba(11, 18, 32, .12);
+  }
+
+  .area-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
   }
 
   .area-summary {
@@ -355,17 +379,16 @@ const isWifi = area.slug === "wifi";
     background: #fff;
     color: #0b1220;
     box-shadow: 0 14px 34px rgba(11, 18, 32, .035);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
 
-  .wifi-work-card-dark {
-    background: #0b1220;
-    border-color: #0b1220;
-    color: #fff;
-    box-shadow: 0 22px 52px rgba(11, 18, 32, .16);
+  .wifi-work-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(11, 18, 32, .24);
+    box-shadow: 0 20px 44px rgba(11, 18, 32, .07);
   }
 
-  .wifi-work-card > span,
-  .wifi-topic-grid article > span {
+  .wifi-work-card > span {
     color: #2563eb;
     font-size: 11px;
     font-weight: 800;
@@ -387,10 +410,6 @@ const isWifi = area.slug === "wifi";
     line-height: 1.75;
   }
 
-  .wifi-work-card-dark p {
-    color: rgba(255, 255, 255, .78);
-  }
-
   .wifi-card-tags {
     display: flex;
     flex-wrap: wrap;
@@ -402,21 +421,15 @@ const isWifi = area.slug === "wifi";
   .wifi-card-tags span,
   .wifi-card-tags a {
     padding: 8px 10px;
-    border: 1px solid rgba(255, 255, 255, .24);
+    border: 1px solid rgba(11, 18, 32, .12);
     border-radius: 8px;
-    color: #fff;
+    color: #0b1220;
     font-family: monospace;
     font-size: 11px;
     text-decoration: none;
   }
 
-  .wifi-card-tags-light span,
-  .wifi-card-tags-light a {
-    border-color: rgba(11, 18, 32, .12);
-    color: #0b1220;
-  }
-
-  .wifi-card-tags-light a:hover {
+  .wifi-card-tags a:hover {
     color: #2563eb;
   }
 
@@ -446,14 +459,14 @@ const isWifi = area.slug === "wifi";
   }
 
   .wifi-topic-grid article {
-    min-height: 245px;
-    padding: 28px;
+    min-height: 215px;
+    padding: 30px 28px;
     border-right: 1px solid rgba(255, 255, 255, .14);
     border-bottom: 1px solid rgba(255, 255, 255, .14);
   }
 
   .wifi-topic-grid h3 {
-    margin: 38px 0 12px;
+    margin: 0 0 16px;
     color: #fff;
     font-size: 25px;
     line-height: 1.15;
@@ -551,6 +564,11 @@ const isWifi = area.slug === "wifi";
       gap: 50px;
     }
 
+    .area-portrait {
+      width: min(100%, 410px);
+      justify-self: center;
+    }
+
     .wifi-workflow-grid,
     .wifi-topic-grid {
       grid-template-columns: 1fr;
@@ -568,6 +586,7 @@ const isWifi = area.slug === "wifi";
 
   @media (max-width: 650px) {
     .area-hero { padding: 72px 0 78px; }
+    .area-portrait { width: min(88vw, 360px); border-radius: 22px; }
     .area-summary { padding: 26px; border-radius: 18px; }
     .area-content,
     .wifi-workflow,
