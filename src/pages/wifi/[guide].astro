@@ -13,7 +13,8 @@ export function getStaticPaths() {
 
 const { guide } = Astro.props as { guide: WifiGuide };
 const canonicalURL = new URL(`/wifi/${guide.slug}/`, Astro.site ?? Astro.url).href;
-const imageURL = new URL(guide.hero, Astro.site ?? Astro.url).href;
+const heroPath = `/images/wifi-guides/${guide.slug}.webp`;
+const imageURL = new URL(heroPath, Astro.site ?? Astro.url).href;
 const profileURL = new URL("/profilo/", Astro.site ?? Astro.url).href;
 const related = guide.related.map((slug) => WIFI_GUIDE_BY_SLUG[slug]).filter(Boolean);
 
@@ -53,7 +54,7 @@ const articleStructuredData = {
 };
 ---
 
-<Layout title={guide.seoTitle} description={guide.description} canonicalURL={canonicalURL}>
+<Layout title={guide.seoTitle} description={guide.description} canonicalURL={canonicalURL} ogImage={heroPath}>
   <Fragment slot="head">
     <script type="application/ld+json" is:inline set:html={JSON.stringify(articleStructuredData)} />
   </Fragment>
@@ -78,7 +79,7 @@ const articleStructuredData = {
             </div>
           </div>
           <figure class="guide-hero-image">
-            <img src={guide.hero} alt={guide.heroAlt} width="1400" height="788" loading="eager" fetchpriority="high" />
+            <img src={heroPath} alt={guide.heroAlt} width="1200" height="675" loading="eager" fetchpriority="high" decoding="async" />
           </figure>
         </div>
       </section>
@@ -218,9 +219,10 @@ const articleStructuredData = {
   .guide-hero-image {
     margin: 0;
     overflow: hidden;
+    border: 1px solid rgba(11,18,32,.08);
     border-radius: 24px;
-    background: #0b1220;
-    box-shadow: 0 28px 65px rgba(11,18,32,.16);
+    background: #fff;
+    box-shadow: 0 22px 52px rgba(11,18,32,.09);
   }
   .guide-hero-image img {
     display: block;
