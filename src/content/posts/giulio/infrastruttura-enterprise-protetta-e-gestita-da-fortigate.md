@@ -24,7 +24,7 @@ Diventa un punto di controllo attraverso cui convergono **segmentazione, routing
 
 Se FortiGate viene trattato come un semplice apparato perimetrale, si perde gran parte del valore architetturale che può offrire. Se invece viene usato come nodo decisionale della rete, ogni flusso importante deve essere pensato in termini di **origine, destinazione, policy, servizio, identità, livello di ispezione e percorso**.
 
-In questo articolo considero una realtà aziendale ipotetica con una sede principale, più VLAN interne, servizi pubblicati, collegamenti verso sedi remote e accesso a Internet. L'obiettivo non è descrivere una configurazione specifica, ma ragionare su come strutturare una rete nella quale **FortiGate rappresenta il punto di enforcement e visibilità dell'infrastruttura**.
+In una rete enterprise con più VLAN interne, servizi pubblicati, collegamenti verso sedi remote e accesso a Internet, **FortiGate può rappresentare il punto di enforcement e visibilità dell'infrastruttura**. Il tema centrale non è una singola configurazione, ma il modo in cui routing, segmentazione e sicurezza vengono integrati in un'architettura coerente e gestibile.
 
 ---
 
@@ -50,7 +50,7 @@ Il vantaggio non è semplicemente avere “più firewalling”. Il vantaggio è 
 
 ## FortiGate come punto centrale di enforcement
 
-In uno scenario di questo tipo FortiGate svolge contemporaneamente più funzioni.
+In un'architettura di questo tipo FortiGate svolge contemporaneamente più funzioni.
 
 Gestisce il traffico che entra ed esce dalla rete, ma può anche diventare il gateway di più segmenti VLAN, controllare il traffico inter-VLAN, terminare tunnel IPsec, applicare policy di sicurezza e registrare gli eventi rilevanti.
 
@@ -82,7 +82,7 @@ Se invece il routing dei segmenti critici viene portato sul FortiGate, il traffi
 
 A quel punto la segmentazione diventa realmente enforceable.
 
-Un esempio concettuale potrebbe prevedere:
+La segmentazione può includere:
 
 - VLAN utenti;
 - VLAN server;
@@ -378,11 +378,9 @@ Ogni protocollo abilitato rappresenta una superficie di attacco aggiuntiva.
 
 ---
 
-## Scenario di troubleshooting 1: una VLAN non raggiunge Internet
+## Caso di troubleshooting 1: una VLAN non raggiunge Internet
 
-Supponiamo che gli utenti della VLAN 30 non riescano a navigare.
-
-La tentazione può essere quella di controllare immediatamente DNS o Web Filter.
+Quando gli utenti della VLAN 30 non riescono a navigare, la tentazione può essere quella di controllare immediatamente DNS o Web Filter.
 
 Un metodo più ordinato parte invece dal flusso.
 
@@ -404,7 +402,7 @@ Solo dopo aver determinato in quale punto si interrompe la catena ha senso inter
 
 ---
 
-## Scenario di troubleshooting 2: il traffico tra due VLAN viene bloccato
+## Caso di troubleshooting 2: il traffico tra due VLAN viene bloccato
 
 In questo caso il primo controllo è verificare che entrambe le reti siano realmente instradate attraverso FortiGate.
 
@@ -416,13 +414,13 @@ Se invece il FortiGate è il gateway, bisogna verificare:
 
 Il log forward traffic può mostrare rapidamente se il flusso viene negato e da quale policy.
 
-Se non compare alcun log, può essere un segnale che il pacchetto non sta raggiungendo il firewall oppure che il percorso non è quello ipotizzato.
+Se non compare alcun log, può essere un segnale che il pacchetto non sta raggiungendo il firewall oppure che il percorso non è quello atteso.
 
 ---
 
-## Scenario di troubleshooting 3: una VPN è up ma il traffico non passa
+## Caso di troubleshooting 3: una VPN è up ma il traffico non passa
 
-Questo scenario è particolarmente comune.
+Questo caso è particolarmente comune.
 
 Il tunnel risulta attivo, quindi si presume che la VPN “funzioni”.
 
@@ -441,7 +439,7 @@ Il principio è sempre lo stesso: analizzare il flusso end-to-end, non fermarsi 
 
 ---
 
-## Scenario di troubleshooting 4: una policy esiste ma non viene utilizzata
+## Caso di troubleshooting 4: una policy esiste ma non viene utilizzata
 
 FortiGate valuta le policy in ordine.
 
