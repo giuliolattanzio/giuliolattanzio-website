@@ -84,13 +84,6 @@ const ogImage = ogImageUrl
   : undefined;
 const coverImage = explicitImageUrl;
 
-const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat("it-IT", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  }).format(date);
-
 const tagLabels: Record<string, string> = {
   wifi: "Wi-Fi",
   networking: "Networking",
@@ -145,16 +138,6 @@ const formatTag = (tag: string) => tagLabels[slugifyStr(tag)] ?? tag;
               <span class="info-label">Autore</span>
               <strong>{author}</strong>
             </div>
-            <div class="article-info-item">
-              <span class="info-label">Pubblicato</span>
-              <strong>{formatDate(pubDatetime)}</strong>
-            </div>
-            {modDatetime && (
-              <div class="article-info-item">
-                <span class="info-label">Aggiornato</span>
-                <strong>{formatDate(modDatetime)}</strong>
-              </div>
-            )}
           </div>
 
           <div class="gl-tag-list article-tags" aria-label="Argomenti dell'articolo">
