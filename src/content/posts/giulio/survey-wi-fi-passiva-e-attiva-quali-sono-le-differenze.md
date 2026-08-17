@@ -15,11 +15,11 @@ ogImage: /images/articles/survey-wi-fi-passiva-e-attiva-quali-sono-le-differenze
 ---
 ## Introduzione
 
-Quando si analizza o si valida una rete Wi-Fi è importante distinguere tra **survey passiva** e **survey attiva**.
+Quando si analizza o si valida una rete Wi-Fi è importante distinguere tra **survey passiva** e **survey attiva**. Entrambe rientrano nel più ampio processo di [site survey Wi-Fi](/wifi/site-survey/), che permette di misurare e validare sul campo il comportamento reale di una rete wireless.
 
 Entrambe vengono eseguite muovendosi fisicamente all'interno dell'ambiente da analizzare, ma osservano la rete da due punti di vista differenti.
 
-La survey passiva è principalmente orientata all'analisi dell'ambiente radio e della copertura RF, mentre la survey attiva permette di verificare il comportamento della rete dal punto di vista di un client realmente associato.
+La survey passiva è principalmente orientata all'analisi dell'ambiente radio e della copertura [RF](/wifi/radio-frequency/), mentre la survey attiva permette di verificare il comportamento della rete dal punto di vista di un client realmente associato.
 
 Capire questa differenza è fondamentale per scegliere il metodo corretto in base all'obiettivo dell'analisi.
 
@@ -133,7 +133,7 @@ Ad esempio, il client potrebbe mostrare:
 
 - variazioni importanti delle prestazioni;
 
-- difficoltà durante il passaggio tra celle.
+- difficoltà durante il passaggio tra celle, un comportamento che va interpretato anche nel contesto del [roaming Wi-Fi](/wifi/roaming/).
 
 Questo esempio mostra perché **copertura RF e qualità reale della connessione non sono necessariamente la stessa cosa**.
 
@@ -180,7 +180,7 @@ Una survey passiva è particolarmente utile quando voglio:
 
 - raccogliere una fotografia complessiva della WLAN.
 
-È quindi uno degli strumenti principali durante una **post-deployment validation**.
+È quindi uno degli strumenti principali durante una **post-deployment validation** e permette di confrontare ciò che è stato realmente installato con gli obiettivi definiti durante il [Wi-Fi Design](/wifi/wifi-design/).
 
 ---
 
@@ -200,13 +200,13 @@ Una survey attiva diventa particolarmente interessante quando voglio verificare:
 
 - problemi che compaiono soltanto durante una comunicazione reale.
 
-Può essere quindi molto utile anche durante attività di **troubleshooting**.
+Può essere quindi molto utile anche durante attività di [troubleshooting Wi-Fi](/wifi/troubleshooting/).
 
 ---
 
 ## Il ruolo di Ekahau
 
-Strumenti professionali come **Ekahau** permettono di raccogliere e rappresentare graficamente le misurazioni effettuate durante una site survey.
+Strumenti professionali come [Ekahau](/wifi/ekahau/) permettono di raccogliere e rappresentare graficamente le misurazioni effettuate durante una site survey.
 
 Le heatmap consentono poi di correlare i dati raccolti con la planimetria dell'ambiente e di individuare rapidamente aree che richiedono ulteriori verifiche.
 
@@ -226,7 +226,7 @@ Esiste però un altro elemento molto importante durante l'analisi di un ambiente
 
 Non tutte le interferenze presenti nelle bande utilizzate dal Wi-Fi sono necessariamente generate da dispositivi Wi-Fi.
 
-L'analisi dello spettro può aiutare a individuare sorgenti RF non 802.11 che una normale analisi Wi-Fi potrebbe non descrivere completamente.
+L'analisi dello spettro può aiutare a individuare sorgenti RF non 802.11 che una normale analisi Wi-Fi potrebbe non descrivere completamente. Questo tipo di verifica completa l'analisi dei principi di [radiofrequenza nel Wi-Fi](/wifi/radio-frequency/).
 
 Per questo motivo, in situazioni complesse, una verifica completa può comprendere:
 
@@ -249,3 +249,5 @@ La prima è fondamentale per comprendere copertura e comportamento RF.
 La seconda aggiunge il punto di vista del client e permette di verificare come la rete si comporta durante una comunicazione reale.
 
 Nella pratica, utilizzarle insieme permette di ottenere una visione molto più completa della WLAN rispetto all'utilizzo di una sola metodologia.
+
+Per un quadro più ampio del processo di misura e validazione, puoi continuare con la guida dedicata alla [Site Survey Wi-Fi](/wifi/site-survey/).
