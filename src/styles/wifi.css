@@ -1,4 +1,4 @@
-/* Wi-Fi area hero: compact editorial layout with the survey photo under the copy. */
+/* Wi-Fi area hero: compact editorial layout without the survey photo. */
 .area-hero:has(.area-portrait) {
   padding: 72px 0 82px !important;
 }
@@ -24,22 +24,9 @@
   margin-top: 22px !important;
 }
 
+/* Keep the survey asset in the repository for future editorial use, but do not render it in this hero. */
 .area-hero-grid:has(.area-portrait) .area-portrait {
-  display: block !important;
-  width: min(100%, 420px) !important;
-  aspect-ratio: 16 / 10 !important;
-  margin: 34px 0 0 !important;
-  justify-self: auto !important;
-  overflow: hidden !important;
-  border-radius: 18px !important;
-  box-shadow: 0 14px 36px rgba(11, 18, 32, .08) !important;
-}
-
-.area-hero-grid:has(.area-portrait) .area-portrait img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center 34% !important;
+  display: none !important;
 }
 
 @media (max-width: 650px) {
@@ -53,11 +40,5 @@
 
   .area-hero-grid:has(.area-portrait) .area-title {
     font-size: clamp(2.65rem, 12vw, 3.8rem) !important;
-  }
-
-  .area-hero-grid:has(.area-portrait) .area-portrait {
-    width: min(100%, 390px) !important;
-    margin-top: 28px !important;
-    border-radius: 16px !important;
   }
 }
