@@ -10,6 +10,8 @@ const articleCoverByTitle: Record<string, string> = {
     "/images/articles/alcatel-omniswitch-omniaccess-stellar-hero.webp",
   "Microsoft Teams Direct Routing multi-sede: AudioCodes come punto di attestazione e interoperabilità":
     "/images/articles/microsoft-teams-direct-routing-audiocodes-multisede.webp",
+  "Infrastruttura enterprise protetta e gestita da FortiGate":
+    "/images/articles/infrastruttura-enterprise-fortigate-hero.webp",
 };
 
 const posts = defineCollection({
