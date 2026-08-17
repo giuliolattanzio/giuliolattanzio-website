@@ -27,15 +27,21 @@ const {
   robots,
 } = Astro.props;
 
-const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
 const rssHref = getRelativeLocaleUrl(
   Astro.currentLocale ?? config.site.lang,
   "rss.xml"
 );
 const isHomePage = Astro.url.pathname === "/";
+const isPostArticlePage =
+  Astro.url.pathname.startsWith("/posts/") && Astro.url.pathname !== "/posts/";
 const isArticlePage =
-  (Astro.url.pathname.startsWith("/posts/") && Astro.url.pathname !== "/posts/") ||
+  isPostArticlePage ||
   (Astro.url.pathname.startsWith("/wifi/") && Astro.url.pathname !== "/wifi/");
+const usePostSocialJpeg =
+  isPostArticlePage && typeof ogImage === "string" && /\.webp(?:\?|$)/i.test(ogImage);
+const socialImageURL = usePostSocialJpeg
+  ? new URL(`${Astro.url.pathname.replace(/\/$/, "")}/social.jpg`, Astro.site ?? Astro.url)
+  : new URL(ogImage, Astro.site ?? Astro.url);
 const openGraphType = isArticlePage ? "article" : "website";
 const webSiteSchema = {
   "@context": "https://schema.org",
@@ -91,6 +97,9 @@ const webSiteSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImageURL} />
+    {usePostSocialJpeg && <meta property="og:image:type" content="image/jpeg" />}
+    {usePostSocialJpeg && <meta property="og:image:width" content="1200" />}
+    {usePostSocialJpeg && <meta property="og:image:height" content="627" />}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
