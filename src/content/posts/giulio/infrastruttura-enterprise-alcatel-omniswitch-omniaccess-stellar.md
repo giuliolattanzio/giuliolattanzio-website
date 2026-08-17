@@ -11,6 +11,7 @@ tags:
   - vlan
   - troubleshooting
   - security
+ogImage: /images/articles/alcatel-omniswitch-omniaccess-stellar-hero.webp?v=2
 ---
 ## Introduzione
 
@@ -344,223 +345,94 @@ Una **site survey post-deployment** permette di osservare:
 
 Una survey attiva può aggiungere il punto di vista del client e verificare throughput, latenza, packet loss e qualità della connessione.
 
-Il progetto non dovrebbe essere considerato concluso quando gli AP risultano “online”.
+Il progetto non dovrebbe essere considerato concluso quando gli AP risultano “online”, ma quando la rete è stata validata rispetto ai requisiti reali.
 
-Un AP raggiungibile dalla piattaforma di gestione conferma che l'apparato è operativo, ma non dimostra che la WLAN soddisfi i requisiti degli utenti.
-
-Per approfondire metodologia e differenze tra le tecniche di misura puoi consultare la guida [Site Survey Wi-Fi](/wifi/site-survey/) e l'articolo [Survey Wi-Fi passiva e attiva: quali sono le differenze?](/posts/survey-wi-fi-passiva-e-attiva-quali-sono-le-differenze/).
+Per questo la [Site Survey Wi-Fi](/wifi/site-survey/) è parte integrante del ciclo di progettazione e non un'attività opzionale da eseguire solo quando compaiono problemi.
 
 ---
 
-## Un metodo di troubleshooting end-to-end
+## Troubleshooting: analizzare il percorso completo
 
-Quando un utente segnala un problema Wi-Fi su un'infrastruttura Alcatel-Lucent, evito di partire immediatamente dalla configurazione radio.
+Quando la rete presenta un problema, cerco di evitare il troubleshooting “a tentativi”.
 
-Preferisco seguire un percorso strutturato.
+Un metodo più efficace consiste nel classificare il sintomo e seguire il percorso del traffico.
 
-### 1. Definire il sintomo
+### Scenario 1: client associato ma senza connettività
 
-Prima di tutto bisogna capire cosa non funziona realmente.
+Verifico nell'ordine:
 
-Domande utili:
+1. associazione all'SSID;
+2. autenticazione;
+3. VLAN assegnata;
+4. configurazione della porta switch;
+5. tagging sugli uplink;
+6. DHCP;
+7. gateway;
+8. DNS;
+9. ACL e policy.
 
-- il client vede l'SSID?
-- riesce ad associarsi?
-- l'autenticazione termina correttamente?
-- riceve un indirizzo IP?
-- raggiunge il gateway?
-- risolve il DNS?
-- il problema riguarda uno o più AP?
-- riguarda uno o più client?
-- avviene in una zona precisa?
-- compare durante il roaming?
+Se il client ha un RSSI eccellente ma non riceve un indirizzo IP, cambiare canale all'AP difficilmente risolverà il problema.
 
-La precisione del sintomo determina il livello da analizzare.
-
-### 2. Verificare l'access point
+### Scenario 2: access point instabile o che si riavvia
 
 Controllo:
 
-- stato operativo;
-- alimentazione PoE;
-- porta Ethernet;
-- velocità e duplex;
-- eventuali errori di interfaccia;
-- radio attive;
-- canali e potenza;
-- client associati.
-
-### 3. Verificare la porta OmniSwitch
-
-Il passo successivo è controllare il livello wired:
-
+- eventi dello switch;
 - stato della porta;
+- errori fisici;
+- negoziazione Ethernet;
 - PoE erogato;
-- VLAN;
-- tagging;
-- errori e discard;
-- saturazione;
-- uplink.
+- PoE budget;
+- cablaggio;
+- firmware e log dell'AP.
 
-### 4. Verificare i servizi IP
+### Scenario 3: rete funzionante ma lenta
 
-Se il client è associato ma non comunica, verifico:
+Correlerei invece:
 
-- DHCP;
-- gateway;
-- routing;
-- DNS;
-- firewall;
-- ACL;
-- policy di accesso.
-
-### 5. Analizzare il livello RF
-
-Solo dopo aver escluso problemi infrastrutturali passo all'analisi radio approfondita:
-
-- RSSI;
-- SNR;
-- noise floor;
+- RSSI e SNR;
 - channel utilization;
 - retry;
-- co-channel contention;
-- interferenze non Wi-Fi;
-- comportamento di roaming.
-
-Questa metodologia evita di modificare parametri RF per correggere un problema che in realtà appartiene a VLAN, PoE o routing.
-
-Per una metodologia più completa puoi consultare la guida [Troubleshooting Wi-Fi](/wifi/troubleshooting/).
-
----
-
-## Esempio pratico: client associato ma senza connettività
-
-Consideriamo un caso tipico.
-
-Un utente si collega all'SSID aziendale.
-
-Il client mostra buon segnale e l'associazione Wi-Fi è completata, ma non riesce a navigare.
-
-Un'analisi superficiale potrebbe portare a modificare AP o radio.
-
-Un'analisi strutturata mostra invece che:
-
-1. RSSI e SNR sono corretti;
-2. il client è associato all'AP;
-3. l'autenticazione è completata;
-4. il client non riceve un lease DHCP.
-
-A questo punto il problema non è più prioritariamente wireless.
-
-La verifica si sposta sulla VLAN associata all'SSID, sulla porta OmniSwitch, sugli uplink e sul percorso verso il DHCP server.
-
-È un esempio semplice ma molto rappresentativo: **il Wi-Fi può funzionare perfettamente mentre il servizio di rete fallisce subito dopo l'access point**.
-
----
-
-## Esempio pratico: AP instabile o che riavvia
-
-Un secondo scenario riguarda un access point che appare e scompare dalla piattaforma di gestione.
-
-Prima di ipotizzare un guasto dell'AP verifico:
-
-- log della porta dello switch;
-- eventi link up/down;
-- potenza PoE richiesta ed erogata;
-- PoE budget disponibile;
-- cablaggio;
-- eventuali errori fisici;
-- stabilità dell'uplink dello switch.
-
-Se il livello Ethernet o l'alimentazione sono instabili, qualsiasi analisi RF diventa secondaria.
-
----
-
-## Esempio pratico: rete stabile ma prestazioni basse
-
-Un terzo caso è una WLAN apparentemente stabile:
-
-- AP online;
-- client associati;
-- VLAN corrette;
-- connettività IP funzionante.
-
-Gli utenti segnalano però prestazioni molto basse in alcune aree.
-
-Qui il troubleshooting deve correlare wired e wireless.
-
-Verifico quindi:
-
+- interferenze;
+- capacità del client;
+- velocità della porta Ethernet;
 - utilizzo dell'uplink;
-- errori sulle porte;
-- channel utilization;
-- co-channel contention;
-- retry rate;
-- SNR;
-- densità dei client;
-- larghezza dei canali;
-- data rate;
-- comportamento del client.
+- latenza verso il gateway;
+- packet loss;
+- applicazione interessata.
 
-Solo questa visione completa permette di distinguere un collo di bottiglia Ethernet da un problema di airtime o interferenza.
-
----
-
-## Documentazione: parte integrante del progetto
-
-Un'infrastruttura enterprise dovrebbe essere documentata in modo sufficientemente chiaro da permettere a un tecnico di ricostruire rapidamente il percorso di un client.
-
-Una documentazione minima dovrebbe includere:
-
-- diagramma logico della rete;
-- posizione degli switch;
-- posizione e identificativo degli AP;
-- mapping AP → porta switch;
-- indirizzi IP di management;
-- VLAN e subnet;
-- SSID e relative VLAN;
-- uplink e trunk;
-- gateway;
-- servizi DHCP/DNS;
-- policy principali;
-- versione software e firmware rilevanti.
-
-Nel troubleshooting questa documentazione riduce drasticamente il tempo necessario per passare dal sintomo alla causa.
+La guida [Troubleshooting Wi-Fi](/wifi/troubleshooting/) approfondisce questo metodo dal punto di vista wireless.
 
 ---
 
 ## Conclusioni
 
-Una rete enterprise composta da **Alcatel-Lucent OmniSwitch e OmniAccess Stellar** deve essere considerata come una singola infrastruttura, non come due sistemi separati.
+Una rete basata su **Alcatel-Lucent OmniSwitch e OmniAccess Stellar** deve essere progettata come un'unica infrastruttura, non come due mondi separati.
 
-Gli access point rappresentano il livello radio, ma dipendono direttamente da switching, PoE, VLAN, uplink, servizi IP e policy.
+Gli access point dipendono dal livello wired per alimentazione, VLAN, uplink, sicurezza e raggiungibilità dei servizi; gli switch, a loro volta, devono essere dimensionati tenendo conto della capacità e dei requisiti della WLAN.
 
-Gli OmniSwitch forniscono la base cablata sulla quale la WLAN opera; gli OmniAccess Stellar estendono quella rete verso il client wireless.
+Per questo un progetto enterprise efficace combina:
 
-La qualità complessiva dipende quindi dall'equilibrio tra:
-
+- switching coerente;
+- PoE correttamente dimensionato;
+- VLAN e policy end-to-end;
+- capacità degli uplink;
 - design RF;
-- capacità dello switching;
-- alimentazione PoE;
-- segmentazione;
+- roaming;
 - sicurezza;
-- gestione;
-- validazione sul campo;
+- gestione centralizzata;
+- site survey;
 - troubleshooting metodico.
 
-Il punto più importante è semplice: **prima di definire un problema come “Wi-Fi”, bisogna capire in quale punto della catena end-to-end si interrompe realmente il servizio**.
-
-È questo approccio che permette di trasformare una rete composta da buoni apparati in un'infrastruttura realmente affidabile.
+Quando questi elementi vengono trattati come parti dello stesso sistema, diventa molto più semplice ottenere una rete stabile, scalabile e soprattutto diagnosticabile.
 
 ---
 
 ## Fonti tecniche
 
-Per le caratteristiche delle piattaforme citate e l'architettura Alcatel-Lucent Enterprise ho fatto riferimento alla documentazione ufficiale:
+Per le caratteristiche specifiche delle piattaforme è sempre opportuno verificare la documentazione aggiornata del produttore:
 
-- [Alcatel-Lucent Enterprise – Soluzioni Wi-Fi OmniAccess Stellar](https://www.al-enterprise.com/en/solutions/wifi-solutions)
-- [Alcatel-Lucent Enterprise – Distributed Wi-Fi Control Architecture](https://www.al-enterprise.com/en/solutions/distributed-wi-fi-control-architecture)
-- [Alcatel-Lucent Enterprise – OmniSwitch 6360](https://www.al-enterprise.com/it-it/prodotti/switches/omniswitch-6360)
-- [Alcatel-Lucent Enterprise – OmniSwitch 6860](https://www.al-enterprise.com/it-it/products/switches/omniswitch-6860)
-
-Le funzionalità disponibili possono variare in base al modello, alla release software e all'architettura adottata; per attività operative è sempre opportuno verificare la documentazione relativa alla piattaforma effettivamente installata.
+- [Alcatel-Lucent Enterprise – OmniSwitch 6360](https://www.al-enterprise.com/en/products/switches/omniswitch-6360)
+- [Alcatel-Lucent Enterprise – OmniSwitch 6860](https://www.al-enterprise.com/en/products/switches/omniswitch-6860)
+- [Alcatel-Lucent Enterprise – OmniAccess Stellar WLAN](https://www.al-enterprise.com/en/products/wlan)
+- [Alcatel-Lucent Enterprise – Wi-Fi solutions](https://www.al-enterprise.com/en/solutions/wifi-solutions)
