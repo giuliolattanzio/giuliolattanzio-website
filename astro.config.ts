@@ -32,6 +32,9 @@ export default defineConfig({
         if (pathname.startsWith("/tags/") && pathname !== "/tags/") {
           return false;
         }
+        if (pathname.startsWith("/images/")) {
+          return false;
+        }
         return true;
       },
     }),
