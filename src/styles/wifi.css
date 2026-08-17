@@ -1,6 +1,6 @@
-/* Wi-Fi area hero: keep the survey image inside the editorial flow instead of as a detached side column. */
+/* Wi-Fi area hero: compact editorial layout with the survey photo under the copy. */
 .area-hero:has(.area-portrait) {
-  padding: 78px 0 86px !important;
+  padding: 72px 0 82px !important;
 }
 
 .area-hero-grid:has(.area-portrait) {
@@ -10,36 +10,41 @@
 }
 
 .area-hero-grid:has(.area-portrait) > div {
-  max-width: 900px;
+  max-width: 820px;
 }
 
 .area-hero-grid:has(.area-portrait) .area-title {
-  max-width: 900px !important;
-  font-size: clamp(3.25rem, 6.2vw, 5.8rem) !important;
+  max-width: 820px !important;
+  font-size: clamp(3.15rem, 6vw, 5.5rem) !important;
   line-height: .98 !important;
 }
 
 .area-hero-grid:has(.area-portrait) .area-lead {
-  max-width: 790px !important;
-  margin-top: 24px !important;
+  max-width: 760px !important;
+  margin-top: 22px !important;
 }
 
 .area-hero-grid:has(.area-portrait) .area-portrait {
-  width: min(100%, 520px) !important;
+  display: block !important;
+  width: min(100%, 420px) !important;
   aspect-ratio: 16 / 10 !important;
-  margin: 42px 0 0 !important;
-  justify-self: start !important;
-  border-radius: 20px !important;
-  box-shadow: 0 18px 46px rgba(11, 18, 32, .09) !important;
+  margin: 34px 0 0 !important;
+  justify-self: auto !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  box-shadow: 0 14px 36px rgba(11, 18, 32, .08) !important;
 }
 
 .area-hero-grid:has(.area-portrait) .area-portrait img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
   object-position: center 34% !important;
 }
 
 @media (max-width: 650px) {
   .area-hero:has(.area-portrait) {
-    padding: 62px 0 68px !important;
+    padding: 58px 0 64px !important;
   }
 
   .area-hero-grid:has(.area-portrait) {
@@ -47,12 +52,12 @@
   }
 
   .area-hero-grid:has(.area-portrait) .area-title {
-    font-size: clamp(2.7rem, 13vw, 4rem) !important;
+    font-size: clamp(2.65rem, 12vw, 3.8rem) !important;
   }
 
   .area-hero-grid:has(.area-portrait) .area-portrait {
-    width: 100% !important;
-    margin-top: 32px !important;
-    border-radius: 18px !important;
+    width: min(100%, 390px) !important;
+    margin-top: 28px !important;
+    border-radius: 16px !important;
   }
 }
