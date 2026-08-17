@@ -24,16 +24,53 @@
 
   <div class="gl-wrap wifi-guide-nav" aria-label="Guide Wi-Fi fondamentali">
     <div class="wifi-guide-nav-head">
-      <p class="gl-eyebrow">Guide Wi-Fi</p>
-      <h3>Approfondimenti fondamentali di wireless engineering.</h3>
+      <div>
+        <p class="gl-eyebrow">Guide Wi-Fi</p>
+        <h3>Approfondimenti fondamentali di wireless engineering.</h3>
+      </div>
+      <p>
+        Sei guide tecniche collegate tra loro per approfondire i principi RF, la progettazione, le attività di survey,
+        gli strumenti di analisi e il comportamento operativo delle reti Wi-Fi enterprise.
+      </p>
     </div>
+
     <div class="wifi-guide-links">
-      <a href="/wifi/radio-frequency/"><span>01</span><strong>Radio Frequency</strong><small>RF, RSSI, SNR, canali e interferenze</small></a>
-      <a href="/wifi/wifi-design/"><span>02</span><strong>Wi-Fi Design</strong><small>Predictive design, capacità e AP placement</small></a>
-      <a href="/wifi/site-survey/"><span>03</span><strong>Site Survey</strong><small>Survey passiva, attiva e validation</small></a>
-      <a href="/wifi/ekahau/"><span>04</span><strong>Ekahau</strong><small>Design, heatmap e misure RF</small></a>
-      <a href="/wifi/roaming/"><span>05</span><strong>Roaming</strong><small>802.11k/v/r, handoff e mobilità</small></a>
-      <a href="/wifi/troubleshooting/"><span>06</span><strong>Troubleshooting</strong><small>Metodo, spectrum e packet analysis</small></a>
+      <a href="/wifi/radio-frequency/">
+        <span class="guide-label">01 · RF engineering</span>
+        <h4>Radio Frequency</h4>
+        <p>RF, RSSI, SNR, canali, propagazione e interferenze nelle reti Wi-Fi.</p>
+        <strong>Apri la guida →</strong>
+      </a>
+      <a href="/wifi/wifi-design/">
+        <span class="guide-label">02 · Design & planning</span>
+        <h4>Wi-Fi Design</h4>
+        <p>Predictive design, requisiti, capacità, copertura e posizionamento degli access point.</p>
+        <strong>Apri la guida →</strong>
+      </a>
+      <a href="/wifi/site-survey/">
+        <span class="guide-label">03 · Survey & validation</span>
+        <h4>Site Survey</h4>
+        <p>Survey passive e attive, misure sul campo, heatmap e validation survey.</p>
+        <strong>Apri la guida →</strong>
+      </a>
+      <a href="/wifi/ekahau/">
+        <span class="guide-label">04 · Tools & analysis</span>
+        <h4>Ekahau</h4>
+        <p>Design, survey, heatmap, misure RF e workflow di analisi wireless.</p>
+        <strong>Apri la guida →</strong>
+      </a>
+      <a href="/wifi/roaming/">
+        <span class="guide-label">05 · Mobility</span>
+        <h4>Roaming</h4>
+        <p>802.11k/v/r, handoff, client behavior e continuità della connessione.</p>
+        <strong>Apri la guida →</strong>
+      </a>
+      <a href="/wifi/troubleshooting/">
+        <span class="guide-label">06 · Diagnostics</span>
+        <h4>Troubleshooting</h4>
+        <p>Metodo diagnostico, spectrum analysis, packet analysis e verifica delle prestazioni.</p>
+        <strong>Apri la guida →</strong>
+      </a>
     </div>
   </div>
 </section>
@@ -106,68 +143,90 @@
   }
 
   .wifi-guide-nav {
-    margin-top: 72px;
-    padding-top: 54px;
+    margin-top: 88px;
+    padding-top: 76px;
     border-top: 1px solid rgba(11, 18, 32, .12);
   }
 
   .wifi-guide-nav-head {
     display: grid;
-    grid-template-columns: .82fr 1.18fr;
-    gap: 100px;
+    grid-template-columns: 1fr .85fr;
+    gap: 90px;
     align-items: end;
-    margin-bottom: 30px;
+    margin-bottom: 46px;
   }
 
   .wifi-guide-nav-head h3 {
+    max-width: 720px;
     margin: 0;
     color: #0b1220;
-    font-size: clamp(1.9rem, 3.5vw, 3rem);
-    line-height: 1.08;
-    letter-spacing: -.045em;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    line-height: 1.03;
+    letter-spacing: -.055em;
+  }
+
+  .wifi-guide-nav-head > p {
+    margin: 0;
+    color: rgba(11, 18, 32, .64);
+    font-size: 16px;
+    line-height: 1.8;
   }
 
   .wifi-guide-links {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-top: 1px solid rgba(11, 18, 32, .12);
-    border-left: 1px solid rgba(11, 18, 32, .12);
+    gap: 16px;
   }
 
   .wifi-guide-links a {
     display: flex;
-    min-height: 190px;
+    min-height: 350px;
     flex-direction: column;
-    padding: 24px;
-    border-right: 1px solid rgba(11, 18, 32, .12);
-    border-bottom: 1px solid rgba(11, 18, 32, .12);
+    padding: 30px;
+    border: 1px solid rgba(11, 18, 32, .12);
+    border-radius: 22px;
+    background: #fff;
     color: #0b1220;
     text-decoration: none;
-    transition: background .2s ease, transform .2s ease;
+    box-shadow: 0 14px 34px rgba(11, 18, 32, .035);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
 
   .wifi-guide-links a:hover {
-    background: #fff;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    border-color: rgba(11, 18, 32, .24);
+    box-shadow: 0 20px 44px rgba(11, 18, 32, .07);
   }
 
-  .wifi-guide-links span {
+  .guide-label {
     color: #2563eb;
-    font-family: monospace;
     font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  .wifi-guide-links h4 {
+    margin: 72px 0 14px;
+    color: #0b1220;
+    font-size: 29px;
+    line-height: 1.15;
+    letter-spacing: -.045em;
+  }
+
+  .wifi-guide-links p {
+    margin: 0;
+    color: rgba(11, 18, 32, .64);
+    font-size: 14px;
+    line-height: 1.75;
   }
 
   .wifi-guide-links strong {
-    margin-top: 34px;
-    font-size: 21px;
-    letter-spacing: -.03em;
-  }
-
-  .wifi-guide-links small {
-    margin-top: 9px;
-    color: rgba(11, 18, 32, .58);
-    font-size: 12px;
-    line-height: 1.55;
+    margin-top: auto;
+    padding-top: 28px;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 750;
   }
 
   @media (max-width: 950px) {
@@ -176,7 +235,10 @@
       grid-template-columns: 1fr;
       gap: 50px;
     }
-    .wifi-guide-links { grid-template-columns: 1fr 1fr; }
+
+    .wifi-guide-links {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   @media (max-width: 650px) {
@@ -193,11 +255,22 @@
     }
 
     .wifi-guide-nav {
-      margin-top: 56px;
-      padding-top: 44px;
+      margin-top: 64px;
+      padding-top: 58px;
     }
 
-    .wifi-guide-links { grid-template-columns: 1fr; }
-    .wifi-guide-links a { min-height: 160px; }
+    .wifi-guide-links {
+      grid-template-columns: 1fr;
+    }
+
+    .wifi-guide-links a {
+      min-height: auto;
+      padding: 24px;
+      border-radius: 18px;
+    }
+
+    .wifi-guide-links h4 {
+      margin-top: 52px;
+    }
   }
 </style>
