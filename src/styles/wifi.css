@@ -1,0 +1,58 @@
+/* Wi-Fi area hero: keep the survey image inside the editorial flow instead of as a detached side column. */
+.area-hero:has(.area-portrait) {
+  padding: 78px 0 86px !important;
+}
+
+.area-hero-grid:has(.area-portrait) {
+  display: block !important;
+  width: min(960px, calc(100% - 40px)) !important;
+  margin-inline: auto !important;
+}
+
+.area-hero-grid:has(.area-portrait) > div {
+  max-width: 900px;
+}
+
+.area-hero-grid:has(.area-portrait) .area-title {
+  max-width: 900px !important;
+  font-size: clamp(3.25rem, 6.2vw, 5.8rem) !important;
+  line-height: .98 !important;
+}
+
+.area-hero-grid:has(.area-portrait) .area-lead {
+  max-width: 790px !important;
+  margin-top: 24px !important;
+}
+
+.area-hero-grid:has(.area-portrait) .area-portrait {
+  width: min(100%, 520px) !important;
+  aspect-ratio: 16 / 10 !important;
+  margin: 42px 0 0 !important;
+  justify-self: start !important;
+  border-radius: 20px !important;
+  box-shadow: 0 18px 46px rgba(11, 18, 32, .09) !important;
+}
+
+.area-hero-grid:has(.area-portrait) .area-portrait img {
+  object-position: center 34% !important;
+}
+
+@media (max-width: 650px) {
+  .area-hero:has(.area-portrait) {
+    padding: 62px 0 68px !important;
+  }
+
+  .area-hero-grid:has(.area-portrait) {
+    width: min(100% - 30px, 960px) !important;
+  }
+
+  .area-hero-grid:has(.area-portrait) .area-title {
+    font-size: clamp(2.7rem, 13vw, 4rem) !important;
+  }
+
+  .area-hero-grid:has(.area-portrait) .area-portrait {
+    width: 100% !important;
+    margin-top: 32px !important;
+    border-radius: 18px !important;
+  }
+}
