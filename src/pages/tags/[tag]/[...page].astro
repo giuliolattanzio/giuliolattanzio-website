@@ -36,9 +36,6 @@ const pageTitle = isFirstPage
 const pageDescription = isFirstPage
   ? `Articoli, note e approfondimenti tecnici di Giulio Lattanzio dedicati a ${tagName}.`
   : `Archivio degli articoli dedicati a ${tagName}, pagina ${page.currentPage}.`;
-
-const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat("it-IT", { day: "2-digit", month: "long", year: "numeric" }).format(date);
 ---
 
 <Layout title={pageTitle} description={pageDescription} robots="noindex,follow">
@@ -73,7 +70,6 @@ const formatDate = (date: Date) =>
             {page.data.map(post => (
               <a class="gl-article-card" href={getPostUrl(post.id, post.filePath, locale)}>
                 <div>
-                  <div class="gl-meta">{formatDate(post.data.pubDatetime)}</div>
                   <h3>{post.data.title}</h3>
                   <p>{post.data.description}</p>
                   <div class="gl-tag-list card-tags">
