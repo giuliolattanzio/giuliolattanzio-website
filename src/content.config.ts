@@ -5,6 +5,11 @@ import config from "@/config";
 
 export const BLOG_PATH = "src/content/posts/giulio";
 
+const articleCoverByTitle: Record<string, string> = {
+  "Infrastruttura enterprise Alcatel-Lucent: integrazione tra OmniSwitch e OmniAccess Stellar":
+    "/images/articles/alcatel-omniswitch-omniaccess-stellar-hero.webp",
+};
+
 const posts = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: `./${BLOG_PATH}` }),
   schema: ({ image }) =>
@@ -23,7 +28,10 @@ const posts = defineCollection({
       canonicalURL: z.string().optional(),
       hideEditPost: z.boolean().optional(),
       timezone: z.string().optional(),
-    }),
+    }).transform(data => ({
+      ...data,
+      ogImage: data.ogImage ?? articleCoverByTitle[data.title],
+    })),
 });
 
 const pages = defineCollection({
