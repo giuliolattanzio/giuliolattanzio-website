@@ -1,0 +1,443 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PersonalHeader from "@/components/PersonalHeader.astro";
+import PersonalFooter from "@/components/PersonalFooter.astro";
+import { WIFI_GUIDES, WIFI_GUIDE_BY_SLUG, type WifiGuide } from "@/data/wifiGuides";
+
+export function getStaticPaths() {
+  return WIFI_GUIDES.map((guide) => ({
+    params: { guide: guide.slug },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props as { guide: WifiGuide };
+const canonicalURL = new URL(`/wifi/${guide.slug}/`, Astro.site ?? Astro.url).href;
+const imageURL = new URL(guide.hero, Astro.site ?? Astro.url).href;
+const profileURL = new URL("/profilo/", Astro.site ?? Astro.url).href;
+const related = guide.related.map((slug) => WIFI_GUIDE_BY_SLUG[slug]).filter(Boolean);
+
+const articleStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": `${canonicalURL}#article`,
+      headline: guide.title,
+      description: guide.description,
+      mainEntityOfPage: canonicalURL,
+      image: imageURL,
+      datePublished: "2026-08-17",
+      dateModified: "2026-08-17",
+      author: {
+        "@type": "Person",
+        name: "Giulio Lattanzio",
+        url: profileURL,
+      },
+      publisher: {
+        "@type": "Person",
+        name: "Giulio Lattanzio",
+        url: profileURL,
+      },
+      about: ["Wi-Fi", "Wireless Engineering", guide.title],
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: new URL("/", Astro.site ?? Astro.url).href },
+        { "@type": "ListItem", position: 2, name: "Wi-Fi", item: new URL("/wifi/", Astro.site ?? Astro.url).href },
+        { "@type": "ListItem", position: 3, name: guide.title, item: canonicalURL },
+      ],
+    },
+  ],
+};
+---
+
+<Layout title={guide.seoTitle} description={guide.description} canonicalURL={canonicalURL}>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(articleStructuredData)} />
+  </Fragment>
+
+  <div class="gl-shell">
+    <PersonalHeader />
+
+    <main>
+      <section class="guide-hero">
+        <div class="gl-wrap guide-hero-grid">
+          <div class="guide-hero-copy">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="/">Home</a><span>→</span><a href="/wifi/">Wi-Fi</a><span>→</span><span>{guide.title}</span>
+            </nav>
+            <p class="gl-eyebrow">{guide.eyebrow}</p>
+            <h1>{guide.title}</h1>
+            <p class="guide-lead">{guide.lead}</p>
+            <div class="guide-meta">
+              <span>Guida tecnica</span>
+              <span>Wireless Engineering</span>
+              <span>Aggiornata 17 agosto 2026</span>
+            </div>
+          </div>
+          <figure class="guide-hero-image">
+            <img src={guide.hero} alt={guide.heroAlt} width="1400" height="788" loading="eager" fetchpriority="high" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="guide-body-section">
+        <div class="gl-wrap guide-layout">
+          <aside class="guide-toc" aria-label="Indice della guida">
+            <p>In questa guida</p>
+            <ol>
+              {guide.sections.map(([id, title]) => <li><a href={`#${id}`}>{title}</a></li>)}
+            </ol>
+          </aside>
+
+          <article class="guide-content">
+            <section class="quick-answer">
+              <span>In breve</span>
+              <p>{guide.quick}</p>
+            </section>
+
+            {guide.sections.map(([id, title, paragraphs]) => (
+              <section id={id} class="guide-section">
+                <h2>{title}</h2>
+                {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ))}
+
+            <section class="context-links">
+              <p class="gl-eyebrow">Approfondimenti collegati</p>
+              <h2>Il tema nel contesto del Wi-Fi enterprise.</h2>
+              <div class="context-grid">
+                {related.map((item) => (
+                  <a href={`/wifi/${item.slug}/`}>
+                    <span>{item.eyebrow}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <strong>Approfondisci →</strong>
+                  </a>
+                ))}
+              </div>
+              <p class="hub-link">
+                Tutte queste guide fanno parte dell’area <a href="/wifi/">Wi-Fi & RF</a>, che raccoglie il percorso completo su wireless engineering, survey, progettazione e troubleshooting.
+              </p>
+            </section>
+
+            <section class="faq-section">
+              <p class="gl-eyebrow">FAQ</p>
+              <h2>Domande frequenti su {guide.title}.</h2>
+              <div class="faq-list">
+                {guide.faqs.map(([question, answer]) => (
+                  <details>
+                    <summary>{question}</summary>
+                    <p>{answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+
+            <section class="sources-section">
+              <p class="gl-eyebrow">Fonti tecniche</p>
+              <h2>Documentazione di riferimento.</h2>
+              <p>
+                Le fonti esterne sono utilizzate per approfondire standard, funzionalità e linee guida. Le considerazioni progettuali della guida vanno sempre adattate al dominio regolamentare, ai client e all’ambiente reale.
+              </p>
+              <ul>
+                {guide.sources.map(([label, href]) => (
+                  <li><a href={href} rel="external noopener">{label} ↗</a></li>
+                ))}
+              </ul>
+            </section>
+
+            <aside class="author-box">
+              <div>
+                <span>Autore</span>
+                <h2>Giulio Lattanzio</h2>
+                <p>Network, Wi-Fi & VoIP Specialist con focus su Wi-Fi enterprise, wireless engineering, site survey, RF design e troubleshooting.</p>
+              </div>
+              <a href="/profilo/">Profilo professionale →</a>
+            </aside>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <PersonalFooter />
+  </div>
+</Layout>
+
+<style>
+  .guide-hero {
+    padding: 76px 0 84px;
+    background: #fff;
+  }
+  .guide-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr .88fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 50px;
+    color: rgba(11,18,32,.5);
+    font-size: 12px;
+  }
+  .breadcrumbs a { color: inherit; text-decoration: none; }
+  .guide-hero h1 {
+    max-width: 780px;
+    margin: 0;
+    color: #0b1220;
+    font-size: clamp(3.4rem, 6vw, 6rem);
+    line-height: .96;
+    letter-spacing: -.065em;
+  }
+  .guide-lead {
+    max-width: 760px;
+    margin: 28px 0 0;
+    color: rgba(11,18,32,.66);
+    font-size: 19px;
+    line-height: 1.75;
+  }
+  .guide-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 30px;
+  }
+  .guide-meta span {
+    padding: 8px 10px;
+    border: 1px solid rgba(11,18,32,.12);
+    border-radius: 8px;
+    color: rgba(11,18,32,.62);
+    font-family: monospace;
+    font-size: 10px;
+  }
+  .guide-hero-image {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #0b1220;
+    box-shadow: 0 28px 65px rgba(11,18,32,.16);
+  }
+  .guide-hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .guide-body-section {
+    padding: 100px 0 120px;
+    background: #f7f8fa;
+    border-top: 1px solid rgba(11,18,32,.08);
+  }
+  .guide-layout {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 820px);
+    gap: 80px;
+    justify-content: center;
+    align-items: start;
+  }
+  .guide-toc {
+    position: sticky;
+    top: 28px;
+    padding: 24px;
+    border: 1px solid rgba(11,18,32,.1);
+    border-radius: 18px;
+    background: #fff;
+  }
+  .guide-toc > p {
+    margin: 0 0 16px;
+    color: #0b1220;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .guide-toc ol {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding-left: 18px;
+    color: rgba(11,18,32,.5);
+    font-size: 12px;
+  }
+  .guide-toc a {
+    color: rgba(11,18,32,.65);
+    line-height: 1.45;
+    text-decoration: none;
+  }
+  .guide-toc a:hover { color: #2563eb; }
+  .quick-answer {
+    margin-bottom: 58px;
+    padding: 30px 32px;
+    border-left: 3px solid #2563eb;
+    background: #0b1220;
+    color: #fff;
+  }
+  .quick-answer span {
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .quick-answer p {
+    margin: 15px 0 0;
+    color: rgba(255,255,255,.84);
+    font-size: 18px;
+    line-height: 1.75;
+  }
+  .guide-section {
+    scroll-margin-top: 28px;
+    padding: 0 0 52px;
+    margin: 0 0 52px;
+    border-bottom: 1px solid rgba(11,18,32,.1);
+  }
+  .guide-section h2,
+  .context-links h2,
+  .faq-section h2,
+  .sources-section h2 {
+    margin: 0 0 22px;
+    color: #0b1220;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -.05em;
+  }
+  .guide-section p,
+  .sources-section p,
+  .hub-link {
+    margin: 0 0 18px;
+    color: rgba(11,18,32,.69);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  .guide-section p:first-of-type { color: rgba(11,18,32,.8); font-size: 17px; }
+  .context-links, .faq-section, .sources-section {
+    padding: 64px 0;
+    border-bottom: 1px solid rgba(11,18,32,.1);
+  }
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 32px 0 28px;
+  }
+  .context-grid a {
+    display: flex;
+    min-width: 0;
+    min-height: 270px;
+    flex-direction: column;
+    padding: 24px;
+    border: 1px solid rgba(11,18,32,.1);
+    border-radius: 16px;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+  }
+  .context-grid span {
+    color: #2563eb;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .context-grid h3 {
+    margin: 36px 0 10px;
+    color: #0b1220;
+    font-size: 20px;
+    letter-spacing: -.03em;
+  }
+  .context-grid p {
+    margin: 0;
+    color: rgba(11,18,32,.62);
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .context-grid strong {
+    margin-top: auto;
+    padding-top: 24px;
+    color: #2563eb;
+    font-size: 12px;
+  }
+  .hub-link a, .sources-section a {
+    color: #2563eb;
+    text-underline-offset: 3px;
+  }
+  .faq-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 30px;
+  }
+  .faq-list details {
+    border: 1px solid rgba(11,18,32,.1);
+    border-radius: 14px;
+    background: #fff;
+  }
+  .faq-list summary {
+    padding: 18px 20px;
+    color: #0b1220;
+    font-weight: 750;
+    cursor: pointer;
+  }
+  .faq-list p {
+    margin: 0;
+    padding: 0 20px 20px;
+    color: rgba(11,18,32,.66);
+    line-height: 1.75;
+  }
+  .sources-section ul {
+    display: grid;
+    gap: 10px;
+    margin: 26px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .sources-section li {
+    padding-top: 10px;
+    border-top: 1px solid rgba(11,18,32,.08);
+  }
+  .author-box {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+    margin-top: 64px;
+    padding: 30px;
+    border-radius: 20px;
+    background: #0b1220;
+    color: #fff;
+  }
+  .author-box span {
+    color: #2563eb;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .author-box h2 { margin: 10px 0; color: #fff; font-size: 26px; }
+  .author-box p { margin: 0; color: rgba(255,255,255,.68); line-height: 1.7; }
+  .author-box a {
+    white-space: nowrap;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 750;
+    text-decoration: none;
+  }
+  @media(max-width:1000px) {
+    .guide-hero-grid, .guide-layout { grid-template-columns: 1fr; gap: 46px; }
+    .guide-toc { position: static; }
+    .context-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width:650px) {
+    .guide-hero { padding: 62px 0 70px; }
+    .breadcrumbs { margin-bottom: 34px; }
+    .guide-body-section { padding: 72px 0 86px; }
+    .guide-hero-image { border-radius: 18px; }
+    .context-grid, .author-box { grid-template-columns: 1fr; }
+    .author-box { align-items: start; }
+  }
+</style>
