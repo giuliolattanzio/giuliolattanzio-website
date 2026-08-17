@@ -15,7 +15,7 @@ export const TECHNICAL_AREAS: Area[] = [
     slug: "wifi",
     label: "Wi-Fi",
     eyebrow: "Wireless Engineering",
-    title: "Wi-Fi & RF",
+    title: "Wi-Fi, Site Survey & RF",
     description:
       "Uno spazio dedicato al wireless enterprise, alla progettazione RF, alle site survey, alla validazione sul campo e al troubleshooting Wi-Fi.",
     summary:
