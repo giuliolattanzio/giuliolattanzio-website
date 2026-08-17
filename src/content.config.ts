@@ -7,7 +7,7 @@ export const BLOG_PATH = "src/content/posts/giulio";
 
 const articleCoverByTitle: Record<string, string> = {
   "Infrastruttura enterprise Alcatel-Lucent: integrazione tra OmniSwitch e OmniAccess Stellar":
-    "/images/articles/alcatel-omniswitch-omniaccess-stellar-hero.webp?v=2",
+    "/images/articles/alcatel-omniswitch-omniaccess-stellar-hero.webp?v=3",
 };
 
 const posts = defineCollection({
