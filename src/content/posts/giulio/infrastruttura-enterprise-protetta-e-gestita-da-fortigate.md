@@ -22,7 +22,7 @@ Diventa un punto di controllo attraverso cui convergono **segmentazione, routing
 
 È proprio questa centralità a rendere il progetto interessante, ma anche delicato.
 
-Se il FortiGate viene trattato come un semplice apparato perimetrale, si perde gran parte del valore architetturale che può offrire. Se invece viene usato come nodo decisionale della rete, ogni flusso importante deve essere pensato in termini di **origine, destinazione, policy, servizio, identità, livello di ispezione e percorso**.
+Se FortiGate viene trattato come un semplice apparato perimetrale, si perde gran parte del valore architetturale che può offrire. Se invece viene usato come nodo decisionale della rete, ogni flusso importante deve essere pensato in termini di **origine, destinazione, policy, servizio, identità, livello di ispezione e percorso**.
 
 In questo articolo considero una realtà aziendale ipotetica con una sede principale, più VLAN interne, servizi pubblicati, collegamenti verso sedi remote e accesso a Internet. L'obiettivo non è descrivere una configurazione specifica, ma ragionare su come strutturare una rete nella quale **FortiGate rappresenta il punto di enforcement e visibilità dell'infrastruttura**.
 
@@ -165,7 +165,7 @@ Sul traffico Internet degli utenti, ad esempio, Application Control e Web Filter
 
 Su traffico east-west particolarmente sensibile, l'IPS può contribuire a ridurre il rischio di movimento laterale o sfruttamento di vulnerabilità.
 
-Fortinet descrive l'IPS di FortiGate come un sistema di protezione in tempo reale che utilizza tecniche basate su firme, comportamento e anomalie per rilevare e prevenire minacce sulla rete. citeturn403298search1
+L'IPS di FortiGate può analizzare il traffico alla ricerca di pattern associati a vulnerabilità, firme e comportamenti anomali, contribuendo a rilevare e bloccare attività indesiderate prima che raggiungano la destinazione.
 
 La scelta, però, deve essere sempre contestuale.
 
@@ -217,7 +217,7 @@ Questa sequenza evita uno degli errori più frequenti: modificare le policy quan
 
 In una rete con più collegamenti WAN, FortiGate può utilizzare la componente **Secure SD-WAN** per trattare i diversi accessi non semplicemente come route statiche di backup, ma come percorsi valutabili in base allo stato e alle prestazioni.
 
-La documentazione Fortinet struttura l'architettura SD-WAN enterprise attorno a underlay, overlay, routing, security e decisione SD-WAN, con l'obiettivo di definire e proteggere i percorsi disponibili prima di decidere quale utilizzare per un determinato traffico. citeturn403298search5
+L'architettura può combinare underlay, overlay, routing, security policy e criteri SD-WAN per scegliere il percorso più adatto a un determinato traffico.
 
 Questo approccio è particolarmente interessante quando la sede dispone, ad esempio, di una linea primaria e di un collegamento secondario.
 
@@ -249,7 +249,7 @@ Un tunnel può risultare correttamente “up” e al tempo stesso non trasportar
 
 Per questo il troubleshooting deve distinguere chiaramente tra **stato del tunnel** e **funzionamento del flusso**.
 
-In ambienti con molti siti, tecnologie come ADVPN possono ridurre la dipendenza da topologie rigidamente hub-and-spoke creando dinamicamente tunnel diretti quando necessario. Fortinet include ADVPN tra i meccanismi utilizzati nelle proprie architetture Secure SD-WAN enterprise. citeturn403298search5
+In ambienti con molti siti, tecnologie come ADVPN possono essere utilizzate per ridurre la dipendenza da topologie rigidamente hub-and-spoke e creare, quando previsto dall'architettura, percorsi più diretti tra sedi.
 
 ---
 
@@ -259,7 +259,7 @@ Una vecchia architettura WAN tendeva spesso a riportare il traffico Internet del
 
 Questo modello garantisce controllo centralizzato, ma può introdurre percorsi inefficienti e dipendenza dalla WAN.
 
-Fortinet evidenzia come una sicurezza presente solo al datacenter possa lasciare senza ispezione parte del traffico site-to-site e obbligare flussi indesiderati ad attraversare la WAN prima di essere bloccati. citeturn403298search7
+Quando la sicurezza è concentrata esclusivamente nel datacenter, parte del traffico tra sedi può seguire percorsi poco efficienti e consumare capacità WAN anche per flussi che potrebbero essere gestiti localmente.
 
 Con FortiGate distribuiti sulle sedi è possibile applicare le policy direttamente sul branch edge e utilizzare breakout Internet locale quando l'architettura lo richiede.
 
@@ -304,7 +304,7 @@ Tuttavia è importante trovare un equilibrio.
 
 Loggare indiscriminatamente tutto senza una strategia può produrre enormi quantità di dati poco utili. Loggare troppo poco può rendere quasi impossibile ricostruire un incidente.
 
-In ambienti strutturati, **FortiAnalyzer** può raccogliere e analizzare i log generati da FortiGate e altri componenti Fortinet, centralizzando eventi, report e alerting. citeturn403298search0
+In ambienti strutturati, **FortiAnalyzer** può raccogliere e analizzare i log generati da FortiGate e altri componenti Fortinet, centralizzando eventi, report e alerting.
 
 Questo diventa particolarmente utile quando i FortiGate sono distribuiti su più sedi.
 
@@ -320,9 +320,7 @@ Non si tratta più soltanto di configurare ogni dispositivo correttamente, ma di
 
 Policy, object, VPN, SD-WAN, logging e standard operativi devono essere mantenuti in modo controllato.
 
-In scenari più ampi, FortiManager può essere utilizzato per centralizzare gestione, template e distribuzione delle configurazioni.
-
-La documentazione Fortinet colloca FortiManager e FortiAnalyzer nel livello di management e orchestration delle architetture SD-WAN di grandi dimensioni. citeturn403298search11
+In scenari più ampi, **FortiManager** può essere utilizzato per centralizzare gestione, template e distribuzione delle configurazioni, mentre FortiAnalyzer può concentrarsi sulla raccolta e sull'analisi degli eventi.
 
 Il valore non è soltanto la comodità amministrativa.
 
@@ -499,11 +497,11 @@ Prima di modificare la configurazione è necessario capire quale componente sta 
 
 Uno degli aspetti più interessanti dell'utilizzo di FortiGate all'interno dell'infrastruttura è la possibilità di controllare non soltanto il traffico north-south, cioè tra rete interna e Internet, ma anche parte del traffico **east-west** tra segmenti interni.
 
-Fortinet descrive architetture nelle quali un NGFW sull'edge protegge il traffico north-south mentre firewall interni possono contribuire alla segmentazione e alla protezione del traffico laterale. citeturn403298search9
+Un NGFW posizionato sull'edge protegge il traffico north-south; firewall interni o punti di enforcement opportunamente posizionati possono invece contribuire alla segmentazione e alla protezione del traffico laterale.
 
 Questo concetto è rilevante perché molte minacce non si fermano al punto iniziale di compromissione.
 
-Una volta ottenuto accesso a un endpoint, l'attaccante può tentare di muoversi verso altri sistemi.
+Una volta ottenuto accesso a un endpoint, un attaccante può tentare di muoversi verso altri sistemi.
 
 Segmentazione e policy inter-zone possono ridurre questa libertà di movimento.
 
@@ -538,5 +536,3 @@ Le VLAN definiscono i domini, ma sono le policy a stabilire le relazioni tra que
 La qualità della soluzione dipende quindi meno dal numero di funzioni abilitate e molto di più dalla coerenza del progetto.
 
 Un FortiGate correttamente inserito nell'architettura permette di osservare e governare i flussi critici della rete, ridurre la comunicazione non necessaria tra segmenti, proteggere l'accesso verso Internet e sedi remote e costruire un metodo di troubleshooting basato su evidenze invece che su tentativi.
-
-È questa, più che la singola feature, la differenza tra avere un firewall in rete e progettare un'infrastruttura realmente **protetta e gestita attraverso FortiGate**.
