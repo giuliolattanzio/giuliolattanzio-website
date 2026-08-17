@@ -8,6 +8,8 @@ export const BLOG_PATH = "src/content/posts/giulio";
 const articleCoverByTitle: Record<string, string> = {
   "Infrastruttura enterprise Alcatel-Lucent: integrazione tra OmniSwitch e OmniAccess Stellar":
     "/images/articles/alcatel-omniswitch-omniaccess-stellar-hero.webp",
+  "Microsoft Teams Direct Routing multi-sede: AudioCodes come punto di attestazione e interoperabilità":
+    "/images/articles/microsoft-teams-direct-routing-audiocodes-multisede.webp",
 };
 
 const posts = defineCollection({
