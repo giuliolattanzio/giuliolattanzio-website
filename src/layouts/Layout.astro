@@ -33,6 +33,10 @@ const rssHref = getRelativeLocaleUrl(
   "rss.xml"
 );
 const isHomePage = Astro.url.pathname === "/";
+const isArticlePage =
+  (Astro.url.pathname.startsWith("/posts/") && Astro.url.pathname !== "/posts/") ||
+  (Astro.url.pathname.startsWith("/wifi/") && Astro.url.pathname !== "/wifi/");
+const openGraphType = isArticlePage ? "article" : "website";
 const webSiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -80,7 +84,7 @@ const webSiteSchema = {
     {robots && <meta name="robots" content={robots} />}
     <link rel="sitemap" href={getAssetPath("sitemap-index.xml")} />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={openGraphType} />
     <meta property="og:site_name" content={site.title} />
     <meta property="og:locale" content="it_IT" />
     <meta property="og:title" content={title} />
