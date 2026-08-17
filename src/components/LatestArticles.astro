@@ -33,13 +33,6 @@ const latestPosts = getSortedPosts(posts)
   .slice(0, 3);
 
 const locale = Astro.currentLocale ?? config.site.lang;
-
-const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat("it-IT", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(date);
 ---
 
 <section class="latest-section gl-section-white">
@@ -56,10 +49,11 @@ const formatDate = (date: Date) =>
       <div class="latest-grid">
         {latestPosts.map(post => (
           <a class="latest-card" href={getPostUrl(post.id, post.filePath, locale)}>
-            <div class="latest-meta">
-              <span>{formatDate(post.data.pubDatetime)}</span>
-              {post.data.tags?.[0] && <span>{post.data.tags[0]}</span>}
-            </div>
+            {post.data.tags?.[0] && (
+              <div class="latest-meta">
+                <span>{post.data.tags[0]}</span>
+              </div>
+            )}
             <h3>{post.data.title}</h3>
             <p>{post.data.description}</p>
             <span class="read-more">Leggi l’articolo →</span>
@@ -157,12 +151,6 @@ const formatDate = (date: Date) =>
     font-weight: 800;
     letter-spacing: .07em;
     text-transform: uppercase;
-  }
-
-  .latest-meta span + span::before {
-    content: "•";
-    margin-right: 14px;
-    color: rgba(11, 18, 32, .28);
   }
 
   .latest-card h3 {
