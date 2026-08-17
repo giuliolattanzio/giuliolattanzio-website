@@ -79,10 +79,10 @@ if (!ogImageUrl && config.features.dynamicOgImage) {
   ogImageUrl = `${postUrl}/index.png`;
 }
 
-const ogImage = ogImageUrl ? new URL(ogImageUrl, Astro.url.origin).href : undefined;
-const coverImage = explicitImageUrl
-  ? new URL(explicitImageUrl, Astro.url.origin).href
+const ogImage = ogImageUrl
+  ? new URL(ogImageUrl, Astro.site ?? Astro.url).href
   : undefined;
+const coverImage = explicitImageUrl;
 
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("it-IT", {
@@ -172,8 +172,11 @@ const formatTag = (tag: string) => tagLabels[slugifyStr(tag)] ?? tag;
               class="cover-image"
               src={coverImage}
               alt={`Immagine di copertina dell'articolo: ${title}`}
+              width="1200"
+              height="675"
               loading="eager"
               fetchpriority="high"
+              decoding="async"
             />
           </div>
         </div>
@@ -279,8 +282,10 @@ const formatTag = (tag: string) => tagLabels[slugifyStr(tag)] ?? tag;
   .cover-image {
     display: block;
     width: 100%;
+    height: auto;
     max-height: 540px;
-    object-fit: cover;
+    object-fit: contain;
+    background: #fff;
     border: 1px solid #e4e7ec;
     border-radius: 22px;
     box-shadow: 0 24px 60px rgba(16, 24, 40, .08);
@@ -359,116 +364,23 @@ const formatTag = (tag: string) => tagLabels[slugifyStr(tag)] ?? tag;
   }
 
   .related-card strong {
-    font-size: 18px;
-    line-height: 1.35;
+    margin-bottom: 12px;
+    font-size: 19px;
+    line-height: 1.3;
   }
 
   .related-card small {
-    margin-top: 10px;
     color: #667085;
     font-size: 13px;
-    line-height: 1.55;
+    line-height: 1.65;
   }
 
-  @media (max-width: 700px) {
+  @media(max-width: 720px) {
     .article-hero { padding: 68px 0 48px; }
-    .article-heading-wrap { width: min(100% - 28px, 960px); }
-    .article-title { font-size: clamp(2.35rem, 11vw, 3.6rem); }
-    .article-description { font-size: 16px; }
-    .cover-area { padding-bottom: 42px; }
-    .cover-image { border-radius: 14px; }
-    .gl-prose { padding-top: 46px; }
-    .article-end { padding: 52px 0; }
-    .article-end-head { align-items: flex-start; flex-direction: column; }
+    .article-title { font-size: clamp(2.35rem, 11vw, 3.5rem); }
+    .article-description { font-size: 17px; }
+    .article-heading-wrap { width: min(100% - 30px, 960px); }
     .related-grid { grid-template-columns: 1fr; }
-  }
-</style>
-
-<script is:inline>
-  function enhanceArticle() {
-    const article = document.getElementById("article");
-    if (!article) return;
-
-    article.querySelectorAll("pre").forEach(pre => {
-      if (pre.querySelector(".copy-code")) return;
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "copy-code";
-      button.textContent = "Copia";
-      button.setAttribute("aria-label", "Copia il codice");
-      button.addEventListener("click", async () => {
-        const code = pre.querySelector("code");
-        await navigator.clipboard.writeText(code?.textContent ?? "");
-        button.textContent = "Copiato";
-        setTimeout(() => (button.textContent = "Copia"), 1000);
-      });
-      pre.appendChild(button);
-    });
-
-    article.querySelectorAll("h2[id], h3[id]").forEach(heading => {
-      if (heading.querySelector(".heading-anchor")) return;
-      const anchor = document.createElement("a");
-      anchor.className = "heading-anchor";
-      anchor.href = `#${heading.id}`;
-      anchor.setAttribute("aria-label", "Link diretto a questa sezione");
-      anchor.textContent = "#";
-      heading.appendChild(anchor);
-    });
-  }
-
-  enhanceArticle();
-  document.addEventListener("astro:after-swap", enhanceArticle);
-</script>
-
-<style is:global>
-  #article pre { position: relative; }
-
-  #article .copy-code {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 6px 9px;
-    border: 1px solid #334155;
-    border-radius: 7px;
-    background: #111827;
-    color: #cbd5e1;
-    font-size: 11px;
-    cursor: pointer;
-  }
-
-  #article .heading-anchor {
-    margin-left: 9px;
-    color: #93a4bd;
-    text-decoration: none;
-    font-size: .7em;
-    font-weight: 500;
-    opacity: 0;
-    transition: opacity .2s ease, color .2s ease;
-  }
-
-  #article h2:hover .heading-anchor,
-  #article h3:hover .heading-anchor,
-  #article .heading-anchor:focus {
-    opacity: 1;
-    color: #2563eb;
-  }
-
-  #article hr {
-    margin: 2.5rem 0;
-    border: 0;
-    border-top: 1px solid #e4e7ec;
-  }
-
-  #article figure { margin: 2rem 0; }
-
-  #article figcaption {
-    margin-top: .65rem;
-    color: #667085;
-    font-size: 13px;
-    text-align: center;
-  }
-
-  @media (max-width: 700px) {
-    #article .heading-anchor { opacity: .55; }
+    .article-end-head { align-items: start; flex-direction: column; }
   }
 </style>
