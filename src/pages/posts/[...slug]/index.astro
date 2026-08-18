@@ -73,9 +73,13 @@ let explicitImageUrl: string | undefined;
 if (typeof initOgImage === "string") explicitImageUrl = initOgImage;
 else if (initOgImage?.src) explicitImageUrl = initOgImage.src;
 
-let ogImageUrl = explicitImageUrl;
-if (!ogImageUrl && config.features.dynamicOgImage) {
-  const postUrl = getPostUrl(post.id, post.filePath, locale).replace(/\/+$/, "");
+const postUrl = getPostUrl(post.id, post.filePath, locale).replace(/\/+$/, "");
+let ogImageUrl: string | undefined;
+if (explicitImageUrl) {
+  // Keep the original optimized cover on the article page, but expose a
+  // predictable JPEG 1200x627 to LinkedIn and other social crawlers.
+  ogImageUrl = `${postUrl}/social.jpg`;
+} else if (config.features.dynamicOgImage) {
   ogImageUrl = `${postUrl}/index.png`;
 }
 
