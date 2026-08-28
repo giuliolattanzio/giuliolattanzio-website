@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://giuliolattanzio.pages.dev/sitemap-index.xml
+Sitemap: https://giuliolattanzio.netlify.app/sitemap-index.xml
