@@ -2,11 +2,11 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://giuliolattanzio.pages.dev/",
+    url: "https://giuliolattanzio.netlify.app/",
     title: "Giulio Lattanzio",
     description: "Portfolio personale e knowledge hub tecnico di Giulio Lattanzio, Network, Wi-Fi & VoIP Specialist.",
     author: "Giulio Lattanzio",
-    profile: "https://giuliolattanzio.pages.dev/profilo/",
+    profile: "https://giuliolattanzio.netlify.app/profilo/",
     ogImage: "default-og.jpg",
     lang: "it",
     timezone: "Europe/Rome",
