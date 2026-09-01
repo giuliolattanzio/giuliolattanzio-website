@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow tecnico di una site survey Wi-Fi con Ekahau</title>
+  <desc id="desc">Diagramma del processo: requisiti, survey sul campo, analisi RF, validazione e report.</desc>
+  <rect width="1400" height="780" fill="#ffffff"/>
+  <text x="80" y="95" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" fill="#0B1220">Dal requisito al dato utilizzabile</text>
+  <text x="80" y="140" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#526071">Una survey efficace è una sequenza di decisioni tecniche, non una semplice raccolta di punti.</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <g transform="translate(80 235)">
+      <rect width="230" height="250" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+      <circle cx="48" cy="48" r="22" fill="#2563EB"/>
+      <text x="48" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">1</text>
+      <text x="28" y="105" font-size="27" font-weight="700" fill="#0B1220">Requisiti</text>
+      <text x="28" y="145" font-size="20" fill="#526071">Copertura</text>
+      <text x="28" y="177" font-size="20" fill="#526071">capacità</text>
+      <text x="28" y="209" font-size="20" fill="#526071">applicazioni</text>
+    </g>
+    <g transform="translate(335 235)">
+      <rect width="230" height="250" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+      <circle cx="48" cy="48" r="22" fill="#2563EB"/>
+      <text x="48" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">2</text>
+      <text x="28" y="105" font-size="27" font-weight="700" fill="#0B1220">Survey</text>
+      <text x="28" y="145" font-size="20" fill="#526071">RF passiva</text>
+      <text x="28" y="177" font-size="20" fill="#526071">test attivi</text>
+      <text x="28" y="209" font-size="20" fill="#526071">spectrum</text>
+    </g>
+    <g transform="translate(590 235)">
+      <rect width="230" height="250" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+      <circle cx="48" cy="48" r="22" fill="#2563EB"/>
+      <text x="48" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">3</text>
+      <text x="28" y="105" font-size="27" font-weight="700" fill="#0B1220">Analisi</text>
+      <text x="28" y="145" font-size="20" fill="#526071">RSSI e SNR</text>
+      <text x="28" y="177" font-size="20" fill="#526071">canali</text>
+      <text x="28" y="209" font-size="20" fill="#526071">overlap</text>
+    </g>
+    <g transform="translate(845 235)">
+      <rect width="230" height="250" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+      <circle cx="48" cy="48" r="22" fill="#2563EB"/>
+      <text x="48" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">4</text>
+      <text x="28" y="105" font-size="27" font-weight="700" fill="#0B1220">Validazione</text>
+      <text x="28" y="145" font-size="20" fill="#526071">Target RF</text>
+      <text x="28" y="177" font-size="20" fill="#526071">client experience</text>
+      <text x="28" y="209" font-size="20" fill="#526071">criticità</text>
+    </g>
+    <g transform="translate(1100 235)">
+      <rect width="230" height="250" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+      <circle cx="48" cy="48" r="22" fill="#2563EB"/>
+      <text x="48" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">5</text>
+      <text x="28" y="105" font-size="27" font-weight="700" fill="#0B1220">Report</text>
+      <text x="28" y="145" font-size="20" fill="#526071">Evidenze</text>
+      <text x="28" y="177" font-size="20" fill="#526071">priorità</text>
+      <text x="28" y="209" font-size="20" fill="#526071">azioni</text>
+    </g>
+  </g>
+  <path d="M310 360h25M565 360h25M820 360h25M1075 360h25" stroke="#2563EB" stroke-width="5" stroke-linecap="round"/>
+  <text x="80" y="590" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#2563EB">PRINCIPIO</text>
+  <text x="80" y="640" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" fill="#0B1220">Misurare solo ciò che può essere interpretato rispetto a un requisito.</text>
+  <text x="80" y="692" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#526071">Le heatmap sono uno strumento di lettura: la qualità della survey dipende dal metodo e dal contesto.</text>
+</svg>
