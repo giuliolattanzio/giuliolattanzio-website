@@ -10,7 +10,7 @@ tags:
   - site-survey
   - analisi-wifi
   - troubleshooting
-ogImage: /images/articles/pattern-antenne-wifi-azimuth-elevation.svg
+ogImage: /images/articles/propagazione-wifi-antenne-realistica.webp
 ---
 ## Introduzione
 
@@ -20,7 +20,7 @@ Due Access Point con una potenza radio simile possono produrre coperture molto d
 
 Questo non significa semplicemente che un'antenna direzionale "arriva più lontano". Significa che **redistribuisce l'energia nello spazio**. Comprendere questa differenza è essenziale nel [Wi-Fi design](/wifi/wifi-design/), durante una [site survey](/wifi/site-survey/) e quando si analizzano problemi di copertura o interferenza.
 
-![Confronto tra pattern di antenna Wi-Fi omnidirezionale, panel, settoriale e narrow beam](/images/articles/pattern-antenne-wifi-azimuth-elevation.svg)
+![Propagazione Wi-Fi e antenne degli Access Point con pattern, azimuth ed elevation](/images/articles/propagazione-wifi-antenne-realistica.webp)
 
 ---
 
