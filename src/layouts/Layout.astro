@@ -43,6 +43,7 @@ const usePostSocialJpeg =
 const socialImageURL = usePostSocialJpeg
   ? new URL(`${Astro.url.pathname.replace(/\/$/, "")}/social.jpg`, Astro.site ?? Astro.url)
   : new URL(ogImage, Astro.site ?? Astro.url);
+const isSocialJpeg = /\/social\.jpg$/i.test(socialImageURL.pathname);
 const openGraphType = isArticlePage ? "article" : "website";
 const webSiteSchema = {
   "@context": "https://schema.org",
@@ -98,16 +99,19 @@ const webSiteSchema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={socialImageURL} />
-    {usePostSocialJpeg && <meta property="og:image:type" content="image/jpeg" />}
-    {usePostSocialJpeg && <meta property="og:image:width" content="1200" />}
-    {usePostSocialJpeg && <meta property="og:image:height" content="627" />}
+    <meta property="og:image" content={socialImageURL.href} />
+    <meta property="og:image:secure_url" content={socialImageURL.href} />
+    <meta property="og:image:alt" content={title} />
+    {isSocialJpeg && <meta property="og:image:type" content="image/jpeg" />}
+    {isSocialJpeg && <meta property="og:image:width" content="1200" />}
+    {isSocialJpeg && <meta property="og:image:height" content="627" />}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image" content={socialImageURL.href} />
+    <meta name="twitter:image:alt" content={title} />
 
     <link
       rel="alternate"
