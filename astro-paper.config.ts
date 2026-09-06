@@ -32,7 +32,7 @@ export default defineAstroPaperConfig({
   ],
   shareLinks: [
     { name: "whatsapp", url: "https://wa.me/?text=" },
-    { name: "linkedin", url: "https://www.linkedin.com/shareArticle?mini=true&url=" },
+    { name: "linkedin", url: "https://www.linkedin.com/sharing/share-offsite/?url=" },
     { name: "mail", url: "mailto:?subject=Guarda%20questo%20articolo&body=" },
   ],
 });
