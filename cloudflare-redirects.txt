@@ -8,3 +8,4 @@
 /about/ /profilo/ 301
 /archives /posts/ 301
 /archives/ /posts/ 301
+/* https://giuliolattanzio.github.io/:splat 301
