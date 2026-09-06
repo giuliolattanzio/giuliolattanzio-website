@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/*"
-  to = "https://giuliolattanzio.pages.dev/:splat"
+  to = "https://giuliolattanzio.github.io/:splat"
   status = 301
   force = true
