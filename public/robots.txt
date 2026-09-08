@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://giuliolattanzio.github.io/sitemap.txt
-Sitemap: https://giuliolattanzio.github.io/sitemap-0.xml
+Sitemap: https://giuliolattanzio.github.io/sitemap.xml
