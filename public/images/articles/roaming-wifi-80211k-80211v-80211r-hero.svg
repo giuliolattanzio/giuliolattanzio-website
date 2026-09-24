@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Roaming Wi-Fi enterprise con 802.11k, 802.11v e 802.11r</title>
+  <desc id="desc">Illustrazione tecnica di un ambiente enterprise con tre Access Point, un client in movimento e le funzioni Neighbor Report, BSS Transition e Fast Transition.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#081625"/><stop offset="0.5" stop-color="#123352"/><stop offset="1" stop-color="#07111e"/></linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f4f70" stop-opacity=".45"/><stop offset="1" stop-color="#08111d" stop-opacity=".15"/></linearGradient>
+    <radialGradient id="c1"><stop offset="0" stop-color="#38bdf8" stop-opacity=".42"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="c2"><stop offset="0" stop-color="#22d3ee" stop-opacity=".42"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+    <radialGradient id="c3"><stop offset="0" stop-color="#34d399" stop-opacity=".38"/><stop offset="1" stop-color="#34d399" stop-opacity="0"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".35"/></filter>
+    <marker id="arrow" markerWidth="16" markerHeight="16" refX="11" refY="5" orient="auto"><path d="M0 0 L11 5 L0 10 Z" fill="#7dd3fc"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".25" stroke="#8ecae6" fill="none"><path d="M0 620 H1600"/><path d="M0 720 H1600"/><path d="M130 900 L560 490"/><path d="M620 900 L800 490"/><path d="M1110 900 L1035 490"/><path d="M1520 900 L1260 490"/></g>
+  <path d="M0 900V565c210-24 390-30 575-9 220 24 420 25 620-4 151-22 283-17 405 2v346z" fill="url(#floor)"/>
+  <g opacity=".32" fill="#b6d7ea"><rect x="80" y="150" width="350" height="340" rx="12"/><rect x="455" y="115" width="300" height="375" rx="12"/><rect x="780" y="145" width="335" height="345" rx="12"/><rect x="1140" y="105" width="365" height="385" rx="12"/></g>
+  <g stroke="#d8eefb" stroke-opacity=".25"><path d="M160 150v340M250 150v340M340 150v340M530 115v375M630 115v375M865 145v345M970 145v345M1230 105v385M1350 105v385M1460 105v385"/></g>
+  <ellipse cx="350" cy="505" rx="310" ry="245" fill="url(#c1)"/><ellipse cx="800" cy="505" rx="330" ry="255" fill="url(#c2)"/><ellipse cx="1260" cy="505" rx="310" ry="245" fill="url(#c3)"/>
+  <g filter="url(#shadow)" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+    <g transform="translate(350 205)"><rect x="-82" y="-42" width="164" height="82" rx="28" fill="#e8f2f8" stroke="#62c9ff" stroke-width="3"/><circle cy="-2" r="12" fill="#0ea5e9"/><path d="M-34 62Q0 30 34 62M-22 75Q0 54 22 75M-8 88Q0 80 8 88" fill="none" stroke="#7dd3fc" stroke-width="8" stroke-linecap="round"/><text y="130" fill="#fff" font-size="32" font-weight="700">AP1</text><text y="164" fill="#bfdbfe" font-size="22">BSSID A · Ch 36</text></g>
+    <g transform="translate(800 175)"><rect x="-82" y="-42" width="164" height="82" rx="28" fill="#e8f2f8" stroke="#67e8f9" stroke-width="3"/><circle cy="-2" r="12" fill="#0891b2"/><path d="M-34 62Q0 30 34 62M-22 75Q0 54 22 75M-8 88Q0 80 8 88" fill="none" stroke="#67e8f9" stroke-width="8" stroke-linecap="round"/><text y="130" fill="#fff" font-size="32" font-weight="700">AP2</text><text y="164" fill="#cffafe" font-size="22">BSSID B · Ch 44</text></g>
+    <g transform="translate(1260 205)"><rect x="-82" y="-42" width="164" height="82" rx="28" fill="#e8f2f8" stroke="#6ee7b7" stroke-width="3"/><circle cy="-2" r="12" fill="#059669"/><path d="M-34 62Q0 30 34 62M-22 75Q0 54 22 75M-8 88Q0 80 8 88" fill="none" stroke="#6ee7b7" stroke-width="8" stroke-linecap="round"/><text y="130" fill="#fff" font-size="32" font-weight="700">AP3</text><text y="164" fill="#d1fae5" font-size="22">BSSID C · Ch 149</text></g>
+  </g>
+  <path d="M300 605 C520 700 635 670 785 605 S1080 535 1310 610" fill="none" stroke="#7dd3fc" stroke-width="7" stroke-dasharray="15 12" marker-end="url(#arrow)" filter="url(#glow)"/>
+  <g transform="translate(690 585)" filter="url(#shadow)"><circle r="58" fill="#071523" stroke="#7dd3fc" stroke-width="4"/><rect x="-22" y="-34" width="44" height="68" rx="7" fill="#e0f2fe"/><circle cy="24" r="4" fill="#075985"/><path d="M-33 -62Q0-90 33-62M-22-75Q0-93 22-75" fill="none" stroke="#7dd3fc" stroke-width="5" stroke-linecap="round"/></g>
+  <g font-family="Arial,Helvetica,sans-serif" filter="url(#shadow)">
+    <g transform="translate(105 700)"><rect width="410" height="125" rx="20" fill="#0b2038" fill-opacity=".94" stroke="#3b82f6" stroke-width="2"/><text x="26" y="40" fill="#93c5fd" font-size="27" font-weight="700">802.11k · Neighbor Report</text><text x="26" y="76" fill="#f1f5f9" font-size="21">Il client scopre rapidamente</text><text x="26" y="104" fill="#f1f5f9" font-size="21">gli AP candidati</text></g>
+    <g transform="translate(595 700)"><rect width="410" height="125" rx="20" fill="#0b2038" fill-opacity=".94" stroke="#22d3ee" stroke-width="2"/><text x="26" y="40" fill="#67e8f9" font-size="27" font-weight="700">802.11v · BSS Transition</text><text x="26" y="76" fill="#f1f5f9" font-size="21">L'infrastruttura suggerisce</text><text x="26" y="104" fill="#f1f5f9" font-size="21">il BSS più opportuno</text></g>
+    <g transform="translate(1085 700)"><rect width="410" height="125" rx="20" fill="#0b2038" fill-opacity=".94" stroke="#34d399" stroke-width="2"/><text x="26" y="40" fill="#6ee7b7" font-size="27" font-weight="700">802.11r · Fast Transition</text><text x="26" y="76" fill="#f1f5f9" font-size="21">L'handoff riduce il tempo</text><text x="26" y="104" fill="#f1f5f9" font-size="21">senza traffico utile</text></g>
+  </g>
+  <g font-family="Arial,Helvetica,sans-serif"><text x="82" y="80" fill="#f8fafc" font-size="52" font-weight="700">Roaming Wi-Fi enterprise</text><text x="82" y="132" fill="#dbeafe" font-size="31">802.11k · 802.11v · 802.11r — discovery, steering e fast transition</text></g>
+</svg>
