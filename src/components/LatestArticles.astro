@@ -33,6 +33,11 @@ const latestPosts = getSortedPosts(posts)
   .slice(0, 3);
 
 const locale = Astro.currentLocale ?? config.site.lang;
+const formatDate = (date: Date) => new Intl.DateTimeFormat("it-IT", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+}).format(date);
 ---
 
 <section class="latest-section gl-section-white">
@@ -47,18 +52,25 @@ const locale = Astro.currentLocale ?? config.site.lang;
 
     {latestPosts.length > 0 ? (
       <div class="latest-grid">
-        {latestPosts.map(post => (
-          <a class="latest-card" href={getPostUrl(post.id, post.filePath, locale)}>
-            {post.data.tags?.[0] && (
-              <div class="latest-meta">
-                <span>{post.data.tags[0]}</span>
+        {latestPosts.map(post => {
+          const image = post.data.ogImage || "/default-og.jpg";
+          return (
+            <a class="latest-card" href={getPostUrl(post.id, post.filePath, locale)}>
+              <div class="latest-media">
+                <img src={image} alt={post.data.title} loading="lazy" decoding="async" />
               </div>
-            )}
-            <h3>{post.data.title}</h3>
-            <p>{post.data.description}</p>
-            <span class="read-more">Leggi l’articolo →</span>
-          </a>
-        ))}
+              <div class="latest-body">
+                <div class="latest-meta">
+                  <time datetime={post.data.pubDatetime.toISOString()}>{formatDate(post.data.pubDatetime)}</time>
+                  {post.data.tags?.[0] && <span>{post.data.tags[0]}</span>}
+                </div>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+                <span class="read-more">Leggi l’articolo →</span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     ) : (
       <div class="latest-empty">
@@ -69,152 +81,29 @@ const locale = Astro.currentLocale ?? config.site.lang;
 </section>
 
 <style>
-  .latest-section {
-    padding: 104px 0 112px;
-    border-top: 1px solid rgba(11, 18, 32, .10);
-  }
+  .latest-section { padding: 104px 0 112px; border-top: 1px solid rgba(11,18,32,.10); }
+  .latest-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 42px; }
+  .latest-head h2 { max-width: 720px; margin: 0; color: #0b1220; font-size: clamp(2.3rem,4vw,3.6rem); line-height: 1.05; letter-spacing: -.055em; }
+  .latest-head > a { color: #2563eb; text-decoration: none; font-size: 14px; font-weight: 750; white-space: nowrap; }
 
-  .latest-head {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 42px;
-  }
+  .latest-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+  .latest-card { overflow: hidden; display: flex; min-height: 100%; flex-direction: column; border: 1px solid rgba(11,18,32,.12); border-radius: 20px; background: #fff; color: inherit; text-decoration: none; box-shadow: 0 8px 28px rgba(11,18,32,.035); transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+  .latest-card:hover { transform: translateY(-5px); border-color: rgba(37,99,235,.28); box-shadow: 0 20px 48px rgba(11,18,32,.09); }
+  .latest-media { aspect-ratio: 16 / 9; overflow: hidden; background: #eef2f7; }
+  .latest-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+  .latest-card:hover .latest-media img { transform: scale(1.025); }
+  .latest-body { display: flex; flex: 1; flex-direction: column; padding: 22px 22px 24px; }
+  .latest-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 14px; color: rgba(11,18,32,.52); font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+  .latest-card h3 { margin: 18px 0 14px; color: #0b1220; font-size: clamp(1.35rem,2vw,1.65rem); line-height: 1.2; letter-spacing: -.04em; }
+  .latest-card p { margin: 0; color: rgba(11,18,32,.62); font-size: 14px; line-height: 1.68; }
+  .read-more { margin-top: auto; padding-top: 28px; color: #2563eb; font-size: 13px; font-weight: 750; }
+  .latest-empty { padding: 36px; border: 1px solid rgba(11,18,32,.12); }
+  .latest-empty p { margin: 0; color: rgba(11,18,32,.62); line-height: 1.7; }
 
-  .latest-head h2 {
-    max-width: 720px;
-    margin: 0;
-    color: #0b1220;
-    font-size: clamp(2.3rem, 4vw, 3.6rem);
-    line-height: 1.05;
-    letter-spacing: -.055em;
-  }
-
-  .latest-head > a {
-    color: #2563eb;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 750;
-    white-space: nowrap;
-  }
-
-  .latest-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-top: 1px solid rgba(11, 18, 32, .14);
-  }
-
-  .latest-card {
-    position: relative;
-    display: flex;
-    min-height: 310px;
-    flex-direction: column;
-    padding: 30px 28px 26px;
-    background: #fff;
-    border-right: 1px solid rgba(11, 18, 32, .12);
-    border-bottom: 1px solid rgba(11, 18, 32, .12);
-    color: inherit;
-    text-decoration: none;
-    transition: background .2s ease, transform .2s ease;
-  }
-
-  .latest-card:first-child {
-    border-left: 1px solid rgba(11, 18, 32, .12);
-  }
-
-  .latest-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px auto auto 0;
-    width: 0;
-    height: 2px;
-    background: #2563eb;
-    transition: width .2s ease;
-  }
-
-  .latest-card:hover {
-    transform: translateY(-2px);
-    background: rgba(11, 18, 32, .018);
-  }
-
-  .latest-card:hover::before {
-    width: 100%;
-  }
-
-  .latest-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 14px;
-    color: rgba(11, 18, 32, .52);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .07em;
-    text-transform: uppercase;
-  }
-
-  .latest-card h3 {
-    margin: 44px 0 14px;
-    color: #0b1220;
-    font-size: clamp(1.35rem, 2vw, 1.65rem);
-    line-height: 1.2;
-    letter-spacing: -.04em;
-  }
-
-  .latest-card p {
-    margin: 0;
-    color: rgba(11, 18, 32, .62);
-    font-size: 14px;
-    line-height: 1.68;
-  }
-
-  .read-more {
-    margin-top: auto;
-    padding-top: 28px;
-    color: #2563eb;
-    font-size: 13px;
-    font-weight: 750;
-  }
-
-  .latest-empty {
-    padding: 36px;
-    border: 1px solid rgba(11, 18, 32, .12);
-  }
-
-  .latest-empty p {
-    margin: 0;
-    color: rgba(11, 18, 32, .62);
-    line-height: 1.7;
-  }
-
-  @media (max-width: 900px) {
-    .latest-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .latest-card,
-    .latest-card:first-child {
-      min-height: auto;
-      border-left: 1px solid rgba(11, 18, 32, .12);
-    }
-  }
-
+  @media (max-width: 900px) { .latest-grid { grid-template-columns: 1fr; } }
   @media (max-width: 650px) {
-    .latest-section {
-      padding: 76px 0 84px;
-    }
-
-    .latest-head {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
-    .latest-card {
-      padding: 26px 24px;
-    }
-
-    .latest-card h3 {
-      margin-top: 34px;
-    }
+    .latest-section { padding: 76px 0 84px; }
+    .latest-head { align-items: flex-start; flex-direction: column; }
+    .latest-body { padding: 20px; }
   }
 </style>
