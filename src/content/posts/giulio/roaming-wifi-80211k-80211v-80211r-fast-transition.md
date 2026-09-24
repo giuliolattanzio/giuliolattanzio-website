@@ -11,7 +11,7 @@ tags:
   - 80211r
   - enterprise-wifi
   - troubleshooting
-ogImage: /images/articles/roaming-wifi-80211k-80211v-80211r-hero.jpg
+ogImage: /images/articles/roaming-wifi-80211k-80211v-80211r-hero.svg
 ---
 ## Introduzione
 
@@ -21,7 +21,7 @@ La prima regola da ricordare è semplice: **nel Wi-Fi il roaming è una decision
 
 Gli standard **802.11k**, **802.11v** e **802.11r** sono stati introdotti proprio per migliorare questo processo. Non svolgono lo stesso compito e non vanno considerati come tre versioni successive della stessa funzione: ciascuno interviene in una fase diversa del roaming.
 
-![Roaming Wi-Fi enterprise con 802.11k, 802.11v e 802.11r](/images/articles/roaming-wifi-80211k-80211v-80211r-hero.jpg)
+![Roaming Wi-Fi enterprise con 802.11k, 802.11v e 802.11r](/images/articles/roaming-wifi-80211k-80211v-80211r-hero.svg)
 
 In questo articolo vediamo come funzionano, quali problemi risolvono, quali limiti hanno e come interpretarli durante il [Wi-Fi design](/wifi/wifi-design/), la [site survey](/wifi/site-survey/) e il [troubleshooting](/wifi/troubleshooting/).
 
