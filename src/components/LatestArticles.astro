@@ -54,10 +54,11 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("it-IT", {
       <div class="latest-grid">
         {latestPosts.map(post => {
           const image = post.data.ogImage || "/default-og.jpg";
+          const imageSrc = typeof image === "string" ? image : image.src;
           return (
             <a class="latest-card" href={getPostUrl(post.id, post.filePath, locale)}>
               <div class="latest-media">
-                <img src={image} alt={post.data.title} loading="lazy" decoding="async" />
+                <img src={imageSrc} alt={post.data.title} loading="lazy" decoding="async" />
               </div>
               <div class="latest-body">
                 <div class="latest-meta">
