@@ -72,10 +72,11 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("it-IT", {
           <div class="article-grid">
             {page.data.map(post => {
               const image = post.data.ogImage || "/default-og.jpg";
+              const imageSrc = typeof image === "string" ? image : image.src;
               return (
                 <a class="article-card" href={getPostUrl(post.id, post.filePath, locale)}>
                   <div class="article-media">
-                    <img src={image} alt={post.data.title} loading="lazy" decoding="async" />
+                    <img src={imageSrc} alt={post.data.title} loading="lazy" decoding="async" />
                   </div>
                   <div class="article-body">
                     <div class="article-meta">
