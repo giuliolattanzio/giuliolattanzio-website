@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AudioCodes SBC e Microsoft Teams Direct Routing</title>
+  <desc id="desc">Architettura Microsoft Teams Phone verso AudioCodes SBC e SIP Carrier PSTN con signaling SIP TLS e media SRTP.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071a35"/>
+      <stop offset="0.55" stop-color="#0b2f5d"/>
+      <stop offset="1" stop-color="#0a4a7a"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#123b69" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#092542" stop-opacity="0.98"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1390" cy="120" r="260" fill="#2ea8ff" opacity="0.08"/>
+  <circle cx="140" cy="780" r="320" fill="#2ee6c8" opacity="0.06"/>
+
+  <text x="92" y="102" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700">AudioCodes SBC &amp; Microsoft Teams Direct Routing</text>
+  <text x="94" y="150" fill="#b8d8f5" font-family="Arial, Helvetica, sans-serif" font-size="24">Call routing, SIP/TLS, SRTP, media bypass e troubleshooting</text>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="238" rx="28" width="420" height="390" fill="url(#panel)" stroke="#4298e8" stroke-width="2"/>
+    <rect x="590" y="214" rx="28" width="420" height="438" fill="url(#panel)" stroke="#54d6ff" stroke-width="2"/>
+    <rect x="1100" y="238" rx="28" width="420" height="390" fill="url(#panel)" stroke="#4298e8" stroke-width="2"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="290" y="304" fill="#fff" font-size="35" font-weight="700">Microsoft Teams Phone</text>
+    <text x="290" y="342" fill="#a9cbe9" font-size="20">Cloud calling &amp; collaboration</text>
+    <rect x="197" y="398" width="186" height="150" rx="34" fill="#7259dc"/>
+    <text x="290" y="493" fill="#fff" font-size="76" font-weight="700">T</text>
+
+    <text x="800" y="286" fill="#fff" font-size="38" font-weight="700">AudioCodes SBC</text>
+    <text x="800" y="326" fill="#b6daf5" font-size="20">Session Border Controller</text>
+    <rect x="676" y="400" width="248" height="132" rx="22" fill="#101b29" stroke="#6aa6d9"/>
+    <circle cx="719" cy="446" r="8" fill="#36d77a"/>
+    <circle cx="746" cy="446" r="8" fill="#36d77a"/>
+    <rect x="784" y="430" width="104" height="32" rx="6" fill="#20364d"/>
+    <g fill="#7ea8ca">
+      <rect x="704" y="486" width="32" height="18" rx="3"/>
+      <rect x="747" y="486" width="32" height="18" rx="3"/>
+      <rect x="790" y="486" width="32" height="18" rx="3"/>
+      <rect x="833" y="486" width="32" height="18" rx="3"/>
+      <rect x="876" y="486" width="32" height="18" rx="3"/>
+    </g>
+    <text x="800" y="583" fill="#9fc4df" font-size="19">Security · Interoperability · Call Control</text>
+
+    <text x="1310" y="304" fill="#fff" font-size="35" font-weight="700">SIP Carrier / PSTN</text>
+    <text x="1310" y="342" fill="#a9cbe9" font-size="20">Public voice connectivity</text>
+    <circle cx="1310" cy="470" r="92" fill="#eaf6ff"/>
+    <path d="M1276 428c8-8 19-4 24 3l18 24c5 7 4 15-2 21l-13 12c14 26 34 46 60 60l12-13c6-6 14-7 21-2l24 18c7 5 11 16 3 24-20 21-50 24-78 12-47-21-87-61-108-108-12-28-9-58 12-78z" fill="#17528c" transform="translate(-43 -37) scale(.82)"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="700" text-anchor="middle">
+    <line x1="500" y1="390" x2="590" y2="390" stroke="#4eb7ff" stroke-width="6" stroke-dasharray="14 12"/>
+    <polygon points="582,378 606,390 582,402" fill="#4eb7ff"/>
+    <polygon points="508,378 484,390 508,402" fill="#4eb7ff"/>
+    <rect x="505" y="344" width="80" height="34" rx="17" fill="#0b2745" stroke="#4eb7ff"/>
+    <text x="545" y="367" fill="#dff3ff" font-size="17">SIP/TLS</text>
+
+    <line x1="1010" y1="390" x2="1100" y2="390" stroke="#4eb7ff" stroke-width="6" stroke-dasharray="14 12"/>
+    <polygon points="1092,378 1116,390 1092,402" fill="#4eb7ff"/>
+    <polygon points="1018,378 994,390 1018,402" fill="#4eb7ff"/>
+
+    <line x1="500" y1="518" x2="590" y2="518" stroke="#50e6c2" stroke-width="6" stroke-dasharray="14 12"/>
+    <polygon points="582,506 606,518 582,530" fill="#50e6c2"/>
+    <polygon points="508,506 484,518 508,530" fill="#50e6c2"/>
+    <rect x="500" y="538" width="90" height="34" rx="17" fill="#0c2d45" stroke="#50e6c2"/>
+    <text x="545" y="561" fill="#dcfff6" font-size="17">SRTP</text>
+
+    <line x1="1010" y1="518" x2="1100" y2="518" stroke="#50e6c2" stroke-width="6" stroke-dasharray="14 12"/>
+    <polygon points="1092,506 1116,518 1092,530" fill="#50e6c2"/>
+    <polygon points="1018,506 994,518 1018,530" fill="#50e6c2"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="84" y="710" width="1432" height="116" rx="24" fill="#061b31" opacity="0.92" stroke="#2f638e"/>
+    <g fill="#fff" font-size="23" font-weight="700">
+      <text x="135" y="758">Sicurezza</text>
+      <text x="423" y="758">Interoperabilità</text>
+      <text x="758" y="758">Call Routing</text>
+      <text x="1033" y="758">Media</text>
+      <text x="1260" y="758">Troubleshooting</text>
+    </g>
+    <g fill="#95bad8" font-size="17">
+      <text x="135" y="790">TLS, SRTP, certificati</text>
+      <text x="423" y="790">Teams ↔ carrier SIP</text>
+      <text x="758" y="790">E.164, IP-to-IP</text>
+      <text x="1033" y="790">RTP, bypass, codec</text>
+      <text x="1260" y="790">trace, log, call flow</text>
+    </g>
+  </g>
+</svg>
