@@ -22,17 +22,17 @@ Il principio è semplice: Microsoft Teams gestisce utenti, policy e servizi tele
 
 Nella pratica, però, il funzionamento di una chiamata dipende da molti elementi che devono essere coerenti tra loro:
 
-- DNS e FQDN;
-- certificati TLS;
-- signaling SIP;
-- voice routing di Teams;
-- configurazione dell'SBC;
-- normalizzazione della numerazione;
-- codec;
-- media RTP/SRTP;
-- NAT e firewall;
-- policy di sicurezza;
-- interoperabilità con il carrier.
+- DNS e FQDN
+- certificati TLS
+- signaling SIP
+- voice routing di Teams
+- configurazione dell'SBC
+- normalizzazione della numerazione
+- codec
+- media RTP/SRTP
+- NAT e firewall
+- policy di sicurezza
+- interoperabilità con il carrier
 
 In questo articolo analizzo una soluzione basata su **AudioCodes SBC** come punto di interconnessione tra **Microsoft Teams Direct Routing** e un trunk SIP PSTN.
 
@@ -56,14 +56,14 @@ Il ruolo dell'SBC non consiste semplicemente nell'inoltrare pacchetti SIP.
 
 AudioCodes deve:
 
-- terminare la sessione SIP proveniente da Microsoft;
-- instaurare una nuova relazione SIP verso il carrier;
-- controllare il routing delle chiamate;
-- normalizzare numeri e header;
-- gestire codec e SDP;
-- proteggere il dominio voce;
-- governare il percorso media;
-- fornire strumenti di logging e troubleshooting.
+- terminare la sessione SIP proveniente da Microsoft
+- instaurare una nuova relazione SIP verso il carrier
+- controllare il routing delle chiamate
+- normalizzare numeri e header
+- gestire codec e SDP
+- proteggere il dominio voce
+- governare il percorso media
+- fornire strumenti di logging e troubleshooting
 
 È quindi più corretto considerarlo come un **punto di demarcazione e controllo** tra Microsoft 365 e l'infrastruttura telefonica.
 
@@ -77,13 +77,13 @@ Una configurazione tipica può essere rappresentata così:
 
 L'SBC può inoltre collegarsi contemporaneamente ad altri sistemi:
 
-- PBX tradizionali;
-- contact center;
-- gateway analogici;
-- fax;
-- citofoni;
-- sistemi di allarme;
-- piattaforme SIP legacy.
+- PBX tradizionali
+- contact center
+- gateway analogici
+- fax
+- citofoni
+- sistemi di allarme
+- piattaforme SIP legacy
 
 Questa capacità di interconnessione è particolarmente utile durante le migrazioni verso Teams, perché permette di mantenere per un certo periodo una situazione ibrida.
 
@@ -107,12 +107,12 @@ La catena di certificazione deve essere considerata parte integrante del progett
 
 Problemi apparentemente SIP possono infatti essere causati da:
 
-- FQDN errato;
-- certificato scaduto;
-- CN/SAN non coerente;
-- catena CA incompleta;
-- DNS non corretto;
-- porta TLS non raggiungibile.
+- FQDN errato
+- certificato scaduto
+- CN/SAN non coerente
+- catena CA incompleta
+- DNS non corretto
+- porta TLS non raggiungibile
 
 Prima ancora di analizzare un INVITE conviene quindi verificare che la relazione di trasporto sia correttamente stabilita.
 
@@ -130,10 +130,10 @@ Definisce l'interfaccia IP utilizzata dal dispositivo.
 
 In una configurazione complessa possono essere presenti reti differenti per:
 
-- management;
-- signaling Teams;
-- signaling carrier;
-- media.
+- management
+- signaling Teams
+- signaling carrier
+- media
 
 ### Media Realm
 
@@ -147,11 +147,11 @@ Definisce il punto di ascolto SIP dell'SBC.
 
 Qui vengono stabiliti elementi come:
 
-- indirizzo locale;
-- protocollo;
-- porta;
-- TLS context;
-- relazione con il Media Realm.
+- indirizzo locale
+- protocollo
+- porta
+- TLS context
+- relazione con il Media Realm
 
 ### Proxy Set
 
@@ -159,10 +159,10 @@ Rappresenta i server remoti con i quali AudioCodes instaura una relazione SIP.
 
 Possono essere definiti Proxy Set distinti per:
 
-- Microsoft Teams;
-- carrier SIP;
-- PBX;
-- piattaforme VoIP interne.
+- Microsoft Teams
+- carrier SIP
+- PBX
+- piattaforme VoIP interne
 
 ### IP Group
 
@@ -188,11 +188,11 @@ Il gateway utilizza l'FQDN pubblico configurato sull'SBC.
 
 Concettualmente il tenant deve conoscere:
 
-- FQDN dell'SBC;
-- porta SIP;
-- stato enabled/disabled;
-- eventuale utilizzo del Media Bypass;
-- opzioni relative agli header e al call history.
+- FQDN dell'SBC
+- porta SIP
+- stato enabled/disabled
+- eventuale utilizzo del Media Bypass
+- opzioni relative agli header e al call history
 
 Dopo la configurazione è fondamentale verificare che Teams consideri il gateway raggiungibile.
 
@@ -222,11 +222,11 @@ Questa separazione permette di creare scenari molto flessibili.
 
 È possibile avere, ad esempio:
 
-- un SBC per le chiamate nazionali;
-- un altro SBC per servizi internazionali;
-- gateway diversi per sedi differenti;
-- route di backup;
-- carrier multipli.
+- un SBC per le chiamate nazionali
+- un altro SBC per servizi internazionali
+- gateway diversi per sedi differenti
+- route di backup
+- carrier multipli
 
 Il punto importante è che Teams decide **a quale SBC consegnare la chiamata**, mentre l'SBC decide successivamente **come gestire il leg telefonico verso il carrier**.
 
@@ -240,12 +240,12 @@ Qui entra in gioco la logica **IP-to-IP Routing**.
 
 Una regola può basarsi su diversi parametri, ad esempio:
 
-- IP Group sorgente;
-- IP Group destinazione;
-- Called Number;
-- Calling Number;
-- Request URI;
-- classificazione del traffico.
+- IP Group sorgente
+- IP Group destinazione
+- Called Number
+- Calling Number
+- Request URI
+- classificazione del traffico
 
 Un percorso tipico è:
 
@@ -309,14 +309,14 @@ AudioCodes mette a disposizione le **Message Manipulations**, che consentono di 
 
 Possono essere utilizzate per intervenire, ad esempio, su:
 
-- From;
-- To;
-- Contact;
-- P-Asserted-Identity;
-- Diversion;
-- History-Info;
-- Request URI;
-- SDP.
+- From
+- To
+- Contact
+- P-Asserted-Identity
+- Diversion
+- History-Info
+- Request URI
+- SDP
 
 La manipulation non dovrebbe però diventare il primo strumento utilizzato quando una chiamata non funziona.
 
@@ -362,10 +362,10 @@ La chiamata viene destinata all'IP Group del carrier.
 
 Prima dell'inoltro possono essere applicate:
 
-- trasformazioni del Called Number;
-- trasformazioni del Calling Number;
-- Message Manipulations;
-- adattamenti SDP.
+- trasformazioni del Called Number
+- trasformazioni del Calling Number
+- Message Manipulations
+- adattamenti SDP
 
 ### 6. INVITE verso il carrier
 
@@ -419,10 +419,10 @@ Una delle regole più importanti nel troubleshooting VoIP è non confondere **SI
 
 Una chiamata può essere correttamente instaurata dal punto di vista della segnalazione e avere comunque:
 
-- audio monodirezionale;
-- assenza totale di audio;
-- audio degradato;
-- disconnessioni.
+- audio monodirezionale
+- assenza totale di audio
+- audio degradato
+- disconnessioni
 
 Il SIP descrive e negozia la sessione.
 
@@ -462,11 +462,11 @@ Questa distinzione è fondamentale:
 
 Il Media Bypass può ridurre il percorso del traffico voce, ma richiede una progettazione accurata di:
 
-- routing;
-- firewall;
-- indirizzi pubblici;
-- NAT;
-- reachability dell'SBC.
+- routing
+- firewall
+- indirizzi pubblici
+- NAT
+- reachability dell'SBC
 
 Microsoft raccomanda di verificare che il modello SBC utilizzato supporti effettivamente questa modalità e di seguire la documentazione del vendor.
 
@@ -478,19 +478,19 @@ La negoziazione dei codec è un altro punto nel quale Teams, AudioCodes e carrie
 
 Tra i codec supportati negli scenari Direct Routing rientrano, a seconda del percorso media:
 
-- SILK;
-- G.711;
-- G.722;
-- G.729;
-- AMR-WB in specifici scenari non bypass.
+- SILK
+- G.711
+- G.722
+- G.729
+- AMR-WB in specifici scenari non bypass
 
 L'SBC può adattare la negoziazione tra i due domini.
 
 In un'analisi SIP è quindi importante leggere il contenuto SDP e verificare quali codec vengono:
 
-- offerti;
-- accettati;
-- selezionati.
+- offerti
+- accettati
+- selezionati
 
 Un errore di interoperabilità può produrre risposte come:
 
@@ -510,11 +510,11 @@ Il media utilizza SRTP.
 
 Questo significa che l'SBC non gestisce soltanto una relazione SIP tradizionale, ma deve operare con:
 
-- certificati;
-- cipher;
-- TLS context;
-- secure media;
-- trusted peers.
+- certificati
+- cipher
+- TLS context
+- secure media
+- trusted peers
 
 L'utilizzo dell'SBC come confine permette inoltre di non esporre direttamente il carrier o altri sistemi telefonici interni al dominio Microsoft.
 
@@ -530,12 +530,12 @@ Se l'SBC presenta un indirizzo non raggiungibile dal peer remoto, il signaling p
 
 Durante il troubleshooting verifico sempre:
 
-1. indirizzo sorgente reale;
-2. indirizzo presentato nel SIP;
-3. indirizzo presentato nell'SDP;
-4. NAT applicato dal firewall;
-5. percorso di ritorno;
-6. porte RTP/SRTP aperte.
+1. indirizzo sorgente reale
+2. indirizzo presentato nel SIP
+3. indirizzo presentato nell'SDP
+4. NAT applicato dal firewall
+5. percorso di ritorno
+6. porte RTP/SRTP aperte
 
 Il concetto fondamentale è che l'SBC deve conoscere correttamente il rapporto tra:
 
@@ -600,14 +600,14 @@ Se la chiamata viene stabilita correttamente ma soltanto una parte sente l'altra
 
 Verifico:
 
-- indirizzi SDP;
-- NAT;
-- Media Realm;
-- porte RTP;
-- firewall;
-- routing;
-- Media Bypass;
-- indirizzi pubblici e privati utilizzati dall'SBC.
+- indirizzi SDP
+- NAT
+- Media Realm
+- porte RTP
+- firewall
+- routing
+- Media Bypass
+- indirizzi pubblici e privati utilizzati dall'SBC
 
 Un trace SIP può dimostrare che la chiamata è stata accettata, ma soltanto un'analisi del media permette di capire se RTP/SRTP sta realmente transitando in entrambe le direzioni.
 
@@ -617,38 +617,34 @@ Un trace SIP può dimostrare che la chiamata è stata accettata, ma soltanto un'
 
 L'SBC si trova in una posizione centrale e per questo viene spesso considerato automaticamente responsabile di ogni anomalia.
 
-In realtà una chiamata può fallire per problemi presenti in qualunque dominio.
+In realtà una chiamata può fallire per problemi presenti in qualunque dominio:
 
-### Teams
+**Teams**
+- voice policy errata
+- voice route non compatibile
+- utente non correttamente abilitato
+- numero non assegnato
 
-- voice policy errata;
-- voice route non compatibile;
-- utente non correttamente abilitato;
-- numero non assegnato.
+**AudioCodes**
+- classificazione errata
+- routing errato
+- manipulation
+- certificato
+- media configuration
 
-### AudioCodes
+**Carrier**
+- formato numerico non accettato
+- trunk non autorizzato
+- routing PSTN
+- limitazioni del servizio
 
-- classificazione errata;
-- routing errato;
-- manipulation;
-- certificato;
-- media configuration.
-
-### Carrier
-
-- formato numerico non accettato;
-- trunk non autorizzato;
-- routing PSTN;
-- limitazioni del servizio.
-
-### Rete
-
-- firewall;
-- NAT;
-- DNS;
-- packet loss;
-- latenza;
-- porte media.
+**Rete**
+- firewall
+- NAT
+- DNS
+- packet loss
+- latenza
+- porte media
 
 Il compito del troubleshooting è identificare il dominio responsabile basandosi su evidenze, non su supposizioni.
 
@@ -656,7 +652,7 @@ Il compito del troubleshooting è identificare il dominio responsabile basandosi
 
 ## Un metodo operativo di troubleshooting
 
-Il workflow che considero più efficace è il seguente.
+Il workflow che considero più efficace è:
 
 ### 1. Definire il problema
 
@@ -670,9 +666,9 @@ Già questa informazione riduce notevolmente il campo di ricerca.
 
 Utilizzare:
 
-- numero chiamante noto;
-- numero chiamato noto;
-- timestamp preciso.
+- numero chiamante noto
+- numero chiamato noto
+- timestamp preciso
 
 ### 3. Acquisire il trace
 
@@ -681,6 +677,8 @@ Analizzare la sessione sul lato AudioCodes.
 ### 4. Separare i due leg
 
 **Teams ↔ AudioCodes**
+
+e
 
 **AudioCodes ↔ Carrier**
 
@@ -708,21 +706,21 @@ Un SBC enterprise deve essere considerato anche come punto di osservabilità.
 
 I dati più utili includono:
 
-- registri SIP;
-- call detail;
-- sessioni attive;
-- stato dei Proxy Set;
-- statistiche sui trunk;
-- failure response;
-- informazioni media;
-- allarmi;
-- stato dei certificati.
+- registri SIP
+- call detail
+- sessioni attive
+- stato dei Proxy Set
+- statistiche sui trunk
+- failure response
+- informazioni media
+- allarmi
+- stato dei certificati
 
 La disponibilità dei log permette di passare da:
 
 > “la chiamata non funziona”
 
-A una diagnosi molto più utile:
+a:
 
 > “Teams ha consegnato correttamente l'INVITE, AudioCodes ha applicato la route prevista, il carrier ha risposto 403 perché il Calling Number non è autorizzato”.
 
@@ -734,18 +732,18 @@ Questa differenza rappresenta il vero valore del troubleshooting strutturato.
 
 In un progetto Teams Direct Routing con AudioCodes considero particolarmente importanti questi principi:
 
-- utilizzare sempre SBC e firmware attualmente certificati;
-- mantenere una numerazione interna coerente, preferibilmente E.164;
-- separare chiaramente IP Group Teams e carrier;
-- utilizzare nomi descrittivi per Proxy Set, SIP Interface e routing;
-- limitare le Message Manipulation ai casi realmente necessari;
-- documentare ogni trasformazione applicata;
-- distinguere sempre signaling e media;
-- progettare NAT e firewall prima del go-live;
-- verificare certificati e scadenze;
-- acquisire trace di riferimento quando il sistema funziona;
-- testare chiamate inbound, outbound, trasferimenti e deviazioni;
-- verificare il comportamento in caso di indisponibilità di trunk o peer.
+- utilizzare sempre SBC e firmware attualmente certificati
+- mantenere una numerazione interna coerente, preferibilmente E.164
+- separare chiaramente IP Group Teams e carrier
+- utilizzare nomi descrittivi per Proxy Set, SIP Interface e routing
+- limitare le Message Manipulation ai casi realmente necessari
+- documentare ogni trasformazione applicata
+- distinguere sempre signaling e media
+- progettare NAT e firewall prima del go-live
+- verificare certificati e scadenze
+- acquisire trace di riferimento quando il sistema funziona
+- testare chiamate inbound, outbound, trasferimenti e deviazioni
+- verificare il comportamento in caso di indisponibilità di trunk o peer
 
 ---
 
