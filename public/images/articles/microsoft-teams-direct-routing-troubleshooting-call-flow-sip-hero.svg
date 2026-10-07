@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Microsoft Teams Direct Routing troubleshooting call flow SIP</title>
+<desc id="desc">Diagramma tecnico di troubleshooting con Microsoft Teams, SBC e carrier PSTN e sequenza SIP INVITE, 100 Trying, 180 Ringing, 200 OK, ACK e BYE.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071729"/><stop offset=".58" stop-color="#10395f"/><stop offset="1" stop-color="#09233b"/></linearGradient>
+<filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity=".3"/></filter>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#78d5ff"/></marker>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<text x="84" y="100" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="55" font-weight="700">Teams Direct Routing troubleshooting</text>
+<text x="86" y="150" fill="#b8d9ef" font-family="Arial,Helvetica,sans-serif" font-size="25">Leggere il call flow SIP e trovare il primo punto di errore</text>
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle" filter="url(#shadow)">
+<g transform="translate(100 245)"><rect width="350" height="250" rx="30" fill="#102e50" stroke="#5a8cff" stroke-width="3"/><rect x="120" y="62" width="110" height="92" rx="22" fill="#7259dc"/><text x="175" y="124" fill="#fff" font-size="56" font-weight="700">T</text><text x="175" y="205" fill="#fff" font-size="31" font-weight="700">Microsoft Teams</text></g>
+<g transform="translate(625 245)"><rect width="350" height="250" rx="30" fill="#102e50" stroke="#68d7ff" stroke-width="3"/><rect x="85" y="68" width="180" height="85" rx="14" fill="#101b29" stroke="#75b8e7"/><circle cx="120" cy="108" r="7" fill="#34d399"/><circle cx="145" cy="108" r="7" fill="#34d399"/><rect x="175" y="95" width="62" height="24" rx="4" fill="#20364d"/><text x="175" y="205" fill="#fff" font-size="31" font-weight="700">SBC</text></g>
+<g transform="translate(1150 245)"><rect width="350" height="250" rx="30" fill="#102e50" stroke="#54d6a6" stroke-width="3"/><circle cx="175" cy="105" r="70" fill="#eaf6ff"/><path d="M150 85c15-20 35-20 50 0M140 110h70M150 135c15 20 35 20 50 0" fill="none" stroke="#176091" stroke-width="10" stroke-linecap="round"/><text x="175" y="205" fill="#fff" font-size="31" font-weight="700">Carrier / PSTN</text></g>
+</g>
+<g stroke="#78d5ff" stroke-width="6" fill="none" marker-end="url(#arr)"><path d="M450 335H625"/><path d="M975 335h175"/></g>
+<g stroke="#57dfb2" stroke-width="6" fill="none" marker-end="url(#arr)"><path d="M1150 405H975"/><path d="M625 405H450"/></g>
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<text x="537" y="315" fill="#a8e5ff" font-size="20" font-weight="700">SIP/TLS</text><text x="1062" y="315" fill="#a8e5ff" font-size="20" font-weight="700">SIP trunk</text>
+</g>
+<g font-family="Arial,Helvetica,sans-serif">
+<rect x="150" y="585" width="1300" height="210" rx="28" fill="#0a223a" stroke="#4e9fd2" stroke-width="2"/>
+<text x="190" y="630" fill="#9fdfff" font-size="22" font-weight="700">CALL FLOW</text>
+<g font-size="24" font-weight="700">
+<text x="205" y="690" fill="#fff">INVITE</text><text x="385" y="690" fill="#badff1">100 Trying</text><text x="590" y="690" fill="#badff1">180 Ringing</text><text x="810" y="690" fill="#65e1b3">200 OK</text><text x="1015" y="690" fill="#65e1b3">ACK</text><text x="1195" y="690" fill="#ffcc80">BYE</text>
+</g>
+<path d="M205 730H1310" stroke="#3a759d" stroke-width="4"/>
+<circle cx="225" cy="730" r="9" fill="#78d5ff"/><circle cx="420" cy="730" r="9" fill="#78d5ff"/><circle cx="625" cy="730" r="9" fill="#78d5ff"/><circle cx="825" cy="730" r="9" fill="#57dfb2"/><circle cx="1020" cy="730" r="9" fill="#57dfb2"/><circle cx="1205" cy="730" r="9" fill="#ffcc80"/>
+<text x="800" y="770" text-anchor="middle" fill="#9fc5dc" font-size="20">403 · 404 · 488 · 503 · SDP · codec · NAT · SRTP · one-way audio</text>
+</g>
+</svg>
