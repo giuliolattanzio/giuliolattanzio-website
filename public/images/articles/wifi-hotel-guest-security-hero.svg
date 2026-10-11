@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Wi-Fi in hotel e sicurezza delle reti guest</title>
+<desc id="desc">Illustrazione tecnica di una rete Wi-Fi guest in hotel con notebook, smartphone, access point, captive portal e indicatori di sicurezza.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071625"/><stop offset=".55" stop-color="#103957"/><stop offset="1" stop-color="#0a2237"/></linearGradient>
+<linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#123b5c"/><stop offset="1" stop-color="#0a263d"/></linearGradient>
+<filter id="shadow"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity=".3"/></filter>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#79d4ff"/></marker>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<circle cx="220" cy="760" r="340" fill="#22d3ee" opacity=".05"/><circle cx="1430" cy="140" r="300" fill="#34d399" opacity=".06"/>
+<text x="88" y="102" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="700">Wi-Fi in hotel: quanto è sicura la rete guest?</text>
+<text x="90" y="150" fill="#b8d8ec" font-family="Arial,Helvetica,sans-serif" font-size="25">Rogue AP · Evil Twin · Captive Portal · MITM · Client Isolation</text>
+<g filter="url(#shadow)" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<rect x="95" y="245" width="410" height="385" rx="30" fill="url(#panel)" stroke="#4aa9dd" stroke-width="2"/>
+<text x="300" y="310" fill="#fff" font-size="34" font-weight="700">Hotel Guest Wi-Fi</text>
+<rect x="198" y="360" width="204" height="100" rx="34" fill="#eaf5fb" stroke="#70d7ff" stroke-width="3"/>
+<circle cx="300" cy="410" r="13" fill="#0ea5e9"/>
+<path d="M245 505Q300 455 355 505M260 535Q300 500 340 535M284 562Q300 548 316 562" fill="none" stroke="#77dbff" stroke-width="10" stroke-linecap="round"/>
+<text x="300" y="600" fill="#b9def2" font-size="21">SSID ufficiale</text>
+
+<rect x="595" y="220" width="410" height="435" rx="30" fill="url(#panel)" stroke="#65d5ff" stroke-width="2"/>
+<text x="800" y="286" fill="#fff" font-size="34" font-weight="700">Client</text>
+<rect x="675" y="350" width="250" height="148" rx="18" fill="#dfeef6"/>
+<rect x="700" y="375" width="200" height="95" rx="8" fill="#17354f"/>
+<rect x="645" y="500" width="310" height="24" rx="12" fill="#b9ceda"/>
+<rect x="755" y="548" width="90" height="46" rx="10" fill="#0d2031" stroke="#61d9ae" stroke-width="2"/>
+<path d="M782 553v-16c0-25 36-25 36 0v16" fill="none" stroke="#61d9ae" stroke-width="7"/>
+<text x="800" y="625" fill="#b9def2" font-size="21">Notebook / smartphone</text>
+
+<rect x="1095" y="245" width="410" height="385" rx="30" fill="url(#panel)" stroke="#ffb86c" stroke-width="2"/>
+<text x="1300" y="310" fill="#fff" font-size="34" font-weight="700">Rete non trusted</text>
+<polygon points="1300,360 1380,500 1220,500" fill="#ffb86c" opacity=".95"/>
+<text x="1300" y="468" fill="#412711" font-size="68" font-weight="700">!</text>
+<text x="1300" y="555" fill="#ffd2a3" font-size="22">Evil Twin / Rogue AP</text>
+<text x="1300" y="590" fill="#ffd2a3" font-size="22">Captive portal falso</text>
+</g>
+<g stroke-width="7" fill="none" marker-end="url(#arr)"><path d="M505 430H595" stroke="#79d4ff"/><path d="M1005 430H1095" stroke="#ffb86c"/></g>
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<rect x="135" y="710" width="1330" height="110" rx="24" fill="#0a2237" stroke="#407e9f" stroke-width="2"/>
+<text x="800" y="755" fill="#fff" font-size="29" font-weight="700">La sicurezza non dipende solo dalla password del Wi-Fi</text>
+<text x="800" y="795" fill="#a9cede" font-size="22">Segmentazione · Client isolation · TLS · VPN · Monitoring RF · Consapevolezza dell'utente</text>
+</g>
+</svg>
