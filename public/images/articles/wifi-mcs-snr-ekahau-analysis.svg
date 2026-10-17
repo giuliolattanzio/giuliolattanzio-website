@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+<title id="title">Analisi MCS SNR con Ekahau e Sidekick 2</title>
+<desc id="desc">Workflow concettuale per correlare signal strength, SNR, data rate e spectrum analysis con Ekahau AI Pro e Sidekick 2.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071724"/><stop offset="1" stop-color="#0e3753"/></linearGradient>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#6fd6ff"/></marker>
+</defs>
+<rect width="1600" height="860" fill="url(#bg)"/>
+<text x="78" y="90" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="52" font-weight="700">Dal segnale al data rate: come leggere il problema</text>
+<text x="80" y="135" fill="#b6d8e9" font-family="Arial,Helvetica,sans-serif" font-size="24">Ekahau AI Pro + Sidekick 2 per correlare copertura, SNR e spettro</text>
+
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<g transform="translate(90 255)"><rect width="300" height="290" rx="28" fill="#0b2a43" stroke="#55c9f5" stroke-width="2"/><text x="150" y="52" fill="#fff" font-size="28" font-weight="700">Signal Strength</text><path d="M45 220 C95 115 165 275 255 100" fill="none" stroke="#70d8ff" stroke-width="11"/><text x="150" y="260" fill="#b7ddec" font-size="21">Copertura utile</text></g>
+<g transform="translate(455 255)"><rect width="300" height="290" rx="28" fill="#0b2a43" stroke="#57d6b7" stroke-width="2"/><text x="150" y="52" fill="#fff" font-size="28" font-weight="700">SNR</text><line x1="55" y1="205" x2="245" y2="205" stroke="#60798a" stroke-width="5"/><line x1="55" y1="115" x2="245" y2="115" stroke="#6bdfbd" stroke-width="8"/><path d="M238 125V195" stroke="#fff" stroke-width="4"/><text x="150" y="260" fill="#b9e8dc" font-size="21">Margine sul rumore</text></g>
+<g transform="translate(820 255)"><rect width="300" height="290" rx="28" fill="#0b2a43" stroke="#7bbcf8" stroke-width="2"/><text x="150" y="52" fill="#fff" font-size="28" font-weight="700">Data Rate</text><rect x="60" y="185" width="34" height="50" fill="#6fd6ff"/><rect x="108" y="155" width="34" height="80" fill="#6fd6ff"/><rect x="156" y="115" width="34" height="120" fill="#6fd6ff"/><rect x="204" y="78" width="34" height="157" fill="#6fd6ff"/><text x="150" y="260" fill="#bfdff0" font-size="21">Efficienza del link</text></g>
+<g transform="translate(1185 255)"><rect width="300" height="290" rx="28" fill="#2d281f" stroke="#ffb76e" stroke-width="2"/><text x="150" y="52" fill="#fff" font-size="28" font-weight="700">Spectrum</text><path d="M45 210 C70 205 85 90 110 205 S155 180 178 205 S220 65 255 205" fill="none" stroke="#ffc078" stroke-width="8"/><text x="150" y="260" fill="#ffd7ad" font-size="21">Sidekick 2</text></g>
+</g>
+
+<g stroke="#6fd6ff" stroke-width="6" fill="none" marker-end="url(#arr)">
+<path d="M390 400H455"/><path d="M755 400H820"/><path d="M1120 400H1185"/>
+</g>
+
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<rect x="180" y="650" width="1240" height="115" rx="24" fill="#0a2237" stroke="#4a829f" stroke-width="2"/>
+<text x="800" y="695" fill="#fff" font-size="29" font-weight="700">Buon RSSI + SNR basso = modulazione più conservativa</text>
+<text x="800" y="735" fill="#abcfe0" font-size="22">La copertura da sola non spiega le prestazioni: serve correlare segnale, rumore e occupazione dello spettro</text>
+</g>
+</svg>
