@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+<title id="title">Troubleshooting VoWiFi con Ekahau e Sidekick 2</title>
+<desc id="desc">Workflow tecnico che correla signal strength, SNR, retry, spectrum analysis, QoS, latency, jitter e packet loss.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071724"/><stop offset="1" stop-color="#0e3753"/></linearGradient>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#70d7ff"/></marker>
+</defs>
+<rect width="1600" height="860" fill="url(#bg)"/>
+<text x="76" y="90" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="52" font-weight="700">Troubleshooting VoWiFi: correlare RF e rete</text>
+<text x="78" y="135" fill="#b7d8e8" font-family="Arial,Helvetica,sans-serif" font-size="24">Ekahau AI Pro + Sidekick 2 + analisi end-to-end</text>
+
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<g transform="translate(70 250)"><rect width="260" height="270" rx="26" fill="#0b2a43" stroke="#52c9f5" stroke-width="2"/><text x="130" y="48" fill="#fff" font-size="25" font-weight="700">Signal / SNR</text><path d="M40 205 C90 85 150 250 220 90" fill="none" stroke="#6fd7ff" stroke-width="10"/><text x="130" y="242" fill="#b8ddec" font-size="19">Ekahau survey</text></g>
+<g transform="translate(385 250)"><rect width="260" height="270" rx="26" fill="#0b2a43" stroke="#65d6ba" stroke-width="2"/><text x="130" y="48" fill="#fff" font-size="25" font-weight="700">Retry / Airtime</text><rect x="55" y="170" width="25" height="55" fill="#70d8ff"/><rect x="95" y="120" width="25" height="105" fill="#70d8ff"/><rect x="135" y="85" width="25" height="140" fill="#ffb46a"/><rect x="175" y="155" width="25" height="70" fill="#70d8ff"/><text x="130" y="242" fill="#b9e8dc" font-size="19">efficienza RF</text></g>
+<g transform="translate(700 250)"><rect width="260" height="270" rx="26" fill="#30271e" stroke="#ffb56c" stroke-width="2"/><text x="130" y="48" fill="#fff" font-size="25" font-weight="700">Spectrum</text><path d="M35 205 C60 200 80 75 105 205 S155 170 180 205 S210 90 230 205" fill="none" stroke="#ffc078" stroke-width="8"/><text x="130" y="242" fill="#ffd6ab" font-size="19">Sidekick 2</text></g>
+<g transform="translate(1015 250)"><rect width="260" height="270" rx="26" fill="#0b2a43" stroke="#78bff8" stroke-width="2"/><text x="130" y="48" fill="#fff" font-size="25" font-weight="700">QoS / DSCP</text><text x="130" y="125" fill="#fff" font-size="34" font-weight="700">EF 46</text><text x="130" y="170" fill="#8bd8ff" font-size="23">WMM AC_VO</text><text x="130" y="242" fill="#bedfed" font-size="19">LAN + WLAN</text></g>
+<g transform="translate(1330 250)"><rect width="200" height="270" rx="26" fill="#0b3030" stroke="#5bd5aa" stroke-width="2"/><text x="100" y="48" fill="#fff" font-size="24" font-weight="700">Voice KPI</text><text x="100" y="110" fill="#9be7cd" font-size="20">Latency</text><text x="100" y="150" fill="#9be7cd" font-size="20">Jitter</text><text x="100" y="190" fill="#9be7cd" font-size="20">Packet Loss</text><text x="100" y="242" fill="#bee9db" font-size="19">RTP / platform</text></g>
+</g>
+
+<g stroke="#70d7ff" stroke-width="6" fill="none" marker-end="url(#arr)">
+<path d="M330 385H385"/><path d="M645 385H700"/><path d="M960 385H1015"/><path d="M1275 385H1330"/>
+</g>
+
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<rect x="170" y="655" width="1260" height="115" rx="24" fill="#0a2237" stroke="#4a819f" stroke-width="2"/>
+<text x="800" y="700" fill="#fff" font-size="29" font-weight="700">La qualità voce nasce dalla correlazione tra RF, QoS e percorso IP</text>
+<text x="800" y="740" fill="#acd0df" font-size="21">Non basta una heatmap perfetta: serve verificare ciò che succede durante una chiamata reale</text>
+</g>
+</svg>
