@@ -28,20 +28,27 @@ const {
   robots,
 } = Astro.props;
 
+const pathname = Astro.url.pathname;
+const defaultNoIndex =
+  pathname === "/privacy/" ||
+  pathname === "/note-legali/" ||
+  /^\/posts\/\d+\/$/.test(pathname);
+const robotsMeta = robots ?? (defaultNoIndex ? "noindex,follow" : undefined);
+
 const rssHref = getRelativeLocaleUrl(
   Astro.currentLocale ?? config.site.lang,
   "rss.xml"
 );
-const isHomePage = Astro.url.pathname === "/";
+const isHomePage = pathname === "/";
 const isPostArticlePage =
-  Astro.url.pathname.startsWith("/posts/") && Astro.url.pathname !== "/posts/";
+  pathname.startsWith("/posts/") && pathname !== "/posts/";
 const isArticlePage =
   isPostArticlePage ||
-  (Astro.url.pathname.startsWith("/wifi/") && Astro.url.pathname !== "/wifi/");
+  (pathname.startsWith("/wifi/") && pathname !== "/wifi/");
 const usePostSocialJpeg =
   isPostArticlePage && typeof ogImage === "string" && /\.webp(?:\?|$)/i.test(ogImage);
 const socialImageURL = usePostSocialJpeg
-  ? new URL(`${Astro.url.pathname.replace(/\/$/, "")}/social.jpg`, Astro.site ?? Astro.url)
+  ? new URL(`${pathname.replace(/\/$/, "")}/social.jpg`, Astro.site ?? Astro.url)
   : new URL(ogImage, Astro.site ?? Astro.url);
 const isSocialJpeg = /\/social\.jpg$/i.test(socialImageURL.pathname);
 const openGraphType = isArticlePage ? "article" : "website";
@@ -90,8 +97,8 @@ const webSiteSchema = {
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
-    {robots && <meta name="robots" content={robots} />}
-    <link rel="sitemap" href={getAssetPath("sitemap-index.xml")} />
+    {robotsMeta && <meta name="robots" content={robotsMeta} />}
+    <link rel="sitemap" type="application/xml" href={getAssetPath("sitemap.xml")} />
 
     <meta property="og:type" content={openGraphType} />
     <meta property="og:site_name" content={site.title} />
