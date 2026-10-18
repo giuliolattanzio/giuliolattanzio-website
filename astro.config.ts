@@ -26,15 +26,32 @@ export default defineConfig({
     sitemap({
       filter: page => {
         const pathname = new URL(page).pathname;
-        if (["/404/", "/search/", "/about/", "/archives/"].includes(pathname)) {
+
+        if (
+          [
+            "/404/",
+            "/search/",
+            "/about/",
+            "/archives/",
+            "/privacy/",
+            "/note-legali/",
+          ].includes(pathname)
+        ) {
           return false;
         }
+
+        if (/^\/posts\/\d+\/$/.test(pathname)) {
+          return false;
+        }
+
         if (pathname.startsWith("/tags/") && pathname !== "/tags/") {
           return false;
         }
+
         if (pathname.startsWith("/images/")) {
           return false;
         }
+
         return true;
       },
     }),
