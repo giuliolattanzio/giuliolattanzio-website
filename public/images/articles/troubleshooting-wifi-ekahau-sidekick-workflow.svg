@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+<title id="title">Workflow Ekahau Sidekick 2 troubleshooting Wi-Fi</title>
+<desc id="desc">Correlazione tra Ekahau AI Pro, Sidekick 2, packet capture e rete IP nel troubleshooting Wi-Fi.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071724"/><stop offset="1" stop-color="#0e3753"/></linearGradient>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#70d7ff"/></marker>
+</defs>
+<rect width="1600" height="860" fill="url(#bg)"/>
+<text x="76" y="90" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="52" font-weight="700">Workflow di troubleshooting: misurare, correlare, isolare</text>
+<text x="78" y="135" fill="#b7d8e8" font-family="Arial,Helvetica,sans-serif" font-size="24">Ekahau AI Pro · Sidekick 2 · Packet Capture · Network Analysis</text>
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<g transform="translate(95 250)"><rect width="300" height="290" rx="28" fill="#0b2a43" stroke="#52c9f5" stroke-width="2"/><text x="150" y="52" fill="#fff" font-size="28" font-weight="700">Ekahau AI Pro</text><path d="M45 210 C95 105 165 255 255 90" fill="none" stroke="#6fd7ff" stroke-width="10"/><text x="150" y="245" fill="#b8ddec" font-size="20">Signal · SNR · Coverage</text></g>
+<g transform="translate(470 250)"><rect width="300" height="290" rx="28" fill="#30271e" stroke="#ffb56c" stroke-width="2"/><text x="150" y="52" fill="#fff" font-size="28" font-weight="700">Sidekick 2</text><path d="M45 210 C75 205 90 80 118 205 S170 175 195 205 S225 80 255 205" fill="none" stroke="#ffc078" stroke-width="8"/><text x="150" y="245" fill="#ffd6ab" font-size="20">Spectrum · Utilization</text></g>
+<g transform="translate(845 250)"><rect width="300" height="290" rx="28" fill="#0b2a43" stroke="#76bff7" stroke-width="2"/><text x="150" y="52" fill="#fff" font-size="28" font-weight="700">Packet Capture</text><text x="150" y="115" fill="#b8ddf1" font-size="21">802.11</text><text x="150" y="155" fill="#b8ddf1" font-size="21">DHCP · DNS</text><text x="150" y="195" fill="#b8ddf1" font-size="21">RTP · TCP · UDP</text><text x="150" y="245" fill="#b8ddf1" font-size="20">timestamp correlation</text></g>
+<g transform="translate(1220 250)"><rect width="285" height="290" rx="28" fill="#0b3030" stroke="#58d4aa" stroke-width="2"/><text x="142" y="52" fill="#fff" font-size="28" font-weight="700">Network</text><text x="142" y="115" fill="#b8e7d9" font-size="21">VLAN · QoS</text><text x="142" y="155" fill="#b8e7d9" font-size="21">Routing · Firewall</text><text x="142" y="195" fill="#b8e7d9" font-size="21">Application path</text><text x="142" y="245" fill="#70d9b6" font-size="20">root cause</text></g>
+</g>
+<g stroke="#70d7ff" stroke-width="6" fill="none" marker-end="url(#arr)"><path d="M395 395H470"/><path d="M770 395H845"/><path d="M1145 395H1220"/></g>
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<rect x="185" y="650" width="1230" height="115" rx="24" fill="#0a2237" stroke="#4a819f" stroke-width="2"/>
+<text x="800" y="695" fill="#fff" font-size="29" font-weight="700">La diagnosi nasce dalla correlazione temporale tra i domini</text>
+<text x="800" y="735" fill="#acd0df" font-size="21">Un singolo valore non basta: serve osservare cosa cambia esattamente quando compare il sintomo</text>
+</g>
+</svg>
