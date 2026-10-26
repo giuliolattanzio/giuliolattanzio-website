@@ -10,7 +10,7 @@ tags:
   - ekahau
   - sidekick2
   - rf
-  - 80211
+  - "80211"
   - networking
   - packet-capture
   - enterprise-wifi
