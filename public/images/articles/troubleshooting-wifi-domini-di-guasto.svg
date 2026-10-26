@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" role="img" aria-labelledby="title desc">
+<title id="title">First failing domain nel troubleshooting Wi-Fi</title>
+<desc id="desc">Sequenza RF, 802.11, DHCP DNS, rete IP e applicazione con identificazione del primo dominio di guasto.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#081827"/><stop offset="1" stop-color="#0d3550"/></linearGradient>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#72d7ff"/></marker>
+</defs>
+<rect width="1600" height="820" fill="url(#bg)"/>
+<text x="76" y="90" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="51" font-weight="700">Il metodo: trovare il primo dominio che fallisce</text>
+<text x="78" y="135" fill="#b5d8e9" font-family="Arial,Helvetica,sans-serif" font-size="24">Seguire la catena dall'RF all'applicazione evita modifiche casuali</text>
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<g transform="translate(85 280)"><rect width="250" height="230" rx="25" fill="#0b2a43" stroke="#52c9f5" stroke-width="2"/><text x="125" y="55" fill="#fff" font-size="27" font-weight="700">1 · RF</text><text x="125" y="115" fill="#a7ddf4" font-size="21">RSSI · SNR</text><text x="125" y="155" fill="#a7ddf4" font-size="21">Retry · Utilization</text><text x="125" y="198" fill="#68d9ff" font-size="22" font-weight="700">OK</text></g>
+<g transform="translate(385 280)"><rect width="250" height="230" rx="25" fill="#0b2a43" stroke="#63d5ff" stroke-width="2"/><text x="125" y="55" fill="#fff" font-size="27" font-weight="700">2 · 802.11</text><text x="125" y="115" fill="#a7ddf4" font-size="21">Auth · Assoc</text><text x="125" y="155" fill="#a7ddf4" font-size="21">Roaming</text><text x="125" y="198" fill="#68d9ff" font-size="22" font-weight="700">OK</text></g>
+<g transform="translate(685 280)"><rect width="250" height="230" rx="25" fill="#34261d" stroke="#ffab62" stroke-width="3"/><text x="125" y="55" fill="#fff" font-size="27" font-weight="700">3 · IP</text><text x="125" y="115" fill="#ffd0a2" font-size="21">DHCP · DNS</text><text x="125" y="155" fill="#ffd0a2" font-size="21">VLAN · Gateway</text><text x="125" y="198" fill="#ffb469" font-size="22" font-weight="700">FIRST FAIL</text></g>
+<g transform="translate(985 280)"><rect width="250" height="230" rx="25" fill="#0b2a43" stroke="#6acfae" stroke-width="2"/><text x="125" y="55" fill="#fff" font-size="27" font-weight="700">4 · Network</text><text x="125" y="115" fill="#b1e6d5" font-size="21">QoS · Routing</text><text x="125" y="155" fill="#b1e6d5" font-size="21">Firewall</text><text x="125" y="198" fill="#6b8c96" font-size="22">da verificare</text></g>
+<g transform="translate(1285 280)"><rect width="230" height="230" rx="25" fill="#0b3030" stroke="#59d4aa" stroke-width="2"/><text x="115" y="55" fill="#fff" font-size="27" font-weight="700">5 · App</text><text x="115" y="115" fill="#b4e7d7" font-size="21">Voice</text><text x="115" y="155" fill="#b4e7d7" font-size="21">Cloud · VPN</text><text x="115" y="198" fill="#6b8c96" font-size="22">da verificare</text></g>
+</g>
+<g stroke="#72d7ff" stroke-width="6" fill="none" marker-end="url(#arr)"><path d="M335 395H385"/><path d="M635 395H685"/><path d="M935 395H985"/><path d="M1235 395H1285"/></g>
+<g font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<rect x="190" y="625" width="1220" height="105" rx="24" fill="#0a2237" stroke="#497f9e" stroke-width="2"/>
+<text x="800" y="668" fill="#fff" font-size="29" font-weight="700">Se RF e 802.11 sono corretti, non continuare a modificare il controller Wi-Fi</text>
+<text x="800" y="706" fill="#adcfe0" font-size="21">Sposta l'analisi sul primo dominio che mostra un comportamento incoerente</text>
+</g>
+</svg>
