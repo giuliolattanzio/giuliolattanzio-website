@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" role="img" aria-labelledby="t d">
+<title id="t">Airtime e client density</title><desc id="d">Confronto tra cella efficiente e cella ad alta contention.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#081827"/><stop offset="1" stop-color="#0d3550"/></linearGradient></defs>
+<rect width="1600" height="820" fill="url(#bg)"/>
+<text x="75" y="90" fill="#fff" font-family="Arial" font-size="52" font-weight="700">Airtime: stessa copertura, capacità completamente diversa</text>
+<text x="77" y="135" fill="#b6d8e9" font-family="Arial" font-size="24">La densità dei client cambia il tempo disponibile per ogni dispositivo</text>
+<g font-family="Arial" text-anchor="middle">
+<g transform="translate(110 225)"><rect width="610" height="430" rx="30" fill="#0b2a43" stroke="#56c9f5" stroke-width="2"/><text x="305" y="58" fill="#fff" font-size="31" font-weight="700">Cella efficiente</text><circle cx="305" cy="220" r="58" fill="#eaf4f8" stroke="#6fd9ff" stroke-width="5"/><circle cx="130" cy="160" r="20" fill="#72d9ff"/><circle cx="160" cy="310" r="20" fill="#72d9ff"/><circle cx="450" cy="155" r="20" fill="#72d9ff"/><circle cx="465" cy="315" r="20" fill="#72d9ff"/><text x="305" y="385" fill="#b8ddec" font-size="22">pochi client attivi · MCS elevati · retry bassi</text></g>
+<g transform="translate(880 225)"><rect width="610" height="430" rx="30" fill="#30271e" stroke="#ffb56c" stroke-width="2"/><text x="305" y="58" fill="#fff" font-size="31" font-weight="700">Cella sotto pressione</text><circle cx="305" cy="220" r="58" fill="#eaf4f8" stroke="#ffbc75" stroke-width="5"/><g fill="#ffc17b"><circle cx="105" cy="130" r="18"/><circle cx="160" cy="105" r="18"/><circle cx="220" cy="135" r="18"/><circle cx="115" cy="215" r="18"/><circle cx="180" cy="225" r="18"/><circle cx="105" cy="315" r="18"/><circle cx="175" cy="340" r="18"/><circle cx="470" cy="120" r="18"/><circle cx="520" cy="175" r="18"/><circle cx="445" cy="215" r="18"/><circle cx="525" cy="270" r="18"/><circle cx="450" cy="330" r="18"/></g><text x="305" y="385" fill="#ffd5aa" font-size="22">più contention · più retry · meno airtime per client</text></g>
+</g>
+</svg>
