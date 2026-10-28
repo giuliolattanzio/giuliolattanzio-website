@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">Wi-Fi capacity planning enterprise</title><desc id="d">Airtime, client density, retry, utilization ed Ekahau.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071522"/><stop offset=".55" stop-color="#103a58"/><stop offset="1" stop-color="#071b2e"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity=".32"/></filter></defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<text x="82" y="100" fill="#fff" font-family="Arial" font-size="56" font-weight="700">Wi-Fi capacity planning enterprise</text>
+<text x="84" y="150" fill="#b9dbea" font-family="Arial" font-size="25">Airtime · Client density · MCS · Retry · Channel utilization</text>
+<g filter="url(#s)">
+<rect x="585" y="265" width="430" height="220" rx="38" fill="#eaf4f8" stroke="#63d5ff" stroke-width="4"/>
+<circle cx="800" cy="375" r="20" fill="#0ea5e9"/><path d="M690 555Q800 450 910 555M725 595Q800 525 875 595M760 630Q800 595 840 630" fill="none" stroke="#6fd9ff" stroke-width="16" stroke-linecap="round"/>
+</g>
+<g font-family="Arial" text-anchor="middle">
+<g transform="translate(105 260)"><rect width="330" height="360" rx="28" fill="#0b2942" stroke="#52c9f5" stroke-width="2"/><text x="165" y="55" fill="#fff" font-size="28" font-weight="700">Client density</text><circle cx="90" cy="135" r="22" fill="#72d9ff"/><circle cx="165" cy="135" r="22" fill="#72d9ff"/><circle cx="240" cy="135" r="22" fill="#72d9ff"/><circle cx="90" cy="215" r="22" fill="#72d9ff"/><circle cx="165" cy="215" r="22" fill="#72d9ff"/><circle cx="240" cy="215" r="22" fill="#72d9ff"/><text x="165" y="310" fill="#b8ddec" font-size="22">più client attivi</text><text x="165" y="340" fill="#b8ddec" font-size="22">più contention</text></g>
+<g transform="translate(1165 260)"><rect width="330" height="360" rx="28" fill="#0b3030" stroke="#58d4aa" stroke-width="2"/><text x="165" y="55" fill="#fff" font-size="28" font-weight="700">Airtime efficiency</text><rect x="55" y="235" width="35" height="65" fill="#66d8b3"/><rect x="110" y="185" width="35" height="115" fill="#66d8b3"/><rect x="165" y="130" width="35" height="170" fill="#66d8b3"/><rect x="220" y="90" width="35" height="210" fill="#ffb56d"/><text x="165" y="335" fill="#b8e7d9" font-size="21">MCS · Retry · Utilization</text></g>
+</g>
+<g font-family="Arial" text-anchor="middle"><rect x="135" y="700" width="1330" height="110" rx="24" fill="#0a2237" stroke="#487f9e" stroke-width="2"/><text x="800" y="744" fill="#fff" font-size="29" font-weight="700">La vera capacità è il traffico utile che la cella riesce a trasportare nel tempo disponibile</text><text x="800" y="784" fill="#acd0df" font-size="21">Coverage design ≠ Capacity design</text></g>
+</svg>
