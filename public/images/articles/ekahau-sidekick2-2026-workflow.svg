@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="t d">
+<title id="t">Ekahau Sidekick 2 e Wi-Fi lifecycle</title><desc id="d">Workflow design, misurazione, troubleshooting e validazione.</desc>
+<rect width="1600" height="860" fill="#081a2a"/>
+<text x="70" y="85" fill="#fff" font-family="Arial" font-size="50" font-weight="700">Il nuovo workflow Ekahau</text>
+<text x="70" y="130" fill="#b7d8e8" font-family="Arial" font-size="24">Dal predictive design alla validazione continua</text>
+<g font-family="Arial" text-anchor="middle">
+<g transform="translate(70 260)"><rect width="300" height="250" rx="28" fill="#0b2942" stroke="#52c9f5" stroke-width="3"/><text x="150" y="55" fill="#fff" font-size="29" font-weight="700">Plan</text><text x="150" y="120" fill="#b8ddec" font-size="21">Predictive design</text><text x="150" y="160" fill="#b8ddec" font-size="21">RF modeling</text><text x="150" y="205" fill="#72d9ff" font-size="20">AI Pro Online</text></g>
+<g transform="translate(425 260)"><rect width="300" height="250" rx="28" fill="#0b3030" stroke="#58d4aa" stroke-width="3"/><text x="150" y="55" fill="#fff" font-size="29" font-weight="700">Measure</text><text x="150" y="120" fill="#b9e8d9" font-size="21">Survey</text><text x="150" y="160" fill="#b9e8d9" font-size="21">Spectrum</text><text x="150" y="205" fill="#70d9b6" font-size="20">Sidekick 2</text></g>
+<g transform="translate(780 260)"><rect width="300" height="250" rx="28" fill="#30271e" stroke="#ffb56c" stroke-width="3"/><text x="150" y="55" fill="#fff" font-size="29" font-weight="700">Troubleshoot</text><text x="150" y="120" fill="#ffd4aa" font-size="21">Analyzer</text><text x="150" y="160" fill="#ffd4aa" font-size="21">Client experience</text><text x="150" y="205" fill="#ffc27f" font-size="20">Measure Pro</text></g>
+<g transform="translate(1135 260)"><rect width="390" height="250" rx="28" fill="#112d43" stroke="#72c9f3" stroke-width="3"/><text x="195" y="55" fill="#fff" font-size="29" font-weight="700">Validate</text><text x="195" y="120" fill="#bdddeb" font-size="21">Speed · Ping · Jitter</text><text x="195" y="160" fill="#bdddeb" font-size="21">Active / Continuous Pulse</text><text x="195" y="205" fill="#77d3fb" font-size="20">Speedtest Pulse</text></g>
+</g>
+<path d="M370 385H425M725 385H780M1080 385H1135" stroke="#6fd8ff" stroke-width="7"/>
+<g font-family="Arial" text-anchor="middle"><rect x="180" y="650" width="1240" height="115" rx="24" fill="#0a2237" stroke="#4a819f" stroke-width="2"/><text x="800" y="695" fill="#fff" font-size="29" font-weight="700">Design → Measurement → Analysis → Remediation → Validation</text><text x="800" y="735" fill="#acd0df" font-size="21">Il progetto Wi-Fi non termina più con la sola survey</text></g>
+</svg>
