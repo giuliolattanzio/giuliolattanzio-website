@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="t d">
+<title id="t">Dal Wi-Fi survey alla remediation</title><desc id="d">Workflow requisiti, survey, analisi, criticità, remediation e validazione.</desc>
+<rect width="1600" height="860" fill="#081a2a"/>
+<text x="70" y="85" fill="#fff" font-family="Arial" font-size="50" font-weight="700">Dalla misura alla remediation</text>
+<text x="70" y="130" fill="#b7d8e8" font-family="Arial" font-size="24">La survey è efficace quando conduce a una diagnosi dimostrabile</text>
+<g font-family="Arial" text-anchor="middle">
+<g transform="translate(60 275)"><rect width="230" height="230" rx="26" fill="#0b2942" stroke="#52c9f5" stroke-width="3"/><text x="115" y="55" fill="#fff" font-size="27" font-weight="700">Requisiti</text><text x="115" y="125" fill="#b8ddec" font-size="20">Servizi</text><text x="115" y="160" fill="#b8ddec" font-size="20">KPI</text></g>
+<g transform="translate(315 275)"><rect width="230" height="230" rx="26" fill="#0b3030" stroke="#58d4aa" stroke-width="3"/><text x="115" y="55" fill="#fff" font-size="27" font-weight="700">Survey</text><text x="115" y="125" fill="#b9e8d9" font-size="20">RF</text><text x="115" y="160" fill="#b9e8d9" font-size="20">Spectrum</text></g>
+<g transform="translate(570 275)"><rect width="230" height="230" rx="26" fill="#102f34" stroke="#62d4b1" stroke-width="3"/><text x="115" y="55" fill="#fff" font-size="27" font-weight="700">Analisi</text><text x="115" y="125" fill="#bce6dc" font-size="20">Correlazione</text><text x="115" y="160" fill="#bce6dc" font-size="20">Contesto</text></g>
+<g transform="translate(825 275)"><rect width="230" height="230" rx="26" fill="#30271e" stroke="#ffb56c" stroke-width="3"/><text x="115" y="55" fill="#fff" font-size="27" font-weight="700">Criticità</text><text x="115" y="125" fill="#ffd4aa" font-size="20">Causa</text><text x="115" y="160" fill="#ffd4aa" font-size="20">Impatto</text></g>
+<g transform="translate(1080 275)"><rect width="230" height="230" rx="26" fill="#2c2637" stroke="#b58cff" stroke-width="3"/><text x="115" y="55" fill="#fff" font-size="27" font-weight="700">Remediation</text><text x="115" y="125" fill="#dbc9ff" font-size="20">Intervento</text><text x="115" y="160" fill="#dbc9ff" font-size="20">Ottimizzazione</text></g>
+<g transform="translate(1335 275)"><rect width="205" height="230" rx="26" fill="#112d43" stroke="#72c9f3" stroke-width="3"/><text x="102" y="55" fill="#fff" font-size="27" font-weight="700">Validation</text><text x="102" y="125" fill="#bdddeb" font-size="20">Verifica</text><text x="102" y="160" fill="#bdddeb" font-size="20">Risultato</text></g>
+</g>
+<path d="M290 390H315M545 390H570M800 390H825M1055 390H1080M1310 390H1335" stroke="#70d7ff" stroke-width="7"/>
+<g font-family="Arial" text-anchor="middle"><rect x="180" y="650" width="1240" height="115" rx="24" fill="#0a2237" stroke="#4a819f" stroke-width="2"/><text x="800" y="695" fill="#fff" font-size="29" font-weight="700">Una remediation corretta deve poter essere spiegata e poi validata</text><text x="800" y="735" fill="#acd0df" font-size="21">Il valore della survey non è la heatmap: è la decisione tecnica che deriva dai dati</text></g>
+</svg>
