@@ -1,7 +1,7 @@
 ---
 title: "Wi-Fi Survey: perché le competenze fanno la differenza tra una heatmap e una vera analisi RF"
 description: "Una Wi-Fi survey non serve solo a misurare il segnale: richiede competenze RF, 802.11, roaming, capacity e troubleshooting per individuare problemi reali e definire remediation corrette."
-pubDatetime: 2026-11-12T20:30:00Z
+pubDatetime: 2026-11-12T19:30:00Z
 draft: false
 tags:
   - wifi
